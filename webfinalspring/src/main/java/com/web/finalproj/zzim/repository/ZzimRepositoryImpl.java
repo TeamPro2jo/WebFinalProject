@@ -29,6 +29,8 @@ public class ZzimRepositoryImpl implements ZzimRepository {
 
 	@Override
 	public List<ZzimDTO> selectAll() throws Exception {
+		List<ZzimDTO> data = sqlSession.selectList("zzimMapper.all");
+		return data;
 	}
 
 }

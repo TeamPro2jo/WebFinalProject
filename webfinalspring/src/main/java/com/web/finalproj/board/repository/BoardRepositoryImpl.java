@@ -88,3 +88,4 @@ public class BoardRepositoryImpl implements BoardRepository {
 		List<BoardDTO> data = sqlSession.selectList("boardMapper.boardSearch", search);
 		return data;
 	}
+}
