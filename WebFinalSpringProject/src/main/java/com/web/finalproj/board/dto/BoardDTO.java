@@ -5,6 +5,7 @@ import java.sql.Date;
 public class BoardDTO {
 	private int bid;
 	private String aid;
+	private String aname;
 	private String title;
 	private String contents;
 	private int deal;
@@ -28,6 +29,12 @@ public class BoardDTO {
 	}
 	public void setAid(String aid) {
 		this.aid = aid;
+	}
+	public String getAname() {
+		return aname;
+	}
+	public void setAname(String aname) {
+		this.aname = aname;
 	}
 	public String getTitle() {
 		return title;

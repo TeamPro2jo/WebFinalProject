@@ -2,7 +2,7 @@ package com.web.finalproj.zzim.dto;
 
 public class ZzimDTO {
 	private int zid;
-	private String aid;
+	private int aid;
 	private int bid;
 	
 	public ZzimDTO() {}
@@ -13,10 +13,10 @@ public class ZzimDTO {
 	public void setZid(int zid) {
 		this.zid = zid;
 	}
-	public String getAid() {
+	public int getAid() {
 		return aid;
 	}
-	public void setAid(String aid) {
+	public void setAid(int aid) {
 		this.aid = aid;
 	}
 	public int getBid() {
