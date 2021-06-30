@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="zzimMapper">
+  <select id="seq" resultType="_int">
+  	SELECT zzim_seq.NEXTVAL AS seq FROM dual
+  </select>
+
+  <select id="zzim" parameterType="zzim" resultType="zzim">
+  	SELECT * FROM zzim WHERE aid = #{aid} AND bid = #{bid}
+  </select>
+  
+  <delete id="cancel">
+    DELETE FROM zzim WHERE aid = #{aid} AND bid = #{bid}
+  </delete>
+  
+  <insert id="update">
+  	INSERT INTO zzim values(#{zid}, #{aid}, #{bid})
+  </insert>
+</mapper>

@@ -22,11 +22,11 @@
     SELECT nickname, name FROM account WHERE id = #{id}
   </select>
   
-  <select id="checkNickname" parameterType="string" resultType="_int">
+  <select id="checkNickname" parameterType="String" resultType="_int">
     SELECT count(*) FROM account WHERE nickname = #{nickname}
   </select>
   
-  <select id="checkEmail" parameterType="string" resultType="_int">
+  <select id="checkEmail" parameterType="String" resultType="_int">
     SELECT count(*) FROM account WHERE email = #{email}
   </select>
   
@@ -36,17 +36,27 @@
        AND pwd = #{pwd}
   </select>
   
-  <insert id="insertAccount" parameterType="account">
-  	INSERT INTO account(id, nickname, name, pwd, email, good, bad)
-  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}
-  	            , #{email}, #{good}, #{bad})
-  </insert>
- 
-  
   <update id="updateAccount" parameterType="account">
   	UPDATE account
   	   SET nickname = #{nickname}
   	 WHERE id = #{id}
   </update>
  
+  <select id="selectList" parameterType="_int" resultType="board">
+    SELECT * FROM board WHERE aid = #{aid}
+  </select>
+  
+  <select id="zzimList" parameterType="_int" resultType="board">
+    SELECT *
+      FROM board a
+      JOIN zzim b
+        ON a.bid = b.bid
+     WHERE b.aid = #{aid}
+  </select>
+  
+  <insert id="insertAccount" parameterType="account">
+  	INSERT INTO account(id, nickname, name, pwd, email)
+  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
+  </insert>
 </mapper>
+

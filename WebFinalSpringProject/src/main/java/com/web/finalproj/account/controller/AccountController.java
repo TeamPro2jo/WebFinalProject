@@ -1,5 +1,7 @@
 package com.web.finalproj.account.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,9 +15,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.service.AccountService;
 
+import com.web.finalproj.board.dto.BoardDTO;
 
-@Controller		// bean 객체로 등록
-@RequestMapping(value = "/account")	// URL 주소 맵핑
+@Controller
+@RequestMapping(value = "/account")
+
 public class AccountController {
 	
 	@Autowired
@@ -61,7 +65,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "redirect:/";
+			forward = "account/mypage";
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
@@ -78,5 +82,22 @@ public class AccountController {
 		m.addAttribute("data", data);
 		System.out.println(data.toString());
 		return "user/detail";
+	}
+
+	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
+	public String userDetail(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int id = ((AccountDTO)session.getAttribute("account")).getId();
+		dto.setId(id);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		
+		List<BoardDTO> writelist = account.findlist(dto.getId());
+		List<BoardDTO> zzimlist = account.zzimlist(dto.getId());
+		m.addAttribute("writelist", writelist);
+		m.addAttribute("zzimlist", zzimlist);
+		
+		return "account/mypage";
 	}
 }

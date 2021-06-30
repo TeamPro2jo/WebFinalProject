@@ -7,6 +7,6 @@
     <typeAlias type="com.web.finalproj.account.dto.AccountDTO" alias="account" />
     <typeAlias type="com.web.finalproj.board.dto.BoardDTO" alias="board" />
     <typeAlias type="com.web.finalproj.board.dto.BoardSearchDTO" alias="boardsearch" />
+    <typeAlias type="com.web.finalproj.zzim.dto.ZzimDTO" alias="zzim" />
   </typeAliases>
 </configuration>
-

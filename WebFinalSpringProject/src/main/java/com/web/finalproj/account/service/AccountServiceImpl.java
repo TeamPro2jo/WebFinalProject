@@ -1,21 +1,22 @@
 package com.web.finalproj.account.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.repository.AccountRepositoryImpl;
 
+import com.web.finalproj.board.dto.BoardDTO;
+import com.web.finalproj.zzim.dto.ZzimDTO;
 
-/**
- * DAO에 데이터를 전달하기 전에 필요한 비지니스 로직을 동작시키기 위해 사용
- */
-@Service	// bean에 등록
+@Service
 public class AccountServiceImpl implements AccountService {
 	
 	@Autowired
 	AccountRepositoryImpl dao;
-	
+
 	@Override
 	public boolean join(AccountDTO dto) throws Exception {
 		return dao.insert(dto);
@@ -32,10 +33,10 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public boolean checkEmail(String email) throws Exception {
-		// 사용중인 이메일을 찾는 기능
+		// 사용중인 id을 찾는 기능
 		// 사용중이면 true, 사용하지 않으면 false 반환
 		boolean result = true;
 		int rs = dao.usedEmail(email);
@@ -44,7 +45,7 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public void login(AccountDTO dto) throws Exception {
 		AccountDTO data = dao.checkUser(dto);
@@ -65,6 +66,18 @@ public class AccountServiceImpl implements AccountService {
 	public AccountDTO accountInfoDetail(AccountDTO dto) throws Exception {
 		// 비지니스 로직
 		return dao.select(dto);
+	}
+	
+	@Override
+	public List<BoardDTO> findlist(int aid) throws Exception {
+		List<BoardDTO> data = dao.writelist(aid);
+		return data;
+	}
+
+	@Override
+	public List<BoardDTO> zzimlist(int aid) throws Exception {
+		List<BoardDTO> data = dao.zzimlist(aid);
+		return data;
 	}
 
 }

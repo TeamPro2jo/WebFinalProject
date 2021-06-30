@@ -16,7 +16,7 @@
 		</div>
 		<div>
 			<label>패스워드</label>
-			<input id="id_password" type="password" name="pwd" required>
+			<input id="id_pwd" type="password" name="pwd" required>
 		</div>
 		<div>
 			<label style="color: red;">${error }</label>

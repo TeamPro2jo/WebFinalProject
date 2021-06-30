@@ -27,7 +27,7 @@
 			},
 			success: function(data) {
 				if(data.result == false) {
-					document.getElementById("email_check_res").innerText = "사용 가능!!!";
+					document.getElementById("email_check_res").innerText = "사용 가능!";
 				} else {
 					document.getElementById("email_check_res").innerText = "이미 사용중인 이메일 주소";
 				}
@@ -35,44 +35,21 @@
 		});
 	}
 	
-	function nicknameCheck() {
-		var nickname = document.getElementById("id_nickname").value;
-		if(nickname == "" || nickname == undefined) {
-			alert("닉네임을 입력하세요.");
-			document.getElementById("id_nickname").focus();
-			return;
-		}
-		$.ajax({
-			url: "${nickname_check }",
-			type: "get",
-			datatype: "json",
-			data: {
-				nickname: document.getElementById("id_nickname").value
-			},
-			success: function(data) {
-				if(data.result == false) {
-					document.getElementById("nickname_check_res").innerText = "사용 가능!!!";
-				} else {
-					document.getElementById("nickname_check_res").innerText = "이미 사용중인 닉네임";
-				}
-			}
-		});
-	}
 	
 	function send() {
-		var username = document.getElementById("id_username");
-		if(username.value == "" || username.value == undefined) {
-			alert("이름을 입력하세요.")
-			username.focus();
+		var name = document.getElementById("id_name");
+		if(name.value == "" || name.value == undefined) {
+			alert("이름을 입력하세요.");
+			name.focus();
 			return;
 		}
-				
+		
 		var nickname_check = document.getElementById("nickname_check_res").innerText;
 		if(nickname_check == "" || nickname_check == undefined) {
 			alert("닉네임을 입력하세요.");
 			document.getElementById("id_nickname").focus();
 			return;
-		} else if(nickname_check != "사용 가능!!!") {
+		} else if(nickname_check != "사용 가능!") {
 			alert("해당 닉네임으로는 가입을 할 수 없습니다.");
 			document.getElementById("id_nickname").focus();
 			return;
@@ -83,16 +60,16 @@
 			alert("이메일 중복확인을 먼저 진행하세요.");
 			document.getElementById("id_email").focus();
 			return;
-		} else if(email_check != "사용 가능!!!") {
+		} else if (email_check != "사용 가능!") {
 			alert("해당 이메일 주소로는 가입을 할 수 없습니다.");
 			document.getElementById("id_email").focus();
 			return;
 		}
 		
-		var password = document.getElementById("id_password");
-		if(password.value == "" || password.value == undefined) {
-			alert("패스워드를 입력하세요.")
-			password.focus();
+		var pwd = document.getElementById("id_pwd");
+		if(pwd.value == "" || pwd.value == undefined) {
+			alert("패스워드를 입력하세요.");
+			pwd.focus();
 			return;
 		}
 		
@@ -104,8 +81,8 @@
 <body>
 	<form name="account_form" action="${join }" method="post">
 		<div>
-			<label for="id_username">* 이름</label>
-			<input id="id_username" type="text" name="name" required>
+			<label for="id_name">* 이름</label>
+			<input id="id_name" type="text" name="name" required>
 		</div>
 		<div>
 			<label for="id_nickname">* 닉네임</label>
@@ -116,7 +93,7 @@
 		<div>
 			<label for="id_email">* 이메일</label>
 			<input id="id_email" type="email" name="email" required>
-			<button type="button" onclick="emailCheck();">중복확인</button>
+			<button type="button" onclick="nicknameCheck('${nickname_check }', this.value);">중복확인</button>
 			<label id="email_check_res"></label>
 		</div>
 		<div>

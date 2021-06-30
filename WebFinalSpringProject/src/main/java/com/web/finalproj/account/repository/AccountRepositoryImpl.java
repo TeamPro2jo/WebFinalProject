@@ -1,20 +1,21 @@
 package com.web.finalproj.account.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.web.finalproj.account.dto.AccountDTO;
+import com.web.finalproj.board.dto.BoardDTO;
+import com.web.finalproj.zzim.dto.ZzimDTO;
 
-/**
- * 데이터베이스에 직접 연결되어 조작을 수행한다.
- */
-@Repository		// bean에 등록
+@Repository
 public class AccountRepositoryImpl implements AccountRepository {
 	
 	@Autowired
-	SqlSession sqlSession;
-	
+	private SqlSession sqlSession;
+
 	@Override
 	public AccountDTO select(AccountDTO dto) throws Exception {
 		return sqlSession.selectOne("accountMapper.selectAccount", dto);
@@ -29,12 +30,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 	public int usedEmail(String email) throws Exception {
 		return sqlSession.selectOne("accountMapper.checkEmail", email);
 	}
-	
+
 	@Override
 	public AccountDTO checkUser(AccountDTO dto) throws Exception {
 		return sqlSession.selectOne("accountMapper.checkLogin", dto);
 	}
-	
+
 	@Override
 	public boolean insert(AccountDTO dto) throws Exception {
 		boolean result = false;
@@ -44,15 +45,23 @@ public class AccountRepositoryImpl implements AccountRepository {
 		}
 		return result;
 	}
-	
+
 	@Override
 	public boolean update(AccountDTO dto) throws Exception {
 		return false;
 	}
-	
+
 	@Override
 	public boolean delete(AccountDTO dto) throws Exception {
 		return false;
 	}
-	
+
+	@Override
+	public List<BoardDTO> writelist(int aid) throws Exception {
+		return sqlSession.selectList("accountMapper.selectList", aid);
+	}
+
+	public List<BoardDTO> zzimlist(int aid) {
+		return sqlSession.selectList("accountMapper.zzimList", aid);
+	}
 }

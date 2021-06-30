@@ -29,3 +29,6 @@ COMMENT ON COLUMN account.bad IS '비추천';
 
 
 INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '관리자', 'admin', 'admin', 'admin@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '김김김', 'kim', 'kim', 'kim@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '박박박', 'park', 'park', 'park@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '이이이', 'lee', 'lee', 'lee@sample.com', 0, 0);

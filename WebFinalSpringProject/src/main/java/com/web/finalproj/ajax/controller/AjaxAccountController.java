@@ -18,11 +18,11 @@ public class AjaxAccountController {
 	AccountService account;
 	
 	@RequestMapping(value = "/nickname", method = RequestMethod.GET
-		, produces = "application/json; charset=utf-8")
-	@ResponseBody	// ViewResolver 를 사용하지 않음.
-	public String checkNickname(@RequestParam String nickname) throws Exception {
-		// 결과가 false 일 때 사용중인 닉네임이 없다.
-		boolean res = account.checkNickname(nickname);
+			, produces = "application/json; charset=utf-8")
+		@ResponseBody	// ViewResolver 를 사용하지 않음.
+		public String checkNickname(@RequestParam String nickname) throws Exception {
+			// 결과가 false 일 때 사용중인 닉네임이 없다.
+			boolean res = account.checkNickname(nickname);
 		
 		// response.setContentType("application/json; charset=utf-8");
 		JSONObject json = new JSONObject();
@@ -30,7 +30,7 @@ public class AjaxAccountController {
 			// 사용중인 닉네임이 존재합니다.
 			json.put("result", true);
 		} else {
-			// 사용하지 않는 닉네임 입니다.
+			// 사용 가능한 닉네임 입니다.
 			json.put("result", false);
 		}
 		return json.toJSONString();
@@ -53,4 +53,5 @@ public class AjaxAccountController {
 			}
 			return json.toJSONString();
 		}
+
 }
