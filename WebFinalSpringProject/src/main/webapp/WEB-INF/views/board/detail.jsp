@@ -39,7 +39,7 @@ function zzim(boardid) {
 	<div>
 		<small>작성일 : ${item.getCdate() }</small><br>
 		<small>수정일 : ${item.getUdate() }</small><br>
-		<small>조수회 : ${item.getVcnt() }</small><br>
+		<small>조회수 : ${item.getVcnt() }</small><br>
 		<c:choose>
 			<c:when test="${zzimcheck }">
 				<a style="cursor: pointer; color: red;" onclick="zzim(${item.getBid() });"><span id="zzim">♥</span></a><br>

@@ -37,49 +37,47 @@
 	
 	
 	function send() {
-		var name = document.getElementById("id_name");
-		if(name.value == "" || name.value == undefined) {
-			alert("이름을 입력하세요.");
-			name.focus();
-			return;
+		var username = document.getElementById("id_username");
+		if(username.value == "" || username.value == undefined) {
+			alert("이름을 입력하세요.")
+			username.focus();
+			return false;
 		}
-		
+				
 		var nickname_check = document.getElementById("nickname_check_res").innerText;
 		if(nickname_check == "" || nickname_check == undefined) {
 			alert("닉네임을 입력하세요.");
 			document.getElementById("id_nickname").focus();
-			return;
-		} else if(nickname_check != "사용 가능!") {
+			return false;
+		} else if(nickname_check != "사용 가능!!!") {
 			alert("해당 닉네임으로는 가입을 할 수 없습니다.");
 			document.getElementById("id_nickname").focus();
-			return;
+			return false;
 		}
 		
 		var email_check = document.getElementById("email_check_res").innerText;
 		if(email_check == "" || email_check == undefined) {
 			alert("이메일 중복확인을 먼저 진행하세요.");
 			document.getElementById("id_email").focus();
-			return;
-		} else if (email_check != "사용 가능!") {
+			return false;
+		} else if(email_check != "사용 가능!!!") {
 			alert("해당 이메일 주소로는 가입을 할 수 없습니다.");
 			document.getElementById("id_email").focus();
-			return;
+			return flase;
 		}
 		
-		var pwd = document.getElementById("id_pwd");
-		if(pwd.value == "" || pwd.value == undefined) {
-			alert("패스워드를 입력하세요.");
-			pwd.focus();
-			return;
+		var password = document.getElementById("id_password");
+		if(password.value == "" || password.value == undefined) {
+			alert("패스워드를 입력하세요.")
+			password.focus();
+			return false;
 		}
-		
-		document.account_form.submit();
 	}
 </script>
 </head>
 <c:url var="join" value="/account/join" />
 <body>
-	<form name="account_form" action="${join }" method="post">
+	<form name="account_form" action="${join }" method="post" onsubmit="return send()">
 		<div>
 			<label for="id_name">* 이름</label>
 			<input id="id_name" type="text" name="name" required>
@@ -87,13 +85,13 @@
 		<div>
 			<label for="id_nickname">* 닉네임</label>
 			<input id="id_nickname" type="text" name="nickname" required>
-			<button type="button" onclick="nicknameCheck();">중복확인</button>
+			<button type="button" onclick="nicknameCheck('${nickname_check }', this.value);">중복확인</button>
 			<label id="nickname_check_res"></label>
 		</div>
 		<div>
 			<label for="id_email">* 이메일</label>
 			<input id="id_email" type="email" name="email" required>
-			<button type="button" onclick="nicknameCheck('${nickname_check }', this.value);">중복확인</button>
+			<button type="button" onclick="emailCheck();">중복확인</button>
 			<label id="email_check_res"></label>
 		</div>
 		<div>
@@ -101,7 +99,7 @@
 			<input id="id_password" type="password" name="pwd" required>
 		</div>
 		<div>
-			<button type="button" onclick="send();">가입</button>
+			<input type="submit" value="가입">
 			<c:url var="login" value="/account/login" />
 			<button type="button" onclick="location.href='${login }'">로그인</button>
 		</div>

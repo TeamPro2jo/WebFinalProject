@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.service.AccountService;
@@ -34,6 +35,8 @@ public class AccountController {
 	public String join(Model m, @ModelAttribute AccountDTO dto) throws Exception {
 		String forward = "";
 		
+		System.out.print("회원가입 시도");
+		
 		// 서비스의 join 메서드 호출
 		boolean result = account.join(dto);
 		
@@ -42,6 +45,7 @@ public class AccountController {
 			forward = "redirect:/account/login";
 		} else {
 			// 가입 실패 했을 때 회원가입 페이지 재전송
+			System.out.print("회원가입 실패");
 			m.addAttribute("data", dto);
 			m.addAttribute(forward);
 			forward = "account/join";
@@ -53,7 +57,7 @@ public class AccountController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		return "account/login";
-	}
+	}	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest req) throws Exception {
@@ -65,7 +69,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "account/mypage";
+			forward = "main";
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
@@ -74,6 +78,13 @@ public class AccountController {
 		}
 		
 		return forward;
+	}
+	
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
 	}
 	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
@@ -100,4 +111,5 @@ public class AccountController {
 		
 		return "account/mypage";
 	}
+	
 }
