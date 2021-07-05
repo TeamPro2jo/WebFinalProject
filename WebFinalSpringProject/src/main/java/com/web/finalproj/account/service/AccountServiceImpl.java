@@ -28,7 +28,7 @@ public class AccountServiceImpl implements AccountService {
 		// 사용중이면 true, 사용하지 않으면 false 반환
 		boolean result = true;
 		int rs = dao.usedNickname(nickname);
-		if(rs == 0) {
+		if(rs <= 0) {
 			result = false;
 		}
 		return result;
