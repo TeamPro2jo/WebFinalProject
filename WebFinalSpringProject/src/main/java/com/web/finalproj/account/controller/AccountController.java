@@ -111,8 +111,6 @@ public class AccountController {
 		return "account/mypage";
 	}
 	
-<<<<<<< HEAD
-=======
 	/*회원정보 수정*/
 	@RequestMapping(value= "/memberupdate", method = RequestMethod.GET)
 	public String memberupdate(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
@@ -136,6 +134,5 @@ public class AccountController {
 		
 		return "redirect:/account/login";
 	}
-	
->>>>>>> d500d8031db7456bc48c9a5e60d5c488fad5852b
+
 }

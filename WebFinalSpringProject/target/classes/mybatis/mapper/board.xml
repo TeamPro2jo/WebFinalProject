@@ -44,6 +44,10 @@
   <select id="row" parameterType="board" resultType="board">
     SELECT * FROM board WHERE bid = #{bid}
   </select>
+  
+  <delete id="boardDelete" parameterType="int">
+	DELETE FROM BOARD WHERE bid = #{bid}
+	</delete>
 
 
 </mapper>
