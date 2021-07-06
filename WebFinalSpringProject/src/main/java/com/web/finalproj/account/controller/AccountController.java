@@ -42,7 +42,7 @@ public class AccountController {
 		
 		if(result) {
 			// 가입 성공 했을 때 로그인 페이지로 리다이렉트
-			forward = "redirect:/login";
+			forward = "redirect:/account/login";
 		} else {
 			// 가입 실패 했을 때 회원가입 페이지 재전송
 			System.out.print("회원가입 실패");
