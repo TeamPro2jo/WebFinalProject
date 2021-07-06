@@ -16,59 +16,55 @@
 <c:url var="nickname_check" value="/ajax/account/nickname" />
 <c:url var="expire" value="/ajax/account/expire" />
 <script type="text/javascript">
-	function updateInfo(){
+	function updateInfo() {
 		var nickCheck = document.getElementById("nickname_check_res").innerText;
 		var nickname = document.getElementById("id_nickname").value
-		
-		if(nickname == "") {
-			alert("닉네임을 입력하세요.")
-			
 		var password = document.getElementById("id_password").value
-	
-		if(nickname == "" || nickname.trim() == "") {
+
+		if (nickname == "" || nickname.trim() == "") {
 			alert("닉네임을 입력하세요.")
 			document.getElementById("nickname_check_res").innerText = "닉네임을 입력하세요";
 			return;
 		}
-		
-		if(password == "") {
+
+		if (password == "") {
 			alert("비밀번호를 입력하세요.")
 			return;
-		} else if(password.search(/\s/) != -1) {
+		} else if (password.search(/\s/) != -1) {
 			alert("비밀번호는 공백 없이 입력해주세요.")
-
 			return;
 		}
-		
+
 		// 닉네임을 변경하는 경우
-		if(nickname != "${data.getNickname()}" && nickCheck == "사용 가능!") {
+		if (nickname != "${data.getNickname()}" && nickCheck == "사용 가능!") {
 			document.update_account.submit();
-		// 닉네임을 변경하지 않고 성별 및 나이만 변경하는 경우
-		} else if(nickname == "${data.getNickname()}") {
+			// 닉네임을 변경하지 않고 성별 및 나이만 변경하는 경우
+		} else if (nickname == "${data.getNickname()}") {
 			document.update_account.submit();
 		} else {
 			alert("닉네임 중복 체크 먼저 진행하세요.");
 			return;
 		}
 	}
-	
-	function expire(){
-			$.ajax({
-			url: "${expire }",
-			type: "post",
-			datatype: "json",
-			data: {
-				id: document.getElementById("id").value
-			},
-			success: function(data) {
-				if(data.res == "success"){
-					alert("탈퇴 처리가 완료되었습니다.")
-					location.href = "${pageContext.request.contextPath }/account/login" //로그아웃페이지로 이동
-				} else {
-					alert("탈퇴 처리에 실패하였습니다.")
-				}
-			}
-		});
+
+	function expire() {
+		$
+				.ajax({
+					url : "${expire }",
+					type : "post",
+					datatype : "json",
+					data : {
+						id : document.getElementById("id").value
+					},
+					success : function(data) {
+						if (data.res == "success") {
+							alert("탈퇴 처리가 완료되었습니다.")
+							location.href = "${pageContext.request.contextPath }/account/login" //로그아웃페이지로 이동
+						} else {
+							alert("탈퇴 처리에 실패하였습니다.")
+						}
+					}
+				});
 	}
 </script>
 </head>
@@ -103,8 +99,8 @@
 						</div>
 						<div>
 							<label for="id_nickname">* 닉네임 : </label> <input id="id_nickname"
-								type="text" name="nickname"
-								value="${requestScope.data.getNickname() }" required>
+								type="text" name="nickname" value="${data.getNickname() }"
+								required>
 							<button type="button"
 								onclick="nicknameCheck('${nickname_check }', document.getElementById('id_nickname').value);">중복확인</button>
 							<label id="nickname_check_res"></label>
