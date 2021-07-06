@@ -12,8 +12,8 @@ public class MessageDTO {
 	
 	public static MessageDTO convertMessage(String source) {
 		MessageDTO message = new MessageDTO();
-		Gson gson = new Gson();
-		message = gson.fromJson(source, MessageDTO.class);
+		//Gson gson = new Gson();
+		//message = gson.fromJson(source, MessageDTO.class);
 		return message;
 	}
 

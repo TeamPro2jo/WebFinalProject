@@ -17,14 +17,13 @@ import org.springframework.web.socket.WebSocketSession;
 
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import com.almom.domain.ChatRoomVO;
-import com.almom.domain.MessageVO;
-import com.almom.domain.UserVO;
-import com.almom.persistence.ChatDAO;
-import com.google.gson.Gson;
+//import com.google.gson.Gson;
+import com.web.finalproj.account.dto.AccountDTO;
+import com.web.finalproj.chat.dto.ChatroomDTO;
+import com.web.finalproj.chat.dto.MessageDTO;
 
 public class ChatWebSocketHandler extends TextWebSocketHandler {
-
+/*
 	@Inject
 	private ChatDAO dao;
 
@@ -69,17 +68,17 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
 		  Map<String, Object> map = null;
 
-	      MessageVO messageVO = MessageVO.convertMessage(message.getPayload());
+	      MessageDTO messageVO = MessageDTO.convertMessage(message.getPayload());
 
 	      System.out.println("1 : " + messageVO.toString());
 
 
-	      ChatRoomVO roomVO  = new ChatRoomVO();
+	      ChatroomDTO roomVO  = new ChatroomDTO();
 	      roomVO.setCLASS_class_id(messageVO.getCLASS_class_id()); //클래스
 	      roomVO.setTUTOR_USER_user_id(messageVO.getTUTOR_USER_user_id()); //튜터
 	      roomVO.setUSER_user_id(messageVO.getUSER_user_id()); //유저
 
-	      ChatRoomVO croom =null;
+	      ChatroomDTO croom =null;
 	      if(!messageVO.getUSER_user_id().equals(messageVO.getTUTOR_USER_user_id())) {
 	    	  System.out.println("a");
 
@@ -101,7 +100,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     	  }
 
 	      messageVO.setCHATROOM_chatroom_id(croom.getChatroom_id());
-	      if(croom.getUSER_user_id().equals(messageVO.getMessage_sender())) {
+	      if(croom.getId().equals(messageVO.getMessage_sender())) {
 
 	    	  messageVO.setMessage_receiver(roomVO.getTUTOR_USER_user_id());
 	      }else {
@@ -113,14 +112,14 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 
 	      for (WebSocketSession websocketSession : connectedUsers) {
 	         map = websocketSession.getAttributes();
-	         UserVO login = (UserVO) map.get("login");
+	         AccountDTO login = (AccountDTO) map.get("login");
 
 	         //받는사람
-	         if (login.getUser_id().equals(messageVO.getMessage_sender())) {
+	         if (login.getId().equals(messageVO.getMessage_sender())) {
 
-	            Gson gson = new Gson();
-	            String msgJson = gson.toJson(messageVO);
-	            websocketSession.sendMessage(new TextMessage(msgJson));
+	            //Gson gson = new Gson();
+	           // String msgJson = gson.toJson(messageVO);
+	            //websocketSession.sendMessage(new TextMessage(msgJson));
 	         }
 
 
@@ -142,5 +141,5 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		System.out.println(new Date() + " : " + logmsg);
 
 	}
-
+*/
 }

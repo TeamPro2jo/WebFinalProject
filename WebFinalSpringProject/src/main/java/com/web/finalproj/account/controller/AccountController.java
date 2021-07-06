@@ -129,7 +129,7 @@ public class AccountController {
 	public String memberupdate( @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		
-		account.memberUpdate(dto);
+		//account.memberUpdate(dto);
 		session.invalidate();
 		
 		return "redirect:/account/login";
