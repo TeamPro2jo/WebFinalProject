@@ -27,8 +27,18 @@ COMMENT ON COLUMN account.email IS '사용자 이메일 주소(로그인 아이�
 COMMENT ON COLUMN account.good IS '추천';
 COMMENT ON COLUMN account.bad IS '비추천';
 
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉관리자', '관리자', 'admin', 'admin@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저1', '가유저', 'user1', 'user1@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저2', '나유저', 'user2', 'user2@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저3', '다유저', 'user3', 'user3@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저4', '라유저', 'user4', 'user4@sample.com', 0, 0);
 
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '관리자', 'admin', 'admin', 'admin@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '김김김', 'kim', 'kim', 'kim@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '박박박', 'park', 'park', 'park@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '이이이', 'lee', 'lee', 'lee@sample.com', 0, 0);
+SELECT * FROM account;
+
+UPDATE account
+   SET nickname = '닉유저8'
+     , name = '아유저'
+     , pwd = 'user8'
+     , email = 'user8@sample.com'
+ WHERE id = 9
+

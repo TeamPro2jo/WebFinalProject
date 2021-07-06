@@ -45,6 +45,42 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public ModelAndView main(@ModelAttribute BoardSearchDTO search, HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		List<BoardDTO> boardlist = null;
+		String[] typeList = request.getParameterValues("type");
+		String[] areaList = request.getParameterValues("area");
+		String[] statList = request.getParameterValues("stat");
+		String[] dealList = request.getParameterValues("deal");
+		search.setTypeList(typeList);
+		search.setAreaList(areaList);
+		search.setStatList(statList);
+		search.setDealList(dealList);
+		
+		if((search.getSearchType() == null || search.getSearchType().equals("선택"))
+				&& search.getArea() == null && search.getType() == null
+				&& search.getStat() == null && search.getDeal() == null) {
+			boardlist = board.findAll();
+		} else {
+			boardlist = board.findList(search);
+			String typecheck = Arrays.toString(typeList).replace("[", "").replace("]", "").replace(" ", "");
+			mv.addObject("typecheck", typecheck);
+			String areacheck = Arrays.toString(areaList).replace("[", "").replace("]", "").replace(" ", "");
+			mv.addObject("areacheck", areacheck);
+			String statcheck = Arrays.toString(statList).replace("[", "").replace("]", "").replace(" ", "");
+			mv.addObject("statcheck", statcheck);
+			String dealcheck = Arrays.toString(dealList).replace("[", "").replace("]", "").replace(" ", "");
+			mv.addObject("dealcheck", dealcheck);
+		}
+		mv.setViewName("board/main");
+		mv.addObject("boardlist", boardlist);
+		
+		return mv;
+	}
+	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView datail(@RequestParam int bid, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();

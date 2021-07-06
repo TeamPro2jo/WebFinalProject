@@ -80,4 +80,9 @@ public class AccountServiceImpl implements AccountService {
 		return data;
 	}
 
+	@Override
+	public boolean memberUpdate(AccountDTO dto) throws Exception {
+		return dao.update(dto);
+	}
+
 }

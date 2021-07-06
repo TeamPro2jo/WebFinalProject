@@ -37,9 +37,9 @@
   </select>
   
   <update id="updateAccount" parameterType="account">
-  	UPDATE account
-  	   SET nickname = #{nickname}
-  	 WHERE id = #{id}
+       SET nickname = #{nickname}
+         , pwd = #{pwd}
+     WHERE id = #{id}
   </update>
  
   <select id="selectList" parameterType="_int" resultType="board">
@@ -66,12 +66,6 @@
 		nickname = #{nickname}
 		WHERE id = #{id}
 	</update>
-  
-  <!-- 회원탈퇴 처리-->
-  <update id="expireAccount">
-  	UPDATE account
-  	   SET expiredate = SYSDATE
-  	 WHERE id = #{id}
-  </update>
+
 </mapper>
 

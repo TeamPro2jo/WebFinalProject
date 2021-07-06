@@ -91,6 +91,7 @@ public class AccountController {
 	public String userDetail(Model m, @ModelAttribute AccountDTO dto) throws Exception {
 		AccountDTO data = account.accountInfoDetail(dto);
 		m.addAttribute("data", data);
+		System.out.println(data.toString());
 		return "user/detail";
 	}
 
@@ -125,14 +126,15 @@ public class AccountController {
 		return "account/memberupdate";
 	}
 	
-	@RequestMapping(value= "/memberupdate", method = RequestMethod.POST)
-	public String memberupdate( @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
+	public String memberupdate(@ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		boolean res = account.memberUpdate(dto);
 		
-		//account.memberUpdate(dto);
-		session.invalidate();
+		if(res) {
+			session.invalidate();
+		}
 		
-		return "redirect:/account/login";
+		return "redirect:/account/mypage";
 	}
-
 }

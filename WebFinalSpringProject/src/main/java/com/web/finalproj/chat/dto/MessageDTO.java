@@ -3,6 +3,7 @@ package com.web.finalproj.chat.dto;
 import java.util.Date;
 
 public class MessageDTO {
+	/*
 	private String mid;
 	private String sender;
 	private String receiver;
@@ -70,5 +71,5 @@ public class MessageDTO {
 		return "MessageDTO [mid=" + mid + ", sender=" + sender + ", receiver=" + receiver + ", mcontents=" + mcontents
 				+ ", sendTime=" + sendTime + ", roomid=" + roomid + "]";
 	}
-	
+	*/
 }

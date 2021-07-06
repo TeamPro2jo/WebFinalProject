@@ -8,7 +8,9 @@
     <typeAlias type="com.web.finalproj.board.dto.BoardDTO" alias="board" />
     <typeAlias type="com.web.finalproj.board.dto.BoardSearchDTO" alias="boardsearch" />
     <typeAlias type="com.web.finalproj.zzim.dto.ZzimDTO" alias="zzim" />
+    <!--  
     <typeAlias type="com.web.finalproj.chat.dto.ChatroomDTO" alias="chat" />
     <typeAlias type="com.web.finalproj.chat.dto.MessageDTO" alias="message" />
+    -->
   </typeAliases>
 </configuration>

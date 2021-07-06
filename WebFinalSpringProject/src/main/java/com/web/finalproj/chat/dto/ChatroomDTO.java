@@ -1,6 +1,7 @@
 package com.web.finalproj.chat.dto;
 
 public class ChatroomDTO {
+	/*
 	private String roomid;
 	private String cuserid;
 	private String puserid;
@@ -24,5 +25,5 @@ public class ChatroomDTO {
 		this.puserid = puserid;
 	}
 	
-	
+	*/
 }

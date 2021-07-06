@@ -48,7 +48,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	@Override
 	public boolean update(AccountDTO dto) throws Exception {
-		return false;
+		boolean result = false;
+		int rs = sqlSession.update("accountMapper.updateAccount", dto);
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
@@ -61,6 +66,7 @@ public class AccountRepositoryImpl implements AccountRepository {
 		return sqlSession.selectList("accountMapper.selectList", aid);
 	}
 
+	@Override
 	public List<BoardDTO> zzimlist(int aid) {
 		return sqlSession.selectList("accountMapper.zzimList", aid);
 	}
