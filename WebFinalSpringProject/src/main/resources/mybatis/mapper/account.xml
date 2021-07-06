@@ -4,12 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
 <mapper namespace="accountMapper">
+  <resultMap id="accountMap" type="account">
+    <id property="id" column="id" />
+    <result property="nickname" column="nickname" />
+    <result property="name" column="name" />
+  </resultMap>
+
   <select id="selectAll" resultType="account">
     SELECT * FROM account
   </select>
-
+  
   <select id="selectAccount" parameterType="account" resultType="account">
     SELECT * FROM account WHERE id = #{id}
+  </select>
+  
+  <select id="selectAccountMap" parameterType="account" resultMap="accountMap">
+    SELECT nickname, name FROM account WHERE id = #{id}
   </select>
   
   <select id="checkNickname" parameterType="String" resultType="_int">
@@ -26,6 +36,13 @@
        AND pwd = #{pwd}
   </select>
   
+  <update id="updateAccount" parameterType="account">
+    UPDATE account
+       SET nickname = #{nickname}
+         , pwd = #{pwd}
+     WHERE id = #{id}
+  </update>
+ 
   <select id="selectList" parameterType="_int" resultType="board">
     SELECT * FROM board WHERE aid = #{aid}
   </select>
@@ -39,7 +56,8 @@
   </select>
   
   <insert id="insertAccount" parameterType="account">
-  	INSERT INTO account(id, nickname, name, pwd, email)
-  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
+  	INSERT INTO account
+  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email}, 0, 0)
   </insert>
 </mapper>
+

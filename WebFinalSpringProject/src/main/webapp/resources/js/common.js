@@ -15,6 +15,9 @@ function nicknameCheck(url, value) {
 			} else {
 				document.getElementById("nickname_check_res").innerText = "이미 사용중인 닉네임";
 			}
+			if(value == "" || value.trim() == "") {
+				document.getElementById("nickname_check_res").innerText = "닉네임을 입력하세요.";
+			}
 		}
 	});
 }

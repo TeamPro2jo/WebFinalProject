@@ -37,12 +37,12 @@ COMMENT ON COLUMN board.vcnt IS '조회수';
 COMMENT ON COLUMN board.cdate IS '게시판 생성일';
 COMMENT ON COLUMN board.udate IS '게시판 수정일';
 
-INSERT INTO board values(board_seq.NEXTVAL, 2, '첫번째 게시글 유저2', '테스트1', 1, '서울', '식품', '최상', 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 1, '두번째 게시글 유저1', '테스트2', 2, '대구', '의류', '중', 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 1, '세번째 게시글 유저1', '테스트3', 1, '부산', '도서', '하', 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 2, '네번째 게시글 유저2', '테스트4', 1, '부산', '식품', '상', 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 1, '다섯번째 게시글 유저1', '테스트5', 2, '부산', '도서', '중', 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 2, '여섯번째 게시글 유저2', '테스트6', 2, '부산', '의류', '상', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 2, '첫번째 게시글 유저1', '테스트1', 1, '서울', '디지털기기', '최상', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 3, '두번째 게시글 유저2', '테스트2', 2, '충북', '생활/가공식품', '중', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 1, '세번째 게시글 관리자', '테스트3', 1, '전남', '생활/가공식품', '하', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 4, '네번째 게시글 유저3', '테스트4', 1, '경북', '게임/취미', '상', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 5, '다섯번째 게시글 유저4', '테스트5', 2, '경기', '식물', '중', 0, SYSDATE, SYSDATE);
+INSERT INTO board values(board_seq.NEXTVAL, 3, '여섯번째 게시글 유저2', '테스트6', 1, '경기', '유아용품', '상', 0, SYSDATE, SYSDATE);
 UPDATE board
    SET contents = '테스트2'
  WHERE id = 2;
@@ -56,3 +56,5 @@ SELECT a.bid
       JOIN account b
         ON a.aid = b.id
      ORDER BY a.bid DESC;
+     
+SELECT * FROM board;

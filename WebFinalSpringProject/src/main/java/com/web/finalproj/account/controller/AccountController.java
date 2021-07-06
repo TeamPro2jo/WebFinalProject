@@ -11,13 +11,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.service.AccountService;
+
 import com.web.finalproj.board.dto.BoardDTO;
 
 @Controller
 @RequestMapping(value = "/account")
+
 public class AccountController {
 	
 	@Autowired
@@ -63,7 +66,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "redirect:/";
+			forward = "redirect:/board";
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
@@ -74,6 +77,21 @@ public class AccountController {
 		return forward;
 	}
 	
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
+	}
+	
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String userDetail(Model m, @ModelAttribute AccountDTO dto) throws Exception {
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		System.out.println(data.toString());
+		return "user/detail";
+	}
+
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String userDetail(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
@@ -89,5 +107,29 @@ public class AccountController {
 		m.addAttribute("zzimlist", zzimlist);
 		
 		return "account/mypage";
+	}
+	
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.GET)
+	public String memberupdate(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int id = ((AccountDTO)session.getAttribute("account")).getId();
+		dto.setId(id);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		
+		return "account/memberupdate";
+	}
+	
+	@RequestMapping(value = "/memberupdate", method = RequestMethod.POST)
+	public String memberupdate(@ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		boolean res = account.memberUpdate(dto);
+		
+		if(res) {
+			session.invalidate();
+		}
+		
+		return "redirect:/account/mypage";
 	}
 }

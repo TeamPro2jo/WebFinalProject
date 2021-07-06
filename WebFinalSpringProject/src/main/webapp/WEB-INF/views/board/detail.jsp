@@ -19,10 +19,8 @@ function zzim(boardid) {
 		},
 		success: function(data) {
 			if(data.result == "delete") {
-				alert("삭제했음");
 				document.getElementById("zzim").innerHTML = "♡";
 			} else if(data.result == "update") {
-				alert("찜했음");
 				document.getElementById("zzim").innerHTML = "♥";
 			} else if(data.res == "no_login") {
 				location.href = data.redirect

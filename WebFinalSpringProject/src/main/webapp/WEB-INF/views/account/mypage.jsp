@@ -29,7 +29,8 @@
 			</div>
 			<section>
 				<div>
-					<p>${data.getNickname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(writelist)}개</p>
+					<c:url var="memberupdate" value="/account/memberupdate" />
+					<p><a href="${memberupdate }">${data.getNickname() }님</a></p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(writelist)}개</p>
 					<div class="click">
 						<a  style="cursor: pointer;" onclick="sendRecommend('g');">
 							<small>추천 <span id="good">${data.getGood() }</span></small></a><br>

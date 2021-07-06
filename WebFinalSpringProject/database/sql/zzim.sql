@@ -13,9 +13,9 @@ ALTER TABLE zzim ADD CONSTRAINT zzim_zid_PK PRIMARY KEY(zid);
 ALTER TABLE zzim ADD CONSTRAINT zzim_uid_FK FOREIGN KEY(aid) REFERENCES account(id);
 ALTER TABLE zzim ADD CONSTRAINT zzim_bid_FK FOREIGN KEY(bid) REFERENCES board(bid);
 
-INSERT INTO zzim values(zzim_seq.NEXTVAL, 1, 1);
-INSERT INTO zzim values(zzim_seq.NEXTVAL, 1, 4);
-INSERT INTO zzim values(zzim_seq.NEXTVAL, 1, 5);
+INSERT INTO zzim values(zzim_seq.NEXTVAL, 2, 3);
+INSERT INTO zzim values(zzim_seq.NEXTVAL, 2, 4);
+INSERT INTO zzim values(zzim_seq.NEXTVAL, 2, 5);
 
 SELECT *
   FROM board a

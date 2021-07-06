@@ -14,4 +14,5 @@ public interface AccountService {
 	public void login(AccountDTO dto) throws Exception;
 	public List<BoardDTO> findlist(int aid) throws Exception;
 	public List<BoardDTO> zzimlist(int aid) throws Exception;
+	public boolean memberUpdate(AccountDTO dto) throws Exception;
 }

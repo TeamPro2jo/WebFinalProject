@@ -20,15 +20,15 @@ public class AccountRepositoryImpl implements AccountRepository {
 	public AccountDTO select(AccountDTO dto) throws Exception {
 		return sqlSession.selectOne("accountMapper.selectAccount", dto);
 	}
-
-	@Override
-	public int usedEmail(String email) throws Exception {
-		return sqlSession.selectOne("accountMapper.checkEmail", email);
-	}
-
+	
 	@Override
 	public int usedNickname(String nickname) throws Exception {
 		return sqlSession.selectOne("accountMapper.checkNickname", nickname);
+	}
+	
+	@Override
+	public int usedEmail(String email) throws Exception {
+		return sqlSession.selectOne("accountMapper.checkEmail", email);
 	}
 
 	@Override
@@ -48,7 +48,12 @@ public class AccountRepositoryImpl implements AccountRepository {
 
 	@Override
 	public boolean update(AccountDTO dto) throws Exception {
-		return false;
+		boolean result = false;
+		int rs = sqlSession.update("accountMapper.updateAccount", dto);
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override
@@ -64,5 +69,4 @@ public class AccountRepositoryImpl implements AccountRepository {
 	public List<BoardDTO> zzimlist(int aid) {
 		return sqlSession.selectList("accountMapper.zzimList", aid);
 	}
-
 }

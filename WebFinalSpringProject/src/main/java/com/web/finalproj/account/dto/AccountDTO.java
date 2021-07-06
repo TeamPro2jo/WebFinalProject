@@ -14,6 +14,7 @@ public class AccountDTO {
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -55,5 +56,9 @@ public class AccountDTO {
 		this.bad = bad;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "AccountDTO [id=" + id + ", pwd=" + pwd + ", name=" + name +
+				", nickname=" + nickname + ", email=" + email + "]";
+	}
 }

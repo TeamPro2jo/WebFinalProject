@@ -11,6 +11,8 @@
          , a.cdate
          , a.category
          , a.location
+         , a.status
+         , a.deal
       FROM board a
       JOIN account b
         ON a.aid = b.id
@@ -24,15 +26,23 @@
          , a.cdate
          , a.category
          , a.location
+         , a.status
+         , a.deal
       FROM board a
       JOIN account b
         ON a.aid = b.id
   	<where>
-  		<if test="attrList != null">
-    		a.category in <foreach item="attract" collection="attrList" open="(" close=")" separator="," >#{attract}</foreach>
+  		<if test="typeList != null">
+    		a.category in <foreach item="type" collection="typeList" open="(" close=")" separator="," >#{type}</foreach>
     	</if>
     	<if test="areaList != null">
     		AND a.location in <foreach item="area" collection="areaList" open="(" close=")" separator="," >#{area}</foreach>
+    	</if>
+    	<if test="statList != null">
+    		AND a.status in <foreach item="stat" collection="statList" open="(" close=")" separator="," >#{stat}</foreach>
+    	</if>
+    	<if test="dealList != null">
+    		AND a.deal in <foreach item="deal" collection="dealList" open="(" close=")" separator="," >#{deal}</foreach>
     	</if>
     	<if test='searchType == "title" and searchWord != null'>
     		AND a.title like '%' || #{searchWord} || '%'
