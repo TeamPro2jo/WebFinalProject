@@ -42,7 +42,7 @@ public class AccountController {
 		
 		if(result) {
 			// 가입 성공 했을 때 로그인 페이지로 리다이렉트
-			forward = "redirect:/board";
+			forward = "redirect:/login";
 		} else {
 			// 가입 실패 했을 때 회원가입 페이지 재전송
 			System.out.print("회원가입 실패");
@@ -69,7 +69,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "main";
+			forward = "redirect:/board";  //주소이름으로 하고 싶으면 redirect: 붙이기
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
@@ -91,7 +91,6 @@ public class AccountController {
 	public String userDetail(Model m, @ModelAttribute AccountDTO dto) throws Exception {
 		AccountDTO data = account.accountInfoDetail(dto);
 		m.addAttribute("data", data);
-		System.out.println(data.toString());
 		return "user/detail";
 	}
 
@@ -112,4 +111,31 @@ public class AccountController {
 		return "account/mypage";
 	}
 	
+<<<<<<< HEAD
+=======
+	/*회원정보 수정*/
+	@RequestMapping(value= "/memberupdate", method = RequestMethod.GET)
+	public String memberupdate(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int id = ((AccountDTO)session.getAttribute("account")).getId();
+		dto.setId(id);
+		String email = ((AccountDTO)session.getAttribute("account")).getEmail();
+		dto.setEmail(email);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		return "account/memberupdate";
+	}
+	
+	@RequestMapping(value= "/memberupdate", method = RequestMethod.POST)
+	public String memberupdate( @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		
+		account.memberUpdate(dto);
+		session.invalidate();
+		
+		return "redirect:/account/login";
+	}
+	
+>>>>>>> d500d8031db7456bc48c9a5e60d5c488fad5852b
 }

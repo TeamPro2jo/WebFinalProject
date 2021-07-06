@@ -1,0 +1,55 @@
+@charset "UTF-8";
+
+/* 모든 HTML 요소 초기화 */
+* {margin: 0px; padding: 0px; box-sizing: border-box;}
+html {
+    font-size: 14pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
+    font-weight: normal;
+}
+
+div.width { /*창이 커지나 작아지나 가운데로 위치*/
+	width: 380px;
+	margin: 200px auto 0px; 
+	      /*상단 좌우(auto면 너비가 정해져야 함 너비에 맞춰서) 하단*/
+}
+
+section {
+	width: inherit;
+}
+
+img.logo {
+	width: 70px;
+}
+
+.join {
+	width: 90px;
+	height: 40px;
+	margin-left: 250px;
+	background-color: lightblue;
+	font-size: 16px;
+}
+
+p.bold {
+	color: rgb(46,171,229);
+}
+
+div {
+	text-align: center;
+}
+
+div > input.text {
+	margin-top: 10px;
+	width: 340px;
+	height: 40px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+
+.ok{
+	width: 340px;
+	height: 40px;
+	margin-top: 10px;
+	background-color: lightblue;
+	font-size: 16px;
+}

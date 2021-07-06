@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원 가입</title>
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/join.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <c:url var="email_check" value="/ajax/account/email" />
 <c:url var="nickname_check" value="/ajax/account/nickname" />
@@ -83,7 +84,11 @@
 			alert("이메일 중복확인을 먼저 진행하세요.");
 			document.getElementById("id_email").focus();
 			return false;
+<<<<<<< HEAD
 		} else if(email_check != "사용 가능!") {
+=======
+		} else if (email_check != "사용 가능!") {
+>>>>>>> d500d8031db7456bc48c9a5e60d5c488fad5852b
 			alert("해당 이메일 주소로는 가입을 할 수 없습니다.");
 			document.getElementById("id_email").focus();
 			return false;
@@ -91,8 +96,13 @@
 		
 		var password = document.getElementById("id_password");
 		if(password.value == "" || password.value == undefined) {
+<<<<<<< HEAD
 			alert("패스워드를 입력하세요.")
 			password.focus();
+=======
+			alert("패스워드를 입력하세요.");
+			pwd.focus();
+>>>>>>> d500d8031db7456bc48c9a5e60d5c488fad5852b
 			return false;
 		}
 		
@@ -102,6 +112,7 @@
 </head>
 <c:url var="join" value="/account/join" />
 <body>
+<<<<<<< HEAD
 	<form id="account_form" action="${join }" method="post">
 		<div>
 			<label for="id_name">* 이름</label>
@@ -129,5 +140,38 @@
 			<button type="button" onclick="location.href='${login }'">로그인</button>
 		</div>
 	</form>
+=======
+	
+	<div class="width">
+		<form name="account_form" action="${join }" method="post">
+			<section>
+				<div>
+					<a href="./login"><img class="logo" src="<%=request.getContextPath() + "/resources/image/khlogo.png" %>" alt="로고" ></a>
+				</div>
+				<div>
+					<input class="text" id="id_name" type="text" name="name" placeholder="이름" required>
+				</div>
+				<div >
+					<input class="dup_text" id="id_nickname" type="text" name="nickname" placeholder="닉네임" required>
+					<button class="dupok1" type="button" onclick="nicknameCheck();">중복확인</button>
+					<label id="nickname_check_res"></label>
+				</div>
+				<div>
+					<input class="dup_text" id="id_email" type="email" name="email" placeholder="이메일" required>
+					<button class="dupok2" type="button" onclick="emailCheck();">중복확인</button>
+					<label id="email_check_res"></label>
+				</div>
+				<div>
+					<input class="text" id="id_password" type="password" name="pwd" placeholder="패스워드" required>
+				</div>
+				<div>
+					<button class="ok" type="button" onclick="send();">가입</button>
+					<c:url var="login" value="/account/login" />
+					<button class="ok2" type="button" onclick="location.href='${login }'">로그인</button>
+				</div>
+			</section>
+		</form>
+	</div>
+>>>>>>> d500d8031db7456bc48c9a5e60d5c488fad5852b
 </body>
 </html>

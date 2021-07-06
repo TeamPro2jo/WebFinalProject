@@ -17,11 +17,12 @@
 			</section>
 		
 			<section class="headersection2">
-	             <span class="middle"><a href="./mypage">마이페이지</a></span>
+	             <span class="middle"><a href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
 	             <span class="middle"><a href="./login">로그아웃</a></span>
 	        </section>
 	    </header>
 		<br>
+		
 		<section class="main">
 			<div>
 				<h2>MY PAGE</h2><br>
@@ -29,7 +30,7 @@
 			</div>
 			<section>
 				<div>
-					<p>${data.getNickname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(writelist)}개</p>
+					<h3><a href="./memberupdate">${data.getNickname() }님</a></h3> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(writelist)}개</p>
 					<div class="click">
 						<a  style="cursor: pointer;" onclick="sendRecommend('g');">
 							<small>추천 <span id="good">${data.getGood() }</span></small></a><br>
