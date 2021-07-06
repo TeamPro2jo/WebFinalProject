@@ -15,4 +15,5 @@ public interface BoardService {
 	public List<BoardDTO> findTitle(String title) throws Exception;
 	public List<BoardDTO> findAuthor(int aid) throws Exception;
 	public List<BoardDTO> findList(BoardSearchDTO search) throws Exception;
+	public boolean deleteBoard(int bid)throws Exception;
 }
