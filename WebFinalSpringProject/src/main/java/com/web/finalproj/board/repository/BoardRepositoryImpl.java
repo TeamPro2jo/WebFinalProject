@@ -46,19 +46,37 @@ public class BoardRepositoryImpl implements BoardRepository {
 
 	@Override
 	public List<BoardDTO> selectList(BoardSearchDTO search) throws Exception {
-		return sqlSession.selectList("boardMapper.boardSearch", search);
+		List<BoardDTO> data = sqlSession.selectList("boardMapper.boardSearch", search);
+		return data;
 	}
 
 	@Override
 	public boolean insert(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		int rs = 0;
+		int seq = sqlSession.selectOne("boardMapper.seq");
+		if(seq > 0) {
+			dto.setBid(seq);
+			rs = sqlSession.insert("boardMapper.boardInsert", dto);
+			if(rs == 1) {
+				rs = sqlSession.update("boardMapper.boardCLOB", dto);
+				if(rs == 1) {
+					System.out.println("CLOB ���� �Ϸ�!");
+					result = true;
+				}
+			}
+		}
+		return result;
 	}
 
 	@Override
 	public boolean update(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = false;
+		int rs = sqlSession.update("boardMapper.boardUpdate", dto);		
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 
 	@Override

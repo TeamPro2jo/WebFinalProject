@@ -66,6 +66,9 @@ public class BoardController {
 		return mv;
 	}
 	
+	
+	
+	
 
 	/**
 	 * @param id 

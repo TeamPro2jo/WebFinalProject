@@ -17,14 +17,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public boolean add(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = dao.insert(dto);
+		return res;
 	}
 
 	@Override
 	public boolean update(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+		boolean res = dao.update(dto);
+		return res;
 	}
 
 	@Override
@@ -68,5 +68,10 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDTO> findList(BoardSearchDTO search) throws Exception {
 		List<BoardDTO> data = dao.selectList(search);
 		return data;
+	}
+	
+	@Override
+	public boolean boardDelete(int bid) {
+		return boardDelete(bid);
 	}
 }
