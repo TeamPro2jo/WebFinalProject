@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.service.AccountService;
@@ -65,7 +66,7 @@ public class AccountController {
 			HttpSession session = req.getSession();
 			session.setAttribute("account", dto);
 			session.setAttribute("logined", true);
-			forward = "account/mypage";
+			forward = "redirect:/board";  //주소이름으로 하고 싶으면 redirect: 붙이기
 		} else {
 			// dto.getId() 값이 0 보다 크지 않은 경우 로그인 실패
 			m.addAttribute("data", dto);
@@ -76,11 +77,17 @@ public class AccountController {
 		return forward;
 	}
 	
+	@RequestMapping(value = "/logout")
+	public ModelAndView logout(HttpSession session) {
+		session.invalidate();
+		ModelAndView mv = new ModelAndView("redirect:/");
+		return mv;
+	}
+	
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public String userDetail(Model m, @ModelAttribute AccountDTO dto) throws Exception {
 		AccountDTO data = account.accountInfoDetail(dto);
 		m.addAttribute("data", data);
-		System.out.println(data.toString());
 		return "user/detail";
 	}
 
@@ -100,4 +107,29 @@ public class AccountController {
 		
 		return "account/mypage";
 	}
+	
+	/*회원정보 수정*/
+	@RequestMapping(value= "/memberupdate", method = RequestMethod.GET)
+	public String memberupdate(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int id = ((AccountDTO)session.getAttribute("account")).getId();
+		dto.setId(id);
+		String email = ((AccountDTO)session.getAttribute("account")).getEmail();
+		dto.setEmail(email);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		return "account/memberupdate";
+	}
+	
+	@RequestMapping(value= "/memberupdate", method = RequestMethod.POST)
+	public String memberupdate( @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		
+		account.memberUpdate(dto);
+		session.invalidate();
+		
+		return "redirect:/account/login";
+	}
+	
 }

@@ -55,8 +55,23 @@
   </select>
   
   <insert id="insertAccount" parameterType="account">
-  	INSERT INTO account(id, nickname, name, pwd, email)
-  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
+  	INSERT INTO account
+  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email}, 0, 0)
   </insert>
+  
+   <!-- 회원정보 수정 -->
+	<update id="memberUpdate">
+		UPDATE account SET 
+		pwd = #{pwd},
+		nickname = #{nickname}
+		WHERE id = #{id}
+	</update>
+  
+  <!-- 회원탈퇴 처리-->
+  <update id="expireAccount">
+  	UPDATE account
+  	   SET expiredate = SYSDATE
+  	 WHERE id = #{id}
+  </update>
 </mapper>
 
