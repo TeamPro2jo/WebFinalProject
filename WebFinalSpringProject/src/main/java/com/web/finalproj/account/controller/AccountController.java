@@ -56,7 +56,7 @@ public class AccountController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
-		return "account/login";
+			return "account/login";
 	}	
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
@@ -110,6 +110,19 @@ public class AccountController {
 		m.addAttribute("zzimlist", zzimlist);
 		
 		return "account/mypage";
+	}
+	
+	@RequestMapping(value = "/userpage", method = RequestMethod.GET)
+	public String otherUserDetail(Model m, int aid, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		dto.setId(aid);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		
+		List<BoardDTO> uwritelist = account.findlist(aid);
+		m.addAttribute("uwritelist", uwritelist);
+		
+		return "board/userpage";
 	}
 	
 	/*회원정보 수정*/

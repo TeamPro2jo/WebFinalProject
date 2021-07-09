@@ -31,7 +31,8 @@
 			<div>
 				<h2>MY PAGE</h2>
 				<br>
-				<button class="chat" type="button">채팅창</button>
+				<c:url var="chatlist" value="/chatting/chatroom" />
+				<!--  <button class="chat" type="button" onclick="location.href='${chatlist }'">채팅창</button>-->
 			</div>
 			<section>
 				<div>

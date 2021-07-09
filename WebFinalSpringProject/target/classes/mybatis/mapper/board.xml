@@ -2,62 +2,104 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+
 <mapper namespace="boardMapper">
-  <select id="all" resultType="board">
-    SELECT a.bid
-         , b.nickname AS aname
-         , a.title
-         , a.cdate
-         , a.category
-         , a.location
-         , a.status
-         , a.deal
-      FROM board a
-      JOIN account b
-        ON a.aid = b.id
-     ORDER BY a.bid DESC
-  </select>
-  
-  <select id="boardSearch" parameterType="boardsearch" resultType="board">
-    SELECT a.bid
-         , b.nickname AS aname
-         , a.title
-         , a.cdate
-         , a.category
-         , a.location
-         , a.status
-         , a.deal
-      FROM board a
-      JOIN account b
-        ON a.aid = b.id
-  	<where>
-  		<if test="typeList != null">
-    		a.category in <foreach item="type" collection="typeList" open="(" close=")" separator="," >#{type}</foreach>
-    	</if>
-    	<if test="areaList != null">
-    		AND a.location in <foreach item="area" collection="areaList" open="(" close=")" separator="," >#{area}</foreach>
-    	</if>
-    	<if test="statList != null">
-    		AND a.status in <foreach item="stat" collection="statList" open="(" close=")" separator="," >#{stat}</foreach>
-    	</if>
-    	<if test="dealList != null">
-    		AND a.deal in <foreach item="deal" collection="dealList" open="(" close=")" separator="," >#{deal}</foreach>
-    	</if>
-    	<if test='searchType == "title" and searchWord != null'>
-    		AND a.title like '%' || #{searchWord} || '%'
-    	</if>
-    </where>
-     ORDER BY a.bid DESC
-  </select>
-  
-  <select id="row" parameterType="board" resultType="board">
-    SELECT * FROM board WHERE bid = #{bid}
-  </select>
-  
-  <delete id="boardDelete" parameterType="int">
-	DELETE FROM BOARD WHERE bid = #{bid}
+	<select id="all" resultType="board">
+		SELECT a.bid
+		, b.nickname AS aname
+		, a.title
+		, a.cdate
+		, a.category
+		, a.location
+		, a.status
+		, a.deal
+		FROM board a
+		JOIN account b
+		ON a.aid = b.id
+		ORDER BY a.bid DESC
+	</select>
+
+	<select id="boardSearch" parameterType="boardsearch"
+		resultType="board">
+		SELECT a.bid
+		, b.nickname AS aname
+		, a.title
+		, a.cdate
+		, a.category
+		, a.location
+		, a.status
+		, a.deal
+		FROM board a
+		JOIN account b
+		ON a.aid = b.id
+		<where>
+			<if test="typeList != null">
+				a.category in
+				<foreach item="type" collection="typeList" open="("
+					close=")" separator=",">#{type}</foreach>
+			</if>
+			<if test="areaList != null">
+				AND a.location in
+				<foreach item="area" collection="areaList" open="("
+					close=")" separator=",">#{area}</foreach>
+			</if>
+			<if test="statList != null">
+				AND a.status in
+				<foreach item="stat" collection="statList" open="("
+					close=")" separator=",">#{stat}</foreach>
+			</if>
+			<if test="dealList != null">
+				AND a.deal in
+				<foreach item="deal" collection="dealList" open="("
+					close=")" separator=",">#{deal}</foreach>
+			</if>
+			<if test='searchType == "title" and searchWord != null'>
+				AND a.title like '%' || #{searchWord} || '%'
+			</if>
+		</where>
+		ORDER BY a.bid DESC
+	</select>
+
+	<select id="row" parameterType="board" resultType="board">
+		SELECT * FROM board WHERE bid = #{bid} order by bid
+	</select>
+
+	<delete id="boardDelete" parameterType="int">
+		DELETE FROM BOARD WHERE bid = #{bid}
 	</delete>
 
+	<update id="boardUpdate" parameterType="board">
+		UPDATE board
+		SET title = #{title}
+		, contents = #{contents}
+		, deal = #{deal}
+		, location = #{location}
+		, category = #{category}
+		, status = #{status}
+		, price = #{price}
+		, udate = SYSDATE
+		WHERE bid = #{bid}
+	</update>
+
+	<update id="boardCLOB" parameterType="board">
+		UPDATE board SET contents = #{contents} WHERE bid = #{bid}
+	</update>
+
+	<select id="seq" resultType="_int">
+		SELECT board_seq.NEXTVAL AS seq FROM dual
+	</select>
+
+	<insert id="boardInsert" parameterType="board">
+		INSERT INTO board(bid, aid, aname, title, contents, category, location, deal,
+		status, price)
+		VALUES(#{bid}, #{aid}, #{aname}, #{title}, EMPTY_CLOB(), #{category}, #{location}, #{deal},
+		#{status}, #{price})
+	</insert>
+  
+  <update id="incview">
+  	UPDATE board
+  	   SET vcnt = vcnt + 1
+  	 WHERE id = #{id}
+  </update>
 
 </mapper>

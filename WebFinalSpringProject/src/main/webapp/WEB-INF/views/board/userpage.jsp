@@ -25,11 +25,12 @@
 		<section class="main">
 			<div>
 				<h2>USER PAGE</h2><br>
-				<button class="chat" type="button">채팅창</button>
+				<c:url var="chatroom" value="/chatting/chatroom" />
+				<button class="chat" type="button" onclick="location.href='${chatroom}?partid=${data.getId()}'">채팅창</button>
 			</div>
 			<section>
 				<div>
-					<p>${item.getAname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(uwritelist)}개</p>
+					<p>${data.getNickname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(uwritelist)}개</p>
 					<div class="click">
 						<a  style="cursor: pointer;" onclick="sendRecommend('g');">
 							<small>추천 <span id="good">${data.getGood() }</span></small></a><br>
@@ -41,7 +42,7 @@
 			<section>
 				<div>
 					<div class="write">
-						<span >${item.getAname() }님이 쓴 글</span><br>
+						<span >${data.getNickname() }님이 쓴 글</span><br>
 							<table>
 								<thead>
 									<tr>
@@ -50,10 +51,10 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:url var="userpage" value="/board/uaerpage" />
+									<c:url var="detail" value="/board/detail" />
 									<c:forEach var="uwriteitem" items="${requestScope.uwritelist }" >
 										<tr>
-											<td><a href="${detail }?bid=${uwriteitem.getBid() }">${uwriteitem.getTitle() }</a></td>
+											<td><a href="${detail}?bid=${uwriteitem.getBid()}">${uwriteitem.getTitle() }</a></td>
 											<td>${uwriteitem.getCdate() }</td>
 										</tr>
 									</c:forEach>

@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.web.finalproj.zzim.service.ZzimService;
 import com.web.finalproj.board.dto.BoardSearchDTO;
 import com.web.finalproj.account.dto.AccountDTO;
+import com.web.finalproj.account.service.AccountService;
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.service.BoardService;
 import com.web.finalproj.zzim.dto.ZzimDTO;
@@ -28,6 +29,9 @@ public class BoardController {
 
 	@Autowired
 	private BoardService board;
+	
+	@Autowired
+	private AccountService account;
 	
 	@Autowired
 	ZzimService zzim;
@@ -102,15 +106,58 @@ public class BoardController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
+	public ModelAndView write() throws Exception {
+		ModelAndView mv = new ModelAndView("board/add");
+		return mv;
+	}
 	
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String write(Model m, @ModelAttribute BoardDTO dto) throws Exception {
+		String forward = "";
+		
+		boolean res = board.add(dto);
+		
+		if(res) {
+			forward = "redirect:/board/detail?bid=" + dto.getBid();
+		} else {
+			m.addAttribute("data", dto);
+			forward = "board/add";
+		}
+		
+		return forward;
+	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView modify(int bid) throws Exception {
+		ModelAndView mv = new ModelAndView("board/update");
+		mv.addObject("item", board.findId(bid));
+		return mv;
+	}
 	
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String modify(Model m, @ModelAttribute BoardDTO dto) throws Exception {
+		String forward = "";
+		
+		System.out.print(dto.toString());
+		
+		boolean res = board.update(dto);
+		
+		if(res) {
+			forward = "redirect:/board/detail?bid=" + dto.getBid();
+		} else {
+			m.addAttribute("item", dto);
+			forward = "board/update";
+		}
+		
+		return forward;
+	}
 
 	/**
 	 * @param id 
 	 * @return
 	 */
-	public ModelAndView delete(int id) {
+	public ModelAndView delete(int bid) {
 		// TODO implement here
 		return null;
 	}
@@ -125,4 +172,5 @@ public class BoardController {
 		// TODO implement here
 		return null;
 	}
+
 }

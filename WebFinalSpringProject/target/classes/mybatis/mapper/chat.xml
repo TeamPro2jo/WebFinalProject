@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ChatMapper">
+
+<insert id = "createRoom">
+insert into CHATROOM values(chatroom_seq.NEXTVAL, #{myid}, #{partid})
+</insert>
+
+
+<select id ="isRoom" resultType = "chatroom">
+select * from chatroom WHERE myid = #{myid} and partid = #{partid} or myid = #{partid} and partid = #{myid}
+</select>
+
+<insert id = "insertMessage">
+insert into MESSAGE (mid, sender , receiver, mcontents, roomid)
+values (message_seq.NEXTVAL, #{sender}, #{receiver}, #{mcontents} , #{roomid})
+</insert>
+
+<select id = "getPartner" resultType = "account">
+SELECT * FROM account WHERE id IN (select receiver from message where sender = #{myid})
+</select>
+
+<select id = "getName" resultType = "String">
+select nickname from account where id = #{id}
+</select>
+
+<select id = "getMessageList" resultType = "message">
+select * from message where roomid = #{roomid}
+</select>
+
+<select id = "getRoomList" resultType = "chatroom">
+select * from chatroom where myid = #{myid}
+</select>
+
+<select id = "getRecentMessage" resultType = "message">
+select * from message where roomid = #{roomid} order by mid desc limit 1;
+</select>
+
+<update id ="updateReadTime">
+update message set readtime = NOW() where myid = #{myid} AND readtime = sendtime and sender = myid and partid = #{partid};
+</update>
+
+<select id = "getUnReadCount" resultType = "int">
+select count(*) from message where partid = #{partid} and myid = #{myid}  AND readtime = sendtime AND sender = partid;
+</select>
+
+
+</mapper>

@@ -28,9 +28,9 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean remove(int bid) throws Exception {
+		boolean res = dao.delete(bid);
+		return res;
 	}
 
 	@Override
@@ -68,10 +68,5 @@ public class BoardServiceImpl implements BoardService {
 	public List<BoardDTO> findList(BoardSearchDTO search) throws Exception {
 		List<BoardDTO> data = dao.selectList(search);
 		return data;
-	}
-	
-	@Override
-	public boolean boardDelete(int bid) {
-		return boardDelete(bid);
 	}
 }

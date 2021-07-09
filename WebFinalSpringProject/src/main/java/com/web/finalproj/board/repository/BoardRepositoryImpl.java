@@ -61,7 +61,7 @@ public class BoardRepositoryImpl implements BoardRepository {
 			if(rs == 1) {
 				rs = sqlSession.update("boardMapper.boardCLOB", dto);
 				if(rs == 1) {
-					System.out.println("CLOB ���� �Ϸ�!");
+					System.out.println("CLOB 성공!"+" seq: "+seq);
 					result = true;
 				}
 			}
@@ -80,8 +80,12 @@ public class BoardRepositoryImpl implements BoardRepository {
 	}
 
 	@Override
-	public boolean delete(BoardDTO dto) throws Exception {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int bid) throws Exception {
+		boolean result = false;
+		int rs = sqlSession.update("boardMapper.boardDelete", bid);		
+		if(rs == 1) {
+			result = true;
+		}
+		return result;
 	}
 }

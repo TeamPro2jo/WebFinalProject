@@ -12,6 +12,7 @@ public class BoardDTO {
 	private String location;
 	private String category;
 	private String status;
+	private int price;
 	private int vcnt;
 	private Date cdate;
 	private Date udate;
@@ -72,6 +73,15 @@ public class BoardDTO {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getVcnt() {
 		return vcnt;
 	}
@@ -90,5 +100,14 @@ public class BoardDTO {
 	public void setUdate(Date udate) {
 		this.udate = udate;
 	}
+
+	@Override
+	public String toString() {
+		return "BoardDTO [bid=" + bid + ", aid=" + aid + ", aname=" + aname + ", title=" + title + ", contents="
+				+ contents + ", deal=" + deal + ", location=" + location + ", category=" + category + ", status="
+				+ status + ", price=" + price + ", vcnt=" + vcnt + ", cdate=" + cdate + ", udate=" + udate + "]";
+	}
+	
+	
 	
 }

@@ -14,5 +14,5 @@ public interface BoardRepository {
 	public List<BoardDTO> selectList(BoardSearchDTO search)  throws Exception;
 	public boolean insert(BoardDTO dto)  throws Exception;
 	public boolean update(BoardDTO dto)  throws Exception;
-	public boolean delete(BoardDTO dto)  throws Exception;
+	public boolean delete(int bid)  throws Exception;
 }
