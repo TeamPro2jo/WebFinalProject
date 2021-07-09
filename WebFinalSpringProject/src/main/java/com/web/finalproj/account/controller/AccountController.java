@@ -122,7 +122,7 @@ public class AccountController {
 		List<BoardDTO> uwritelist = account.findlist(aid);
 		m.addAttribute("uwritelist", uwritelist);
 		
-		return "board/userpage";
+		return "account/userpage";
 	}
 	
 	/*회원정보 수정*/
