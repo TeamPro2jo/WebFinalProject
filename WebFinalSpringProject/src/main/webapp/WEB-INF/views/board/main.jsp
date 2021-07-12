@@ -219,7 +219,7 @@
 									<td>택배</td>
 								</c:when>
 							</c:choose>
-							<td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() }</a></td>
+							<td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() } (${item.getRecnt() })</a></td>
 							<td>${item.getAname() }</td>
 							<fmt:formatDate var="cdate" value="${item.getCdate() }"
 								pattern="yyyy/MM/dd" />

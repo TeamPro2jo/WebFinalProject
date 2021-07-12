@@ -13,6 +13,7 @@
 		, a.location
 		, a.status
 		, a.deal
+		, (SELECT COUNT(*) FROM reply WHERE bid=a.bid) AS recnt
 		FROM board a
 		JOIN account b
 		ON a.aid = b.id
@@ -95,6 +96,10 @@
 		VALUES(#{bid}, #{aid}, #{aname}, #{title}, EMPTY_CLOB(), #{category}, #{location}, #{deal},
 		#{status}, #{price})
 	</insert>
+	
+	<select id="replyCnt" resultType="_int">
+		SELECT recnt FROM board WHERE bid = #{bid}
+	</select>
   
   <update id="incview">
   	UPDATE board

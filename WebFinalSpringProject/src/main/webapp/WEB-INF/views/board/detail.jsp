@@ -66,6 +66,48 @@ function zzim(boardid) {
 			document.getElementById('id_delete').style.visibility = 'hidden';
 			$("#userlink").attr("href", "${userpage}?aid=${item.getAid() }");
 		}
+		
+        listReply(); 
+        
+        $("#btnReply").click(function(){
+            var recontents=$("#recontents").val();
+            var bid="${item.getBid()}"
+            var param="recontents="+recontents+"&bid="+bid;
+            $.ajax({                
+                type: "post",
+                url: "${path}/reply/insert",
+                data: param,
+                success: function(){
+                    alert("댓글이 등록되었습니다.");
+                    listReply();
+                }
+            });
+        });
+		
+        function listReply(){
+            $.ajax({
+                type: "get",
+                url: "${path}/reply/list?bid=${item.getBid()}",
+                success: function(result){
+                // responseText가 result에 저장됨.
+                    $("#listReply").html(result);
+                }
+            });
+        }
+        
+     // 날짜 변환 함수 작성
+        function changeDate(date){
+            date = new Date(parseInt(date));
+            year = date.getFullYear();
+            month = date.getMonth();
+            day = date.getDate();
+            hour = date.getHours();
+            minute = date.getMinutes();
+            second = date.getSeconds();
+            strDate = year+"-"+month+"-"+day+" "+hour+":"+minute+":"+second;
+            return strDate;
+        }
+        
 	});
 
 </script>
@@ -101,5 +143,17 @@ function zzim(boardid) {
 		<button type="button" id="id_update" onclick="location.href='${update }'">수정</button>
 		<button type="button" id="id_delete" onclick="boardDelete(${item.getBid() });">삭제</button>
 	</div>
+	
+	<br>
+	 <div style="width:650px; text-align: center;">
+        <br> 
+        <textarea rows="5" cols="80" id="recontents" placeholder="댓글을 작성해주세요"></textarea>
+        <br>
+        <button type="button" id="btnReply">댓글 작성</button>
+    </div>
+	
+	<!-- 댓글 목록 출력할 위치 -->
+    <div id="listReply"></div>
+	
 </body>
 </html>

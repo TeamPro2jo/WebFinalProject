@@ -16,6 +16,7 @@ public class BoardDTO {
 	private int vcnt;
 	private Date cdate;
 	private Date udate;
+	private int recnt;
 	
 	public BoardDTO() {}
 	
@@ -101,13 +102,20 @@ public class BoardDTO {
 		this.udate = udate;
 	}
 
+	public int getRecnt() {
+		return recnt;
+	}
+
+	public void setRecnt(int recnt) {
+		this.recnt = recnt;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardDTO [bid=" + bid + ", aid=" + aid + ", aname=" + aname + ", title=" + title + ", contents="
 				+ contents + ", deal=" + deal + ", location=" + location + ", category=" + category + ", status="
-				+ status + ", price=" + price + ", vcnt=" + vcnt + ", cdate=" + cdate + ", udate=" + udate + "]";
+				+ status + ", price=" + price + ", vcnt=" + vcnt + ", cdate=" + cdate + ", udate=" + udate + ", recnt="
+				+ recnt + "]";
 	}
-	
-	
-	
+
 }

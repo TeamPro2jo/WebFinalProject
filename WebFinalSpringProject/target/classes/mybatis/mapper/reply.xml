@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="replyMapper">
+    
+    <!-- 댓글 입력 -->
+    <insert id="insertReply">
+        INSERT INTO reply (reid, bid, recontents, aid, aname)
+        VALUES (reply_seq.NEXTVAL, #{bid}, #{recontents}, #{aid}, #{aname})
+    </insert>
+    
+    <!-- 댓글 목록 -->
+    <select id="listReply" resultType="reply">
+        SELECT *
+        FROM reply
+        WHERE bid=#{bid}
+        ORDER BY reid
+    </select>
+  
+  <!-- 댓글 수정 -->
+    <select id="updateReply">
+        UPDATE reply 
+        SET recontents = #{recontents}
+        WHERE reid = #{reid}
+    </select>
+    
+    <!-- 댓글 삭제 -->
+    <delete id="deleteReply">
+        DELETE FROM reply
+        WHERE reid = #{reid}
+    </delete>
+</mapper>

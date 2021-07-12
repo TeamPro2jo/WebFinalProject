@@ -13,6 +13,7 @@ CREATE TABLE board(
 	category NVARCHAR2(30),
 	status NVARCHAR2(10),
 	price NUMBER DEFAULT 0,
+	recnt NUMBER DEFAULT 0,
 	vcnt NUMBER DEFAULT 0,
 	cdate DATE DEFAULT SYSDATE,
 	udate DATE DEFAULT SYSDATE
@@ -37,29 +38,8 @@ COMMENT ON COLUMN board.location IS '거래 지역(택배거래면 NULL 가능)'
 COMMENT ON COLUMN board.category IS '물품 종류';
 COMMENT ON COLUMN board.status IS '물품 상태(최상/상/중/하)';
 COMMENT ON COLUMN board.price IS '가격';
+COMMENT ON COLUMN board.recnt IS '댓글수';
 COMMENT ON COLUMN board.vcnt IS '조회수';
 COMMENT ON COLUMN board.cdate IS '게시판 생성일';
 COMMENT ON COLUMN board.udate IS '게시판 수정일';
 
-INSERT INTO board values(board_seq.NEXTVAL, 2, '첫번째 게시글 유저1', '테스트1', 1, '서울', '디지털기기', '최상', 1000, 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 3, '두번째 게시글 유저2', '테스트2', 2, '충북', '생활/가공식품', '중', 100000, 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 1, '세번째 게시글 관리자', '테스트3', 1, '전남', '생활/가공식품', '하', 2000, 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 4, '네번째 게시글 유저3', '테스트4', 1, '경북', '게임/취미', '상', 50000, 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 5, '다섯번째 게시글 유저4', '테스트5', 2, '경기', '식물', '중', 15000, 0, SYSDATE, SYSDATE);
-INSERT INTO board values(board_seq.NEXTVAL, 3, '여섯번째 게시글 유저2', '테스트6', 1, '경기', '유아용품', '상', 2600, 0, SYSDATE, SYSDATE);
-
-UPDATE board
-   SET contents = '테스트2'
- WHERE id = 2;
-SELECT * FROM board;
-
-SELECT a.bid
-         , b.nickname AS aname
-         , a.title
-         , a.cdate
-      FROM board a
-      JOIN account b
-        ON a.aid = b.id
-     ORDER BY a.bid DESC;
-     
-SELECT * FROM board;

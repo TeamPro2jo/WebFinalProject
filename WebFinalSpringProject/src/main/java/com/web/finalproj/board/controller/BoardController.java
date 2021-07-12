@@ -139,8 +139,6 @@ public class BoardController {
 	public String modify(Model m, @ModelAttribute BoardDTO dto) throws Exception {
 		String forward = "";
 		
-		System.out.print(dto.toString());
-		
 		boolean res = board.update(dto);
 		
 		if(res) {
