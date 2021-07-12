@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+  <typeAliases>
+    <typeAlias type="com.web.finalproj.account.dto.AccountDTO" alias="account" />
+    <typeAlias type="com.web.finalproj.board.dto.BoardDTO" alias="board" />
+    <typeAlias type="com.web.finalproj.board.dto.BoardSearchDTO" alias="boardsearch" />
+    <typeAlias type="com.web.finalproj.zzim.dto.ZzimDTO" alias="zzim" /> 
+    <typeAlias type="com.web.finalproj.chat.vo.ChatRoomVO" alias="chatroom" />
+    <typeAlias type="com.web.finalproj.chat.vo.MessageVO" alias="message" />
+  </typeAliases>
+</configuration>
