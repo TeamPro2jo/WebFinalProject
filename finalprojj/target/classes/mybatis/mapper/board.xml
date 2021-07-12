@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="boardMapper">
+  <select id="boardSearch" parameterType="boardsearch" resultType="board">
+    SELECT a.bid
+         , a.btype
+         , b.name AS bname
+         , a.aid
+         , c.nickname AS aname
+         , a.title
+         , a.cdate
+         , a.vcnt
+      FROM board a
+      JOIN board_type b
+        ON a.btype = b.bid
+      JOIN account c
+        ON a.aid = c.bid
+     WHERE a.deleted = 'n'
+     <if test="boardtype != 0">
+       AND a.btype = #{boardtype}
+     </if>
+     <if test='searchtype == "a" and search != null'>
+       AND c.nickname = #{search}
+     </if>
+     <if test='searchtype == "t" and search != null'>
+       AND a.title like '%' || #{search} || '%'
+     </if>
+     ORDER BY a.bid DESC
+  </select>
+  
+  <update id="boardUpdate" parameterType="board">
+    UPDATE board
+       SET title = #{title}
+         , btype = #{btype}
+         , contents = #{contents}
+         , nodel = #{nodel}
+         , udate = SYSDATE
+     WHERE bid = #{bid}
+  </update>
+  
+  <update id="boardCLOB" parameterType="board">
+    UPDATE board SET contents = #{contents} WHERE bid = #{bid}
+  </update>
+
+  <select id="seq" resultType="_int">
+    SELECT board_seq.NEXTVAL AS seq FROM dual
+  </select>
+
+  <insert id="boardInsert" parameterType="board">
+  	INSERT INTO board(bid, btype, aid, title, contents, nodel)
+  	     VALUES(#{bid}, #{btype}, #{aid}, #{title}, EMPTY_CLOB(), #{nodel})
+  </insert>
+  
+  <select id="boardtypes" resultType="boardtype">
+  	SELECT * FROM board_type
+  </select>
+  
+  <select id="row" parameterType="board" resultType="board">
+    SELECT a.bid
+         , a.btype
+         , b.name AS bname
+         , a.aid
+         , c.nickname AS aname
+         , a.title
+         , a.contents
+         , a.cdate
+         , a.udate
+         , a.vcnt
+         , a.gcnt
+         , a.bcnt
+         , a.nodel
+      FROM board a
+      JOIN board_type b
+        ON a.btype = b.bid
+      JOIN account c
+        ON a.aid = c.bid
+     WHERE a.deleted = 'n'
+       AND a.bid = #{bid}
+     ORDER BY a.bid DESC
+  </select>
+  
+  <select id="all" resultType="board">
+    SELECT a.bid
+         , a.btype
+         , b.name AS bname
+         , a.aid
+         , c.nickname AS aname
+         , a.title
+         , a.cdate
+         , a.vcnt
+      FROM board a
+      JOIN board_type b
+        ON a.btype = b.bid
+      JOIN account c
+        ON a.aid = c.bid
+     WHERE a.deleted = 'n'
+     ORDER BY a.bid DESC
+  </select>
+  
+  <select id="uploadfiles" parameterType="_int" resultType="HashMap">
+    SELECT bid, name, url FROM attach_files where bid = #{bid}
+  </select>
+
+  <select id="goodcount" resultType="board">
+  	SELECT gcnt FROM board
+  	 WHERE bid = #{bid}
+  </select>
+  
+  <select id="badcount" resultType="board">
+  	SELECT bcnt FROM board
+  	 WHERE bid = #{bid}
+  </select>
+
+  <update id="incview">
+  	UPDATE board
+  	   SET vcnt = vcnt + 1
+  	 WHERE bid = #{bid}
+  </update>
+  
+  <update id="incgood">
+  	UPDATE board
+  	   SET gcnt = gcnt + 1
+  	 WHERE bid = #{bid}
+  </update>
+  
+  <update id="incbad">
+  	UPDATE board
+  	   SET bcnt = bcnt + 1
+  	 WHERE bid = #{bid}
+  </update>
+</mapper>
