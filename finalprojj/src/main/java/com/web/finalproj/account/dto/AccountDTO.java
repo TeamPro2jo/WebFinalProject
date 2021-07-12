@@ -1,103 +1,64 @@
 package com.web.finalproj.account.dto;
 
-import java.sql.Date;
-
 public class AccountDTO {
 	private int id;
-	private String username;
+	private String pwd;
+	private String name;
 	private String nickname;
 	private String email;
-	private String password;
-	private String gender;
-	private int age;
-	private Date joindate;
-	private Date logindate;
-	private Date expiredate;
+	private int good;
+	private int bad;
 	
+	public AccountDTO() {}
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String username) {
-		this.username = username;
-	}
-	
-	public String getNickname() {
-		return nickname;
-	}
-	
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
-	
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getGender() {
-		return gender;
-	}
-	
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	
-	public int getAge() {
-		return age;
-	}
-	
-	public void setAge(int age) {
-		this.age = age;
-	}
-	
-	public Date getJoindate() {
-		return joindate;
-	}
-	
-	public void setJoindate(Date joindate) {
-		this.joindate = joindate;
-	}
-	
-	public Date getLogindate() {
-		return logindate;
-	}
-	
-	public void setLogindate(Date logindate) {
-		this.logindate = logindate;
-	}
-	
-	public Date getExpiredate() {
-		return expiredate;
-	}
-	
-	public void setExpiredate(Date expiredate) {
-		this.expiredate = expiredate;
-	}
 
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+	public int getGood() {
+		return good;
+	}
+	public void setGood(int good) {
+		this.good = good;
+	}
+	public int getBad() {
+		return bad;
+	}
+	public void setBad(int bad) {
+		this.bad = bad;
+	}
+	
 	@Override
 	public String toString() {
-		return "AccountDTO [id=" + id + ", username=" + username
-				+ ", nickname=" + nickname + ", email=" + email + "]";
+		return "AccountDTO [id=" + id + ", pwd=" + pwd + ", name=" + name +
+				", nickname=" + nickname + ", email=" + email + "]";
 	}
-	
 }

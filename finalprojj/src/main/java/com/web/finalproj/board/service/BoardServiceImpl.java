@@ -1,21 +1,19 @@
 package com.web.finalproj.board.service;
 
-import java.util.*;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.dto.BoardSearchDTO;
-import com.web.finalproj.board.dto.BoardTypeDTO;
 import com.web.finalproj.board.repository.BoardRepository;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	
+
 	@Autowired
 	private BoardRepository dao;
-
 
 	@Override
 	public boolean add(BoardDTO dto) throws Exception {
@@ -30,36 +28,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public boolean remove(BoardDTO dto) throws Exception {
-		// TODO implement here
-		return false;
+	public boolean remove(int bid) throws Exception {
+		boolean res = dao.delete(bid);
+		return res;
 	}
-	
-	@Override
-	public BoardDTO findId(int id) throws Exception {
-		BoardDTO data = new BoardDTO();
-		data.setId(id);
-		return dao.select(data);
-	}
-	
-	@Override
-	public List<BoardDTO> findType(int btype) throws Exception {
-		// TODO implement here
-		return null;
-	}
-	
-	@Override
-	public List<BoardDTO> findTitle(String title) throws Exception {
-		// TODO implement here
-		return null;
-	}
-	
-	@Override
-	public List<BoardDTO> findAuthor(int aid) throws Exception {
-		// TODO implement here
-		return null;
-	}
-	
+
 	@Override
 	public List<BoardDTO> findAll() throws Exception {
 		List<BoardDTO> data = dao.selectAll();
@@ -67,9 +40,28 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardTypeDTO> getBoardTypes() throws Exception {
-		List<BoardTypeDTO> data = dao.selectBoardTypes();
-		return data;
+	public BoardDTO findId(int id) throws Exception {
+		BoardDTO data = new BoardDTO();
+		data.setBid(id);
+		return dao.select(data);
+	}
+
+	@Override
+	public List<BoardDTO> findType(int btype) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BoardDTO> findTitle(String title) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BoardDTO> findAuthor(int aid) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
@@ -77,10 +69,4 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDTO> data = dao.selectList(search);
 		return data;
 	}
-
-	@Override
-	public List<Map<String, String>> uploadfiles(int id) throws Exception {
-		return dao.uploadfiles(id);
-	}
-
 }
