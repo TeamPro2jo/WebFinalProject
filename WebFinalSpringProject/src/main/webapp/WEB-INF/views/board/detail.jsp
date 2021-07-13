@@ -59,7 +59,7 @@ function zzim(boardid) {
 	
 	$(document).ready(function(){
 		var author = "${item.getAid() }";
-		var myid = "${account.getId() }";
+		var myid = "${aid }";
 		
 		if(author != myid){
 			document.getElementById('id_update').style.visibility = 'hidden';
@@ -135,6 +135,10 @@ function zzim(boardid) {
 	</div>
 	<div>
 		<p>${fn:replace(item.getContents(), newline, "<br>") }</p>
+		<div class="inputArea">
+		 <label for="img">이미지</label><br>
+ 			<img src="..${file.getThumb()}" class="thumbImg"/>
+		</div>
 	</div>
 	<div>
 		<c:url var="update" value="/board/update?bid=${item.getBid() }" />

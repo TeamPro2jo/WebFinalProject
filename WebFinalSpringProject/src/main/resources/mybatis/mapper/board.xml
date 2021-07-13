@@ -62,7 +62,16 @@
 	</select>
 
 	<select id="row" parameterType="board" resultType="board">
-		SELECT * FROM board WHERE bid = #{bid} order by bid
+		SELECT *
+		FROM board
+		WHERE bid = #{bid}
+	</select>
+	
+	<select id="attachFile" resultType="file">
+		SELECT *
+		FROM attfile
+		WHERE bid = #{bid} AND ROWNUM = 1
+		ORDER BY fid desc
 	</select>
 
 	<delete id="boardDelete" parameterType="int">
@@ -97,6 +106,22 @@
 		#{status}, #{price})
 	</insert>
 	
+	<select id="fileseq" resultType="_int">
+		SELECT attfile_seq.NEXTVAL AS fileseq FROM dual
+	</select>
+	
+	<insert id="fileInsert" parameterType="file">
+		INSERT INTO attfile(fid, bid, img, thumb)
+		VALUES(#{fid}, #{bid}, #{img}, #{thumb})
+	</insert>
+	
+	<update id="fileUpdate" parameterType="file">
+		UPDATE attfile
+		SET img = #{img},
+		thumb = #{thumb}
+		WHERE bid = #{bid}
+	</update>
+	
 	<select id="replyCnt" resultType="_int">
 		SELECT recnt FROM board WHERE bid = #{bid}
 	</select>
@@ -106,5 +131,6 @@
   	   SET vcnt = vcnt + 1
   	 WHERE id = #{id}
   </update>
+ 
 
 </mapper>

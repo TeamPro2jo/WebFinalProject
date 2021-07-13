@@ -30,7 +30,7 @@ $(document).ready(function(){
 <body>
 
 	<c:url var="update" value="/board/update" />
-	<form action="${update }" method="post">
+	<form action="${update }" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="bid" value="${item.getBid() }" readonly>
 		<div>
 			<label for="id_title">제목</label>
@@ -90,6 +90,30 @@ $(document).ready(function(){
 			<label for="id_contents">내용</label>
 			<textarea id="id_contents" name="contents" cols="80" rows="20">${item.getContents() }</textarea>
 		</div>		
+		
+		<div class="inputArea">
+		 <label for="gdsImg">이미지</label>
+		 <input type="file" id="img" name="file" />
+		 <div class="select_img">
+		  <img src="${file.getThumb()}" />
+		  <input type="hidden" name="Img" value="${file.getImg()}" />
+		  <input type="hidden" name="Thumb" value="${file.getThumb()}" /> 
+		 </div>
+		 
+		 <script>
+		  $("#img").change(function(){
+		   if(this.files && this.files[0]) {
+		    var reader = new FileReader;
+		    reader.onload = function(data) {
+		     $(".select_img img").attr("src", data.target.result).width(500);        
+		    }
+		    reader.readAsDataURL(this.files[0]);
+		   }
+		  });
+		 </script>
+		 <%=request.getRealPath("/") %>
+		</div>
+		
 		<div>
 			<button type="submit">저장</button>
 			<button type="button" onclick="history.back();">취소</button>

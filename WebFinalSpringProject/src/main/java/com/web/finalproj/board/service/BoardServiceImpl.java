@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.dto.BoardSearchDTO;
 import com.web.finalproj.board.repository.BoardRepository;
+import com.web.finalproj.fileupload.vo.FileUploadVO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -69,4 +70,18 @@ public class BoardServiceImpl implements BoardService {
 		List<BoardDTO> data = dao.selectList(search);
 		return data;
 	}
+	
+	@Override
+	public boolean fileAdd(FileUploadVO vo) throws Exception {
+		boolean res = dao.fileupload(vo);
+		return res;
+	}
+	
+	@Override
+	public FileUploadVO getFile(int bid) throws Exception {
+		FileUploadVO vo = dao.selectFile(bid);
+				
+		return vo;
+	}
+	
 }

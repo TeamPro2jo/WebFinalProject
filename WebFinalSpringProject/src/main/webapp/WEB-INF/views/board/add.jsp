@@ -1,15 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>게시글 추가</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+
 </head>
 <body>
 	<c:url var="add" value="/board/add" />
-	<form action="${add }" method="post">
+	<form action="${add }" method="post" enctype="multipart/form-data">
 		<div>
 			<label for="id_title">제목</label> <input id="id_title" type="text"
 				name="title" required>
@@ -67,15 +72,34 @@
 			<label for="id_contents">내용</label>
 			<textarea id="id_contents" name="contents" cols="80" rows="20"></textarea>
 		</div>
+		
+    <div class="inputArea">
+		 <label for="gdsImg">이미지</label>
+		 <input type="file" id="gdsImg" name="file" />
+		 <div class="select_img"><img src="" /></div>
+		 
+		 <script>
+		  $("#gdsImg").change(function(){
+		   if(this.files && this.files[0]) {
+		    var reader = new FileReader;
+		    reader.onload = function(data) {
+		     $(".select_img img").attr("src", data.target.result).width(500);        
+		    }
+		    reader.readAsDataURL(this.files[0]);
+		   }
+		  });
+		 </script>
+		</div>
+		
+		<%=request.getRealPath("/") %>
 
 		<div>
 			<button type="submit">저장</button>
 			<button type="button" onclick="history.back();">취소</button>
 		</div>
-		
-		<c:set var="account" value='<%=session.getAttribute("account")%>' />
-		<input type="number" id="id_author" name="aid" value="${account.getId() }" style="display: none">
-		<input type="text" id="id_authorname" name="aname" value="${account.getNickname() }" style="display: none">
+	
+		<input type="number" id="id_author" name="aid" value="${id }" style="display: none">
+		<input type="text" id="id_authorname" name="aname" value="${nickname }" style="display: none">
 	</form>
 </body>
 </html>

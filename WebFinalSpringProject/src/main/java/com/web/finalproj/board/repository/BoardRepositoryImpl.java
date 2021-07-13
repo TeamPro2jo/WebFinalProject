@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.dto.BoardSearchDTO;
+import com.web.finalproj.fileupload.vo.FileUploadVO;
 
 
 @Repository
@@ -88,4 +89,27 @@ public class BoardRepositoryImpl implements BoardRepository {
 		}
 		return result;
 	}
+	
+	@Override
+	public boolean fileupload(FileUploadVO vo) throws Exception {
+		boolean result = false;
+		int rs = 0;
+		int fileseq = sqlSession.selectOne("boardMapper.fileseq");
+		if(fileseq > 0) {
+			vo.setFid(fileseq);
+			rs = sqlSession.insert("boardMapper.fileInsert", vo);
+			if(rs == 1) {
+				result = true;
+			}
+		}
+		return result;
+	}
+	
+	
+	@Override
+	public FileUploadVO selectFile(int bid) throws Exception {
+		FileUploadVO vo = sqlSession.selectOne("boardMapper.attachFile", bid);
+		return vo;
+	}
+	
 }

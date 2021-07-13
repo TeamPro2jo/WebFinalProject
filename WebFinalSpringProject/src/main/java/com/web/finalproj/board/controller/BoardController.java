@@ -1,8 +1,10 @@
 package com.web.finalproj.board.controller;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.finalproj.zzim.service.ZzimService;
@@ -21,6 +24,8 @@ import com.web.finalproj.account.dto.AccountDTO;
 import com.web.finalproj.account.service.AccountService;
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.service.BoardService;
+import com.web.finalproj.fileupload.util.UploadFileUtils;
+import com.web.finalproj.fileupload.vo.FileUploadVO;
 import com.web.finalproj.zzim.dto.ZzimDTO;
 
 @Controller
@@ -31,10 +36,10 @@ public class BoardController {
 	private BoardService board;
 	
 	@Autowired
-	private AccountService account;
-	
-	@Autowired
 	ZzimService zzim;
+	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView main() throws Exception {
@@ -88,10 +93,16 @@ public class BoardController {
 	@RequestMapping(value = "/detail", method = RequestMethod.GET)
 	public ModelAndView datail(@RequestParam int bid, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
+		
 		ModelAndView mv = new ModelAndView("board/detail");
+		
+		mv.addObject("file", board.getFile(bid));
 		mv.addObject("item", board.findId(bid));
+		
 		if(session.getAttribute("account") != null) {
 			int aid = ((AccountDTO)session.getAttribute("account")).getId();
+			mv.addObject("aid", aid);
+			
 			ZzimDTO data = new ZzimDTO();
 			data.setBid(bid);
 			data.setAid(aid);
@@ -107,13 +118,21 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public ModelAndView write() throws Exception {
+	public ModelAndView write(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int aid = ((AccountDTO)session.getAttribute("account")).getId();
+		String aname = ((AccountDTO)session.getAttribute("account")).getNickname();
+		
 		ModelAndView mv = new ModelAndView("board/add");
+		
+		mv.addObject("id", aid);
+		mv.addObject("nickname", aname);
 		return mv;
 	}
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String write(Model m, @ModelAttribute BoardDTO dto) throws Exception {
+	public String write(Model m, @ModelAttribute BoardDTO dto, MultipartFile file) throws Exception {
+		//forward
 		String forward = "";
 		
 		boolean res = board.add(dto);
@@ -125,6 +144,29 @@ public class BoardController {
 			forward = "board/add";
 		}
 		
+		//file upload
+		String imgUploadPath = uploadPath + File.separator + "resources/imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+
+		if(file != null) {
+		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+		
+		FileUploadVO upload = new FileUploadVO();
+		
+		upload.setBid(dto.getBid());
+		upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		upload.setThumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+		
+		board.fileAdd(upload);
+		
+		System.out.println(upload.getImg());
+		System.out.println(upload.getThumb());
+		
+	
 		return forward;
 	}
 	
@@ -132,11 +174,12 @@ public class BoardController {
 	public ModelAndView modify(int bid) throws Exception {
 		ModelAndView mv = new ModelAndView("board/update");
 		mv.addObject("item", board.findId(bid));
+		mv.addObject("file", board.getFile(bid));
 		return mv;
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String modify(Model m, @ModelAttribute BoardDTO dto) throws Exception {
+	public String modify(Model m, @ModelAttribute BoardDTO dto, MultipartFile file) throws Exception {
 		String forward = "";
 		
 		boolean res = board.update(dto);
@@ -148,7 +191,30 @@ public class BoardController {
 			forward = "board/update";
 		}
 		
-		return forward;
+		//file upload
+				String imgUploadPath = uploadPath + File.separator + "resources/imgUpload";
+				String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+				String fileName = null;
+
+				if(file != null) {
+				 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+				} else {
+				 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+				}
+				
+				FileUploadVO upload = new FileUploadVO();
+				
+				upload.setBid(dto.getBid());
+				upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+				upload.setThumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+				
+				board.fileAdd(upload);
+				
+				System.out.println(upload.getImg());
+				System.out.println(upload.getThumb());
+				
+			
+				return forward;
 	}
 
 	/**

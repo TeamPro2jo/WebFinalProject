@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.web.finalproj.board.dto.BoardDTO;
 import com.web.finalproj.board.dto.BoardSearchDTO;
+import com.web.finalproj.fileupload.vo.FileUploadVO;
 
 public interface BoardService {
 	public boolean add(BoardDTO dto) throws Exception;
@@ -15,4 +16,6 @@ public interface BoardService {
 	public List<BoardDTO> findTitle(String title) throws Exception;
 	public List<BoardDTO> findAuthor(int aid) throws Exception;
 	public List<BoardDTO> findList(BoardSearchDTO search) throws Exception;
+	public boolean fileAdd(FileUploadVO vo) throws Exception;
+	public FileUploadVO getFile(int bid) throws Exception;
 }

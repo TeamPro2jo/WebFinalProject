@@ -10,6 +10,7 @@
     <typeAlias type="com.web.finalproj.zzim.dto.ZzimDTO" alias="zzim" /> 
     <typeAlias type="com.web.finalproj.chat.vo.ChatRoomVO" alias="chatroom" />
     <typeAlias type="com.web.finalproj.chat.vo.MessageVO" alias="message" />
+    <typeAlias type="com.web.finalproj.fileupload.vo.FileUploadVO" alias="file" />
     <typeAlias type="com.web.finalproj.reply.vo.ReplyVO" alias="reply" />
   </typeAliases>
 </configuration>
