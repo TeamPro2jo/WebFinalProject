@@ -68,8 +68,8 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			if (dao.isRoom(roomVO) == null) {
 				System.out.println("채팅방 없음");
 				dao.createRoom(roomVO);
-				if (dao.isRoom(roomVO) != null)
-					System.out.println("채팅방 생성 완료");
+				croom = dao.isRoom(roomVO);
+				System.out.println("채팅방 생성 완료");
 			} else {
 				System.out.println("채팅방 있음");
 				croom = dao.isRoom(roomVO);

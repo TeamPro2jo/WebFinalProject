@@ -67,15 +67,9 @@ public class ChatController {
 		vo.setMyid(myid);
 		vo.setPartid(partid);
 		
-		ChatRoomVO room = dao.isRoom(vo);
-		
-		System.out.println(room.getRoomid());
-		
-		if(room != null) {
-			List<MessageVO> list = dao.getMessageList(room.getRoomid());
+		if(dao.getMessageList(dao.isRoom(vo).getRoomid()) != null) {
+			List<MessageVO> list = dao.getMessageList(dao.isRoom(vo).getRoomid());
 			mv.addObject("msglist", list);
-			
-			System.out.println(list.get(0).getMcontents());
 		}
 		
 		mv.setViewName("chat/chatroom");
