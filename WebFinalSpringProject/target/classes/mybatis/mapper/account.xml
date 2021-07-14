@@ -2,71 +2,84 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
-<mapper namespace="accountMapper">
-  <resultMap id="accountMap" type="account">
-    <id property="id" column="id" />
-    <result property="nickname" column="nickname" />
-    <result property="name" column="name" />
-  </resultMap>
 
-  <select id="selectAll" resultType="account">
-    SELECT * FROM account
-  </select>
-  
-  <select id="selectAccount" parameterType="account" resultType="account">
-    SELECT * FROM account WHERE id = #{id}
-  </select>
-  
-  <select id="selectAccountMap" parameterType="account" resultMap="accountMap">
-    SELECT nickname, name FROM account WHERE id = #{id}
-  </select>
-  
-  <select id="checkNickname" parameterType="String" resultType="_int">
-    SELECT count(*) FROM account WHERE nickname = #{nickname}
-  </select>
-  
-  <select id="checkEmail" parameterType="String" resultType="_int">
-    SELECT count(*) FROM account WHERE email = #{email}
-  </select>
-  
-  <select id="checkLogin" parameterType="account" resultType="account">
-    SELECT * FROM account
-     WHERE email = #{email}
-       AND pwd = #{pwd}
-  </select>
-  
-  <update id="updateAccount" parameterType="account">
-     UPDATE account
-     SET nickname = #{nickname}
-         , pwd = #{pwd}
-     WHERE id = #{id}
-  </update>
- 
-  <select id="selectList" parameterType="_int" resultType="board">
-    SELECT * FROM board WHERE aid = #{aid}
-  </select>
-  
-  <select id="zzimList" parameterType="_int" resultType="board">
-    SELECT *
-      FROM board a
-      JOIN zzim b
-        ON a.bid = b.bid
-     WHERE b.aid = #{aid}
-  </select>
-  
-  <insert id="insertAccount" parameterType="account">
-  	INSERT INTO account
-  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
-  </insert>
-  
-   <!-- 회원정보 수정 -->
+<mapper namespace="accountMapper">
+	<resultMap id="accountMap" type="account">
+		<id property="id" column="id" />
+		<result property="nickname" column="nickname" />
+		<result property="name" column="name" />
+	</resultMap>
+
+	<select id="selectAll" resultType="account">
+		SELECT * FROM account
+	</select>
+
+	<select id="selectAccount" parameterType="account"
+		resultType="account">
+		SELECT * FROM account WHERE id = #{id}
+	</select>
+
+	<select id="selectAccountMap" parameterType="account"
+		resultMap="accountMap">
+		SELECT nickname, name FROM account WHERE id = #{id}
+	</select>
+
+	<select id="checkNickname" parameterType="String"
+		resultType="_int">
+		SELECT count(*) FROM account WHERE nickname = #{nickname}
+	</select>
+
+	<select id="checkEmail" parameterType="String" resultType="_int">
+		SELECT count(*) FROM account WHERE email = #{email}
+	</select>
+
+	<select id="checkLogin" parameterType="account"
+		resultType="account">
+		SELECT * FROM account
+		WHERE email = #{email}
+		AND pwd = #{pwd}
+	</select>
+
+	<update id="updateAccount" parameterType="account">
+		UPDATE account
+		SET nickname = #{nickname}
+		, pwd = #{pwd}
+		WHERE id = #{id}
+	</update>
+
+	<select id="selectList" parameterType="_int" resultType="board">
+		SELECT * FROM board WHERE aid = #{aid}
+	</select>
+
+	<select id="zzimList" parameterType="_int" resultType="board">
+		SELECT *
+		FROM board a
+		JOIN zzim b
+		ON a.bid = b.bid
+		WHERE b.aid = #{aid}
+	</select>
+
+	<insert id="insertAccount" parameterType="account">
+		INSERT INTO account
+		VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
+	</insert>
+
 	<update id="memberUpdate">
-		UPDATE account SET 
+		UPDATE account SET
 		pwd = #{pwd},
 		nickname = #{nickname}
 		WHERE id = #{id}
 	</update>
+
+	<select id="checkAccount" parameterType="account" resultType="account">
+		SELECT * FROM account
+		WHERE id = #{id}
+		AND pwd = #{pwd}
+	</select>
+
+	<delete id="expireAccount">
+		DELETE FROM account WHERE id = #{id} AND pwd = #{pwd}
+	</delete>
 
 </mapper>
 

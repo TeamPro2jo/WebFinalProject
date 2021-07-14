@@ -57,11 +57,6 @@ public class AccountRepositoryImpl implements AccountRepository {
 	}
 
 	@Override
-	public boolean delete(AccountDTO dto) throws Exception {
-		return false;
-	}
-
-	@Override
 	public List<BoardDTO> writelist(int aid) throws Exception {
 		return sqlSession.selectList("accountMapper.selectList", aid);
 	}
@@ -69,5 +64,20 @@ public class AccountRepositoryImpl implements AccountRepository {
 	@Override
 	public List<BoardDTO> zzimlist(int aid) {
 		return sqlSession.selectList("accountMapper.zzimList", aid);
+	}
+	
+	@Override
+	public boolean delete(AccountDTO dto) throws Exception {
+		boolean result = false;
+		System.out.println("이거 테스트 " + dto.getEmail());
+		AccountDTO data = sqlSession.selectOne("accountMapper.checkAccount", dto);
+		if(data != null) {
+			System.out.println("이거 테스트22 " + data.getEmail());
+			int rs = sqlSession.delete("accountMapper.expireAccount", dto);
+			if(rs == 1) {
+				result = true;
+			}
+		}
+		return result;
 	}
 }

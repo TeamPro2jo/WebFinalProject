@@ -12,13 +12,14 @@
 	crossorigin="anonymous"></script>
 
 <c:url var="delete" value="/ajax/board/delete" />
+<c:url var="zzim" value="/ajax/board/zzim" />
 <c:set var="account" value='<%=session.getAttribute("account")%>' />
 <c:url var="userpage" value="/account/userpage" />
 
 <script type="text/javascript">
 function zzim(bid) {
 	$.ajax({
-		url: "/ajax/board/zzim",
+		url: "${zzim }",
 		type: "get",
 		datatype: "json",
 		data: {
