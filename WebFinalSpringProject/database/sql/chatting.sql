@@ -42,5 +42,5 @@ COMMENT ON COLUMN message.receiver IS '메시지 받은 사람';
 COMMENT ON COLUMN message.mcontents IS '메시지 내용';
 COMMENT ON COLUMN message.sendtime IS '메시지 보낸 시간';
 COMMENT ON COLUMN message.readtime IS '메시지 읽은 시간';
-COMMENT ON COLUMN message.rommid IS '채팅방 식별 아이디';
+COMMENT ON COLUMN message.roomid IS '채팅방 식별 아이디';
 

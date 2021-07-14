@@ -132,5 +132,4 @@
   	 WHERE bid = #{bid}
   </update>
  
-
 </mapper>

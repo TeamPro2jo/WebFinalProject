@@ -90,4 +90,9 @@ public class AccountServiceImpl implements AccountService {
 		return dao.delete(dto);
 	}
 
+	@Override
+	public boolean memberDelete(AccountDTO dto) throws Exception {
+		return dao.delete(dto);
+	}
+
 }
