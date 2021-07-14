@@ -32,14 +32,10 @@
 </head>
 
 <body>
-	<div class="col-12 row justify-content-center align-items-center my-5 ">
-		<a href=""><img
-			src="<%=request.getContextPath() + "/resources/image/khlogo.png"%>"
-			alt="Logo" width="180px" class="img-fluid" /></a>
-	</div>
+<div style="height: 50px"></div>
 	<div class="col-12">
 		<div class="col-2" style="float: left">
-			<span> 목록 </span>
+			<span style="margin-left:30px"> 목록 </span>
 		</div>
 		<div class="col-8" style="float: left; text-align: center;">
 			${partaccount.getNickname() } 님과 대화
@@ -58,24 +54,19 @@
 	</div>
 	<!-- 채팅 내용 -->
 	<div class="col-12">
-		<div class="col-11"
-			style="margin: 0 auto; border: 1px solid #01D1FE; height: 400px; border-radius: 10px; overflow: scroll"
+		<div class="col-11" style="margin: 0 auto; border: 1px solid #01D1FE; width: 490px; height: 400px; border-radius: 10px; overflow: scroll; overflow-x: hidden;"
 			id="chatArea">
-
-			<div id="chatMessageArea"
-				style="margin-top: 10px; margin-left: 10px;"></div>
+			<div id="chatMessageArea" style="margin-top: 10px; margin-left: 10px;">
+				</div>
 
 		</div>
 	</div>
 
 	<!-- 채팅 입력창 -->
-	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px;">
+	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px; width:550px; margin-left:40px;">
 		<div class="col-12" style="float: left">
-			<textarea class="form-control"
-				style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%"
-				placeholder="Enter ..." id="message">
-
-				</textarea>
+			<textarea class="form-control" style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message">
+			</textarea>
 			<span
 				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
 				<a
@@ -83,13 +74,10 @@
 				id="sendBtn"><br>전송</a>
 			</span>
 		</div>
-
 	</div>
+	
+	<div style="height: 120px"></div>
 
-
-	<img id="profileImg" class="img-fluid"
-		src="https://png.pngtree.com/element_our/sm/20180517/sm_5afd2b1f0ced7.jpg"
-		style="display: none">
 	<input type="text" id="nickname" value="${myaccount.getNickname() }" style="display: none">
 	<input type="button" id="enterBtn" value="입장" style="display: none">
 	<input type="button" id="exitBtn" value="나가기" style="display: none">
@@ -136,8 +124,7 @@
 					+ leadingZeros(d.getDate(), 2) + ' ' +
 
 					leadingZeros(d.getHours(), 2) + ':'
-					+ leadingZeros(d.getMinutes(), 2) + ':'
-					+ leadingZeros(d.getSeconds(), 2);
+					+ leadingZeros(d.getMinutes(), 2)
 
 			return s;
 		}
@@ -152,7 +139,7 @@
 			}
 			return zero + n;
 		}
-
+		
 		function appendMessage(msg, sender) {
 
 			if (msg == '') {
@@ -163,11 +150,9 @@
 				if (sender == '${myaccount.getId() }') {
 					$("#chatMessageArea")
 							.append(
-									"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
-											+ "<div class='col-2' style = 'float:right; padding-right:0px; padding-left : 0px;'>"
-											+ "<div style='font-size:9px; clear:both;'>${myaccount.getNickname() }</div></div>"
+									"<div class='col-12' style = 'height : auto; float:right; margin-top : 10px; text-align: right; margin-right: -15px; margin-left: -10px;'>"
 											+ "<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:right;'>"
-											+ "<div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'>"
+											+ "<div class = 'col-12' style = ' background-color:#01D1FE; padding : 10px 10px; float:left; border-radius:10px;'>"
 											+ "<span style = 'font-size : 12px;'>"
 											+ msg
 											+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"
@@ -177,16 +162,15 @@
 					
 					$("#chatMessageArea")
 					.append(
-							"<div class='col-12 row' style = 'height : auto; margin-top : 5px;'>"
-									+ "<div class='col-2' style = 'float:left; padding-right:0px; padding-left : 0px;'>"
-									+ "<div style='font-size:9px; clear:both;'>${partaccount.getNickname() }</div></div>"
-									+ "<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left;'>"
-									+ "<div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 5px; float:left; border-radius:10px;'>"
+							"<div class='col-12' style = 'height : auto; margin-top : 5px; float:left';>"
+									+ "<div class = 'col-10' style = 'overflow : y ; margin-top : 7px; float:left; margin-left: -20px;'>"
+									+ "<div class = 'col-12' style = ' background-color:#ACF3FF; padding : 10px 10px; float:left; border-radius:10px;'>"
 									+ "<span style = 'font-size : 12px;'>"
 									+ msg
 									+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:left;'><span style ='float:right; font-size:9px; text-align:right;' >"
 									+ t
-									+ "</span></div></div></div></br>")
+									+ "</span></div></div>"
+									+ "</div></br>")
 				}
 
 				var chatAreaHeight = $("#chatArea").height();
@@ -207,6 +191,19 @@
 			$('#sendBtn').click(function() {
 				send();
 			});/* $('#enterBtn').click(function() { connect(); }); $('#exitBtn').click(function() { disconnect(); }); */
+			
+			var msglist = new Array();
+			var sendlist = new Array();
+			
+			<c:forEach var="list" items="${requestScope.msglist }">
+				msglist.push("${list.getMcontents() }");
+				sendlist.push("${list.getSender() }");
+			</c:forEach>
+			
+			for(var i=0; i<msglist.length; i++) {
+				appendMessage(msglist[i], sendlist[i]);
+			}
+			
 		});
 	</script>
 

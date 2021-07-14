@@ -9,8 +9,8 @@ CREATE SEQUENCE chattroom_seq start with 1 NOCACHE;
 
 CREATE TABLE chattroom(
 	roomid NUMBER,
-	myid NBARCHAR2(64),
-	partid NVARCHAR2(64)
+	myid VARCHAR2(64),
+	partid VARCHAR2(64)
 );
 
 ALTER TABLE chattroom ADD CONSTRAINT chattroom_roomid_PK PRIMARY KEY(roomid);
@@ -25,7 +25,7 @@ CREATE TABLE message(
 	mid NUMBER,
 	sender NUMBER,
 	receiver NUMBER,
-	mcontents NVARCHAR2(1024),
+	mcontents VARCHAR2(1024),
 	sendtime DATE DEFAULT SYSDATE,
 	readtime DATE DEFAULT SYSDATE,
 	roomid NUMBER

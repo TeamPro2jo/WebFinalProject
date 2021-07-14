@@ -42,13 +42,7 @@
 					</p>
 					<p>(${data.getEmail() })</p>
 					<p>총 게시글 수 ${fn:length(writelist)}개</p>
-					<div class="click">
-						<a style="cursor: pointer;" onclick="sendRecommend('g');"> <small>추천
-								<span id="good">${data.getGood() }</span>
-						</small></a><br> <a style="cursor: pointer;"
-							onclick="sendRecommend('b');"> <small>비추천 <span
-								id="bad">${data.getBad() }</span></small></a><br>
-					</div>
+					
 				</div>
 			</section>
 			<br>

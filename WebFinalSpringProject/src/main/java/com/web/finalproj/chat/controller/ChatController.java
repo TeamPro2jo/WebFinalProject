@@ -45,21 +45,40 @@ public class ChatController {
 	}
 	
 	@RequestMapping(value = "/chatroom", method = RequestMethod.GET)
-	public String chatroom(Model m, int partid, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+	public ModelAndView chatroom(int partid, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		int myid = ((AccountDTO)session.getAttribute("account")).getId();
 
+		ModelAndView mv = new ModelAndView();
+		
 		dto.setId(myid);
 		AccountDTO mydto = account.accountInfoDetail(dto);
 		
 		dto.setId(partid);
 		AccountDTO partdto = account.accountInfoDetail(dto);
 		
-		System.out.print("myid="+myid+" partid="+partid);
+		System.out.println("myid="+myid+" partid="+partid);
 		
-		m.addAttribute("myaccount", mydto);
-		m.addAttribute("partaccount", partdto);
+		mv.addObject("myaccount", mydto);
+		mv.addObject("partaccount", partdto);
 		
-		return "chat/chatroom";
+		ChatRoomVO vo = new ChatRoomVO();
+		
+		vo.setMyid(myid);
+		vo.setPartid(partid);
+		
+		ChatRoomVO room = dao.isRoom(vo);
+		
+		System.out.println(room.getRoomid());
+		
+		if(room != null) {
+			List<MessageVO> list = dao.getMessageList(room.getRoomid());
+			mv.addObject("msglist", list);
+			
+			System.out.println(list.get(0).getMcontents());
+		}
+		
+		mv.setViewName("chat/chatroom");
+		return mv;
 	}
 }

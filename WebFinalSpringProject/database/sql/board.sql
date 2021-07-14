@@ -5,13 +5,13 @@ CREATE SEQUENCE board_seq NOCACHE;
 CREATE TABLE board(
 	bid NUMBER,
 	aid NUMBER,
-	aname NVARCHAR2(64),
-	title NVARCHAR2(256),
+	aname VARCHAR2(64),
+	title VARCHAR2(256),
 	contents NCLOB,
 	deal NUMBER,
-	location NVARCHAR2(20),
-	category NVARCHAR2(30),
-	status NVARCHAR2(10),
+	location VARCHAR2(20),
+	category VARCHAR2(30),
+	status VARCHAR2(10),
 	price NUMBER DEFAULT 0,
 	recnt NUMBER DEFAULT 0,
 	vcnt NUMBER DEFAULT 0,
@@ -42,4 +42,26 @@ COMMENT ON COLUMN board.recnt IS '댓글수';
 COMMENT ON COLUMN board.vcnt IS '조회수';
 COMMENT ON COLUMN board.cdate IS '게시판 생성일';
 COMMENT ON COLUMN board.udate IS '게시판 수정일';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT * FROM board;
+
+
+
+
+
+
+
 

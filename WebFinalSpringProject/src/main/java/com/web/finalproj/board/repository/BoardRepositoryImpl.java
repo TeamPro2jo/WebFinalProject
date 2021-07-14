@@ -112,4 +112,9 @@ public class BoardRepositoryImpl implements BoardRepository {
 		return vo;
 	}
 	
+	@Override
+	public void cntUpdate(int bid) throws Exception {
+		sqlSession.update("boardMapper.incview", bid);
+	}
+	
 }

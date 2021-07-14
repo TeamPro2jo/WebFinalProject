@@ -1,5 +1,7 @@
 package com.web.finalproj.ajax.controller;
 
+import java.util.List;
+
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -75,5 +77,6 @@ public class AjaxChatController {
 			
 			return json.toJSONString();
 		}
+
 
 }

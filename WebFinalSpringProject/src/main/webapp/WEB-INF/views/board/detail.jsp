@@ -16,13 +16,13 @@
 <c:url var="userpage" value="/account/userpage" />
 
 <script type="text/javascript">
-function zzim(boardid) {
+function zzim(bid) {
 	$.ajax({
-		url: "/finalproj/ajax/board/zzim",
+		url: "/ajax/board/zzim",
 		type: "get",
 		datatype: "json",
 		data: {
-			boardid: boardid
+			bid: bid
 		},
 		success: function(data) {
 			if(data.result == "delete") {
@@ -135,10 +135,12 @@ function zzim(boardid) {
 	</div>
 	<div>
 		<p>${fn:replace(item.getContents(), newline, "<br>") }</p>
-		<div class="inputArea">
-		 <label for="img">이미지</label><br>
- 			<img src="..${file.getThumb()}" class="thumbImg"/>
-		</div>
+		<c:if test="${file.getThumb() != null}">
+			<div class="inputArea">
+			 <label for="img">이미지</label><br>
+	 			<img src="${file.getThumb()}" class="thumbImg"/>
+			</div>
+		</c:if>
 	</div>
 	<div>
 		<c:url var="update" value="/board/update?bid=${item.getBid() }" />

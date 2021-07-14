@@ -18,4 +18,5 @@ public interface BoardService {
 	public List<BoardDTO> findList(BoardSearchDTO search) throws Exception;
 	public boolean fileAdd(FileUploadVO vo) throws Exception;
 	public FileUploadVO getFile(int bid) throws Exception;
+	public void viewCount(int bid) throws Exception;
 }

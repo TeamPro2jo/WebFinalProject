@@ -114,6 +114,8 @@ public class BoardController {
 			}
 		}
 		
+		board.viewCount(bid);
+		
 		return mv;
 	}
 	
@@ -149,23 +151,22 @@ public class BoardController {
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
 
-		if(file != null) {
+		if(file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
 		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
-		} else {
-		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		 
+		 FileUploadVO upload = new FileUploadVO();
+			
+			upload.setBid(dto.getBid());
+			upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+			upload.setThumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+			
+			board.fileAdd(upload);
+			
+			System.out.println(upload.getImg());
+			System.out.println(upload.getThumb());
+		 
 		}
-		
-		FileUploadVO upload = new FileUploadVO();
-		
-		upload.setBid(dto.getBid());
-		upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-		upload.setThumb(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-		
-		board.fileAdd(upload);
-		
-		System.out.println(upload.getImg());
-		System.out.println(upload.getThumb());
-		
+
 	
 		return forward;
 	}

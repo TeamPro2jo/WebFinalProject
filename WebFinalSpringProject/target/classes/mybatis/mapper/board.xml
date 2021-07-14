@@ -129,7 +129,7 @@
   <update id="incview">
   	UPDATE board
   	   SET vcnt = vcnt + 1
-  	 WHERE id = #{id}
+  	 WHERE bid = #{bid}
   </update>
  
 

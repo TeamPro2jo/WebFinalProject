@@ -84,4 +84,9 @@ public class BoardServiceImpl implements BoardService {
 		return vo;
 	}
 	
+	@Override
+	public void viewCount(int bid) throws Exception {
+		dao.cntUpdate(bid);
+	}
+	
 }

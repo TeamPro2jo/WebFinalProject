@@ -8,6 +8,22 @@
 <meta charset="UTF-8">
 <title>유저페이지</title>
 <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/mypage.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+	
+<script>
+
+function popup(){
+	var url= "/chatting/chatroom?partid=${data.getId()}";    //팝업창 페이지 URL
+	var winWidth = 630;
+    var winHeight = 700;
+    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
+	window.open(url,"",popupOption);
+}
+
+</script>
+
 </head>
 <body>
 	<div class="width">
@@ -25,18 +41,13 @@
 		<section class="main">
 			<div>
 				<h2>USER PAGE</h2><br>
-				<c:url var="chatroom" value="/chatting/chatroom" />
-				<button class="chat" type="button" onclick="location.href='${chatroom}?partid=${data.getId()}'">채팅창</button>
+
+				<button class="chat" id="chatroom" type="button" onclick="javascript:popup();">채팅창</button>
 			</div>
 			<section>
 				<div>
 					<p>${data.getNickname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(uwritelist)}개</p>
-					<div class="click">
-						<a  style="cursor: pointer;" onclick="sendRecommend('g');">
-							<small>추천 <span id="good">${data.getGood() }</span></small></a><br>
-						<a style="cursor: pointer;" onclick="sendRecommend('b');">
-							<small>비추천 <span id="bad">${data.getBad() }</span></small></a><br>
-					</div>
+					
 				</div>
 			</section><br>
 			<section>

@@ -18,4 +18,5 @@ public interface BoardRepository {
 	public boolean delete(int bid)  throws Exception;
 	public boolean fileupload(FileUploadVO vo) throws Exception;
 	public FileUploadVO selectFile(int bid) throws Exception;
+	public void cntUpdate(int bid) throws Exception;
 }

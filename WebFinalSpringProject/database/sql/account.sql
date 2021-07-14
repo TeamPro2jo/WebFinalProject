@@ -5,12 +5,10 @@ CREATE SEQUENCE account_seq NOCACHE;
 
 CREATE TABLE account(
 	id NUMBER,
-	nickname NVARCHAR2(64),
-	name NVARCHAR2(64),
-	pwd NVARCHAR2(64),
-	email NVARCHAR2(128),
-	good int DEFAULT 0,
-	bad int DEFAULT 0
+	nickname VARCHAR2(64),
+	name VARCHAR2(64),
+	pwd VARCHAR2(64),
+	email VARCHAR2(128)
 );
 
 ALTER TABLE account ADD CONSTRAINT account_id_PK PRIMARY KEY(id);
@@ -27,13 +25,13 @@ COMMENT ON COLUMN account.email IS '사용자 이메일 주소(로그인 아이�
 COMMENT ON COLUMN account.good IS '추천';
 COMMENT ON COLUMN account.bad IS '비추천';
 
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉관리자', '관리자', 'admin', 'admin@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저1', '가유저', 'user1', 'user1@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저2', '나유저', 'user2', 'user2@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저3', '다유저', 'user3', 'user3@sample.com', 0, 0);
-INSERT INTO account(id, nickname, name, pwd, email, good, bad) VALUES(account_seq.NEXTVAL, '닉유저4', '라유저', 'user4', 'user4@sample.com', 0, 0);
+INSERT INTO account(id, nickname, name, pwd, email) VALUES(account_seq.NEXTVAL, '닉관리자', '관리자', 'admin', 'admin@sample.com');
+INSERT INTO account(id, nickname, name, pwd, email) VALUES(account_seq.NEXTVAL, '닉유저1', '가유저', 'user1', 'user1@sample.com');
+INSERT INTO account(id, nickname, name, pwd, email) VALUES(account_seq.NEXTVAL, '닉유저2', '나유저', 'user2', 'user2@sample.com');
+INSERT INTO account(id, nickname, name, pwd, email) VALUES(account_seq.NEXTVAL, '닉유저3', '다유저', 'user3', 'user3@sample.com');
+INSERT INTO account(id, nickname, name, pwd, email) VALUES(account_seq.NEXTVAL, '닉유저4', '라유저', 'user4', 'user4@sample.com');
 
-SELECT * FROM account;
+SELECT * FROM accountt;
 
 UPDATE account
    SET nickname = '닉유저8'

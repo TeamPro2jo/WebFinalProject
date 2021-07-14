@@ -57,7 +57,7 @@
   
   <insert id="insertAccount" parameterType="account">
   	INSERT INTO account
-  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email}, 0, 0)
+  	     VALUES(account_seq.NEXTVAL, #{nickname}, #{name}, #{pwd}, #{email})
   </insert>
   
    <!-- 회원정보 수정 -->

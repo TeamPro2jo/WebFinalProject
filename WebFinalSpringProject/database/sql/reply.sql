@@ -6,7 +6,7 @@ CREATE TABLE reply (
 	reid NUMBER,
 	bid NUMBER,
 	aid NUMBER,
-	aname NVARCHAR2(64),
+	aname VARCHAR2(64),
 	recontents NCLOB,
 	rereplyid NUMBER,
 	cdate DATE DEFAULT SYSDATE,
@@ -14,7 +14,7 @@ CREATE TABLE reply (
 );
 
 ALTER TABLE reply ADD CONSTRAINT reply_reid_PK PRIMARY KEY(reid);
-ALTER TABLE reply ADD CONSTRAINT reply_bid_FK FOREIGN KEY(bid) REFERENCES board(bid);
-ALTER TABLE reply ADD CONSTRAINT reply_aid_FK FOREIGN KEY(aid) REFERENCES account(id);
+ALTER TABLE reply ADD CONSTRAINT reply_bid_FK FOREIGN KEY(bid) REFERENCES board(bid) ON DELETE CASCADE;
+ALTER TABLE reply ADD CONSTRAINT reply_aid_FK FOREIGN KEY(aid) REFERENCES account(id) ON DELETE CASCADE;
 
 ALTER TABLE reply MODIFY recontents CONSTRAINT reply_recontents_NN NOT NULL;
