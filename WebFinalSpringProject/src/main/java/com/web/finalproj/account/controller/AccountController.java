@@ -131,8 +131,6 @@ public class AccountController {
 		HttpSession session = request.getSession();
 		int id = ((AccountDTO)session.getAttribute("account")).getId();
 		dto.setId(id);
-		String email = ((AccountDTO)session.getAttribute("account")).getEmail();
-		dto.setEmail(email);
 		
 		AccountDTO data = account.accountInfoDetail(dto);
 		m.addAttribute("data", data);
@@ -149,5 +147,37 @@ public class AccountController {
 		}
 		
 		return "redirect:/account/mypage";
+	}
+	
+	@RequestMapping(value= "/memberdelete", method = RequestMethod.GET)
+	public String memberdelete(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		int id = ((AccountDTO)session.getAttribute("account")).getId();
+		dto.setId(id);
+		
+		AccountDTO data = account.accountInfoDetail(dto);
+		m.addAttribute("data", data);
+		return "account/delete";
+	}
+	
+	@RequestMapping(value= "/memberdelete", method = RequestMethod.POST)
+	public String delete(Model m, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
+		String forward ="";
+		HttpSession session = request.getSession();
+		boolean res = account.memberDelete(dto);
+		System.out.println("비밀번호 체크" + dto.getPwd());
+		System.out.println("비밀번호 체크" + dto.getId());
+		
+		if(res) {
+			session.invalidate();
+			forward = "redirect:/account/login";
+		} else {
+			AccountDTO data = account.accountInfoDetail(dto);
+			m.addAttribute("data", data);
+			m.addAttribute("error", "비밀번호를 다시 입력하세요.");
+			forward = "account/delete";
+		}
+		
+		return forward;
 	}
 }

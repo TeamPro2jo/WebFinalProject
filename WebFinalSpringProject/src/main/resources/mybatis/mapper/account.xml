@@ -61,12 +61,22 @@
   </insert>
   
    <!-- 회원정보 수정 -->
-	<update id="memberUpdate">
-		UPDATE account SET 
-		pwd = #{pwd},
-		nickname = #{nickname}
-		WHERE id = #{id}
-	</update>
+  <update id="memberUpdate">
+	UPDATE account SET 
+	pwd = #{pwd},
+	nickname = #{nickname}
+	WHERE id = #{id}
+  </update>
+	
+  <select id="checkAccount" parameterType="account" resultType="account">
+    SELECT * FROM account
+     WHERE id = #{id}
+       AND pwd = #{pwd}
+  </select>
+	
+  <delete id="expireAccount">
+  	DELETE FROM account WHERE id = #{id} AND pwd = #{pwd}
+  </delete>
 
 </mapper>
 

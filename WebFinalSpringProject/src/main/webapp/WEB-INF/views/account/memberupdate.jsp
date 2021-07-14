@@ -46,26 +46,6 @@
 			return;
 		}
 	}
-
-	function expire() {
-		$
-				.ajax({
-					url : "${expire }",
-					type : "post",
-					datatype : "json",
-					data : {
-						id : document.getElementById("id").value
-					},
-					success : function(data) {
-						if (data.res == "success") {
-							alert("탈퇴 처리가 완료되었습니다.")
-							location.href = "${pageContext.request.contextPath }/account/login" //로그아웃페이지로 이동
-						} else {
-							alert("탈퇴 처리에 실패하였습니다.")
-						}
-					}
-				});
-	}
 </script>
 </head>
 <body>
@@ -86,12 +66,13 @@
 		<br>
 		<section class="main">
 			<c:url var="memberupdate" value="/account/memberupdate" />
+			<c:url var="memberdelete" value="/account/memberdelete" />
 			<form name="update_account" action="${memberupdate }" method="post">
 				<section class="main">
 					<h2>${data.getNickname() }님정보수정</h2>
 					<input type="hidden" id="id" name="id" value="${data.getId() }">
 					<div>
-						<button type="button" onclick="expire();">탈퇴</button>
+						<a href="${memberdelete }">회원 탈퇴</a>
 					</div>
 					<section>
 						<div>
