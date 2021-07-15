@@ -39,7 +39,7 @@ function userdelete() {
 			<section class="headersection2">
 				<span class="middle"><a
 					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
-				<span class="middle"><a href="./login">로그아웃</a></span>
+				<span class="middle"><a href="/account/logout">로그아웃</a></span>
 			</section>
 		</header>
 		<br>
