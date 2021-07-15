@@ -14,7 +14,8 @@ import javax.servlet.http.HttpSession;
 
 @WebFilter(
 	urlPatterns = {
-		"/account/mypage"
+		"/account/mypage", "/account/memberupdate", "/board", "/board/add", "/board/detail"
+		, "/board/update", "/account/memberdelete"
 	}	// 정규표현식 a, u, d라고 하는 문자로 시작하는 주소, * 은 0번 이상이다
 )
 public class LoginCheckFilter implements Filter {
