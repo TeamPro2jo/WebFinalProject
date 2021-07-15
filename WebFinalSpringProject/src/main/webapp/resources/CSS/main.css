@@ -21,55 +21,23 @@ img.logo { width: 60px;}
     vertical-align: middle;
 }
 
-header {
-    background-color: lightblue;
-    padding-left: 25px;
-    padding-right: 25px;
-    height: 120px;
-}
-
-
-.headersection1 {
-    display: table;
-    background-color: lightblue;
-    text-align: left;
-    width: 75%;
-    height: 100%;
-    float: left;
-}
-
-.headersection2 {
-    display: table;
-    background-color:lightblue;
-    text-align: center;
-    padding-right: 30px;
-    width: 25%;
-    height: 100%;
-}
-
-
-
-section.main {
-    background-color: #C8FFFF;
-    padding-top: 20px;
-    padding-left: 25px;
-    padding-right: 25px;
-    height: 900px;
-}
-
-
-.category {
-	display: table;
-	background-color: white;
-	border-spacing: 20px;
-	margin-left:170px;
-}
-
-/*
-.context {
-	display: table;
-	border-collapse: collapse;
-	text-align: center;
-}
-
-*/
+    .row.content {height: 840px}
+    
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }

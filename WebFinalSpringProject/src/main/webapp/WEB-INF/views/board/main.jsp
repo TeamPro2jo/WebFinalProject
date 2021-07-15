@@ -3,16 +3,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>게시판</title>
-<link type="text/css" rel="stylesheet"
+  <title>메인페이지</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/CSS/main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-<script type="text/javascript">
+
+  <script type="text/javascript">
 	$(document)
 			.ready(
 					function() {
@@ -77,9 +82,10 @@
 		$("#search_form").submit();
 	}
 </script>
+  
 </head>
-
 <body>
+
 	<div class="width">
 		<header>
 			<section class="headersection1">
@@ -95,23 +101,25 @@
 			</section>
 		</header>
 		<br>
-		<div>
+		
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+     
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">선택하세요</a></li>
+		<div><br>
 			<ul>
 				<c:url var="all" value="/board" />
 				<li><a href="${all }">전체</a></li>
 			</ul>
-		</div>
-		<div>
-			<div>
-				<c:url var="add" value="board/add" />
-				<button type="button" onclick="location.href='${add }'">글쓰기</button>
-			</div>
-			<div>
+		</div><br>
 				<c:url var="search" value="/board" />
 				<form id="search_form" action="${search }" method="post">
 					<div>
+                       
 						<ul style="display: inline-block;">
-							<li>물품종류 :</li>
+							<li>물품 종류 </li>
 							<li><input type="checkbox" id="a1" name="type"
 								onclick="go();" value="디지털기기"><label for="a1">디지털기기</label></li>
 							<li><input type="checkbox" id="a2" name="type"
@@ -175,6 +183,7 @@
 							<li><input type="checkbox" id="c4" name="stat"
 								onclick="go();" value="하"><label for="c4">하</label></li>
 						</ul>
+                        <br>
 						<ul style="display: inline-block;">
 							<li>거래방법 :</li>
 							<li><input type="checkbox" id="d1" name="deal"
@@ -183,52 +192,84 @@
 								onclick="go();" value="2"><label for="d2">택배</label></li>
 						</ul>
 					</div>
+                    <br><br>
 					<select name="searchType">
 						<option>선택</option>
 						<option value="title">제목</option>
 					</select> <input type="text" class="searchbox" name="searchWord">
 					<button type="submit" id="test">검색</button>
 				</form>
-			</div>
-			<table>
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th>물품상태</th>
-						<th>카테고리</th>
-						<th>지역</th>
-						<th>거래방법</th>
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-					</tr>
-				</thead>
-				<tbody>
-					<c:url var="detail" value="/board/detail" />
-					<c:forEach var="item" items="${requestScope.boardlist }">
-						<tr>
-							<td>${item.getBid() }</td>
-							<td>${item.getStatus() }</td>
-							<td>${item.getCategory() }</td>
-							<td>${item.getLocation() }</td>
-							<c:choose>
-								<c:when test="${item.getDeal() == '1'}">
-									<td>직거래</td>
-								</c:when>
-								<c:when test="${item.getDeal() == '2'}">
-									<td>택배</td>
-								</c:when>
-							</c:choose>
-							<td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() } (${item.getRecnt() })</a></td>
-							<td>${item.getAname() }</td>
-							<fmt:formatDate var="cdate" value="${item.getCdate() }"
-								pattern="yyyy/MM/dd" />
-							<td>${cdate }</td>
-						</tr>
-					</c:forEach>
-				</tbody>
-			</table>
-		</div>
-	</div>
+      </ul><br> <div class="input-group">
+       
+        <span class="input-group-btn">
+                     <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+        
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+      <h4><small>결과 게시판</small></h4>
+     
+      <div class="container">
+        <table class="table table-striped">
+
+<thead>
+  <tr>
+    <th>번호</th>
+    <th>물품상태</th>
+    <th>카테고리</th>
+    <th>지역</th>
+    <th>거래방법</th>
+    <th>거래방법</th>
+    <th>제목</th>
+    <th>작성자</th>
+    <th>작성일</th>
+  </tr>
+</thead>
+<tbody>
+  <c:url var="detail" value="/board/detail" />
+  <c:forEach var="item" items="${requestScope.boardlist }">
+    <tr>
+      <td>${item.getBid() }</td>
+      <td>${item.getStatus() }</td>
+      <td>${item.getCategory() }</td>
+      <td>${item.getLocation() }</td>
+      <c:choose>
+        <c:when test="${item.getDeal() == '1'}">
+          <td>직거래</td>
+        </c:when>
+        <c:when test="${item.getDeal() == '2'}">
+          <td>택배</td>
+        </c:when>
+      </c:choose>
+      <td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() } (${item.getRecnt() })</a></td>
+      <td>${item.getAname() }</td>
+      <fmt:formatDate var="cdate" value="${item.getCdate() }"
+        pattern="yyyy/MM/dd" />
+      <td>${cdate }</td>
+    </tr>
+  </c:forEach>
+</tbody>
+</table>
+
+</hr>
+<c:url var="add" value="board/add" />
+<button type="button" onclick="location.href='${add }'">글쓰기</button>
+
+<div class="text-center">
+ 
+    </ul>
+</div>
+</div>
+</div>
+     
+</div>
+
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+
 </body>
 </html>

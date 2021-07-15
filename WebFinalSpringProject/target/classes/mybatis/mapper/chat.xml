@@ -34,7 +34,7 @@ select * from chatroom where myid = #{myid}
 </select>
 
 <select id = "getRecentMessage" resultType = "message">
-select * from message where roomid = #{roomid} order by mid desc limit 1;
+select * from message where roomid = #{roomid} AND ROWNUM = 1 ORDER BY mid DESC
 </select>
 
 <update id ="updateReadTime">

@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* 모든 HTML 요소 초기화 */
+* {margin: 0px; padding: 0px; box-sizing: border-box;}
+html {
+    font-size: 14pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
+    font-weight: normal;
+    padding: 100px;
+   
+}
+.head{
+	border:3px solid lightblue;
+	padding:0px  20px;
+	margin:2% 20%;
+}
+.mid{
+	border:3px solid lightblue;
+	padding:0px  20px;
+	margin:2% 20%;
+
+}
+.list{
+	margin:0% 47%;
+
+}
+
+textarea{
+	 position: static;
+	resize:none;
+	margin:2% 20%;
+}
+
+.rep{
+	
+	border-radius: 5px;
+	margin:20px -300px;
+	border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+	}
+.btn{
+	border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+	border-radius: 5px;
+	}

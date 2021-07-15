@@ -29,19 +29,26 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/resources/js/sockjs-0.3.4.js"></script>
 
+
+<c:url var="chatlist" value="/chatting/chatlist" />
+<script>
+function popclose(){
+    self.close(); 
+}
+</script>
 </head>
 
 <body>
 <div style="height: 50px"></div>
 	<div class="col-12">
 		<div class="col-2" style="float: left">
-			<span style="margin-left:30px"> 목록 </span>
+			<a href="${chatlist}"><span style="margin-left:30px"> 목록 </span></a>
 		</div>
 		<div class="col-8" style="float: left; text-align: center;">
 			${partaccount.getNickname() } 님과 대화
 		</div>
 		<div class="col-2" style="float: right">
-			<span> 닫기 </span>
+			<a href="#" onclick="javascript:window.close()"><span> 닫기 </span></a>
 		</div>
 
 	</div>
@@ -79,8 +86,6 @@
 	<div style="height: 120px"></div>
 
 	<input type="text" id="nickname" value="${myaccount.getNickname() }" style="display: none">
-	<input type="button" id="enterBtn" value="입장" style="display: none">
-	<input type="button" id="exitBtn" value="나가기" style="display: none">
 
 
 	<script type="text/javascript">
@@ -190,7 +195,7 @@
 
 			$('#sendBtn').click(function() {
 				send();
-			});/* $('#enterBtn').click(function() { connect(); }); $('#exitBtn').click(function() { disconnect(); }); */
+			});
 			
 			var msglist = new Array();
 			var sendlist = new Array();

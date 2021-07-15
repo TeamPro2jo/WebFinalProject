@@ -31,18 +31,22 @@ public class ChatController {
 	@Autowired
 	private AccountService account;
 	
-
+/*
 	@RequestMapping(value = "/chatlist", method = RequestMethod.GET)
-	public String chatlist(Model m, HttpServletRequest request) throws Exception {
+	public ModelAndView chatlist(@ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		int id = ((AccountDTO)session.getAttribute("account")).getId();
 		
+		ModelAndView mv = new ModelAndView();
+		
 		List<ChatRoomVO> chatlist = dao.getRoomList(id);
 		
-		m.addAttribute("chatlist", chatlist);
+		mv.addObject("chatlist", chatlist);
 		
-		return "chat/chatlist";
+		mv.setViewName("chat/chatlist");
+		return mv;
 	}
+	*/
 	
 	@RequestMapping(value = "/chatroom", method = RequestMethod.GET)
 	public ModelAndView chatroom(int partid, @ModelAttribute AccountDTO dto, HttpServletRequest request) throws Exception {

@@ -7,23 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <title>${requestScope.item.getTitle() }</title>
+<link type="text/css" rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/CSS/detail.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 
 <c:url var="delete" value="/ajax/board/delete" />
-<c:url var="zzim" value="/ajax/board/zzim" />
 <c:set var="account" value='<%=session.getAttribute("account")%>' />
 <c:url var="userpage" value="/account/userpage" />
 
 <script type="text/javascript">
-function zzim(bid) {
+function zzim(boardid) {
 	$.ajax({
-		url: "${zzim }",
+		url: "/finalproj/ajax/board/zzim",
 		type: "get",
 		datatype: "json",
 		data: {
-			bid: bid
+			boardid: boardid
 		},
 		success: function(data) {
 			if(data.result == "delete") {
@@ -114,6 +115,7 @@ function zzim(bid) {
 </script>
 </head>
 <body>
+<div class="head">
 	<div>
 		<h3>${item.getTitle() }</h3>
 	</div>
@@ -134,8 +136,11 @@ function zzim(bid) {
 			</c:otherwise>
 		</c:choose>
 	</div>
-	<div>
+	</div>
+	
+	<div class="mid">
 		<p>${fn:replace(item.getContents(), newline, "<br>") }</p>
+		
 		<c:if test="${file.getThumb() != null}">
 			<div class="inputArea">
 			 <label for="img">이미지</label><br>
@@ -143,7 +148,7 @@ function zzim(bid) {
 			</div>
 		</c:if>
 	</div>
-	<div>
+	<div class="list">
 		<c:url var="update" value="/board/update?bid=${item.getBid() }" />
 		<c:url var="board" value="/board" />
 		<button type="button" onclick="location.href='${board }'">목록</button>
