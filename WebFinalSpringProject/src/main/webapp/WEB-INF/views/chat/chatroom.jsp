@@ -70,7 +70,7 @@ function popclose(){
 	</div>
 
 	<!-- 채팅 입력창 -->
-	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px; width:550px; margin-left:40px;">
+	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px; width:550px; margin:10px auto;">
 		<div class="col-12" style="float: left">
 			<textarea class="form-control" style="border: 1px solid skyblue; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message"></textarea>
 			<span

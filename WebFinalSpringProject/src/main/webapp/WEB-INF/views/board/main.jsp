@@ -3,21 +3,16 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>메인페이지</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link type="text/css" rel="stylesheet"
+<meta charset="UTF-8">
+<title>게시판</title>
+<link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/CSS/main.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-
-  <script type="text/javascript">
+<script type="text/javascript">
 	$(document)
 			.ready(
 					function() {
@@ -82,35 +77,9 @@
 		$("#search_form").submit();
 	}
 </script>
-  <style>
-    
-    .row.content {height: 840px}
-    
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
-  </style>
 </head>
+
 <body>
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-		<div class="container-fluid">
-		  <a class="navbar-brand" href="#"></a>
-		  
 	<div class="width">
 		<header>
 			<section class="headersection1">
@@ -118,40 +87,43 @@
 						src="<%=request.getContextPath() + "/resources/image/khlogo.png"%>"
 						alt="로고"></a></span>
 			</section>
-			<div class="collapse navbar-collapse" id="navbarColor01">
-				<ul class="nav navbar-nav navbar-right">
-				  <li class="nav-item">
-					<span class="glyphicon glyphicon-user"><a href="${pageContext.request.contextPath}/account/mypage">마이 페이지</a></li></span>
-			<span class="glyphicon glyphicon-log-in"><a class="nav-link active" a href="account/login"> Login</a></li></span>
+
+			<section class="headersection2">
+				<span class="middle"><a
+					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
+				<span class="middle"><a href="account/login">로그아웃</a></span>
 			</section>
 		</header>
-		<br>
 		
-		<span class="navbar-toggler-icon"></span>
-		  
-			
-	</div>
-  </div>
-</nav>
 
-<div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-3 sidenav">
+      
+		<section class="main">
+			<div>
+				<h2>Main</h2><hr>
+				<br>
+			</div>
      
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">선택하세요</a></li>
-		<div><br>
-			<ul  style="margin-left:15px;"">
-				<c:url var="all" value="/board" />
-				<li><a href="${all }">전체</a></li>
-			</ul>
-		</div><br>
+
+			<section class="main2">
+			
+		<div>
+			<div>
+				<c:url var="add" value="board/add" />
+				
+			</div>
+			<div>
 				<c:url var="search" value="/board" />
 				<form id="search_form" action="${search }" method="post">
 					<div>
-                       
-						<ul style="display: inline-block; padding: 0 15px;">
-							<li>물품 종류 </li>
+
+                        <div>
+                            <ul>
+                                <c:url var="all" value="/board" />
+                                <li><a href="${all }">전체</a></li>
+                            </ul>
+                        </div>
+						<ul style="display: inline-block;">
+							<li>물품종류 :</li>
 							<li><input type="checkbox" id="a1" name="type"
 								onclick="go();" value="디지털기기"><label for="a1">디지털기기</label></li>
 							<li><input type="checkbox" id="a2" name="type"
@@ -180,8 +152,8 @@
 								onclick="go();" value="식물"><label for="a13">식물</label></li>
 							<li><input type="checkbox" id="a14" name="type"
 								onclick="go();" value="기타"><label for="a14">기타</label></li>
-						</ul>
-						<ul style="display: inline-block; padding: 0 15px;">
+						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
+						<ul style="display: inline-block;">
 							<li>지역 :</li>
 							<li><input type="checkbox" id="b1" name="area"
 								onclick="go();" value="서울"><label for="b1">서울</label></li>
@@ -203,8 +175,8 @@
 								onclick="go();" value="부산"><label for="b9">부산</label></li>
 							<li><input type="checkbox" id="b10" name="area"
 								onclick="go();" value="제주도"><label for="b10">제주도</label></li>
-						</ul>
-						<ul style="display: inline-block; padding: 0 15px;">
+						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
+						<ul style="display: inline-block;">
 							<li>물품상태 :</li>
 							<li><input type="checkbox" id="c1" name="stat"
 								onclick="go();" value="최상"><label for="c1">최상</label></li>
@@ -214,93 +186,74 @@
 								onclick="go();" value="중"><label for="c3">중</label></li>
 							<li><input type="checkbox" id="c4" name="stat"
 								onclick="go();" value="하"><label for="c4">하</label></li>
-						</ul>
-                        <br>
-						<ul style="display: inline-block; padding: 0 15px;">
+						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
+						<ul style="display: inline-block;">
 							<li>거래방법 :</li>
 							<li><input type="checkbox" id="d1" name="deal"
 								onclick="go();" value="1"><label for="d1">직거래</label></li>
 							<li><input type="checkbox" id="d2" name="deal"
 								onclick="go();" value="2"><label for="d2">택배</label></li>
 						</ul>
-					</div>
-                    <br><br>
+					</div> <br>
 					<select name="searchType">
 						<option>선택</option>
 						<option value="title">제목</option>
 					</select> <input type="text" class="searchbox" name="searchWord">
 					<button type="submit" id="test">검색</button>
 				</form>
-      </ul><br> <div class="input-group">
-       
-        <span class="input-group-btn">
-                     <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-        
-      </div>
-    </div>
+			</div>
 
-    <div class="col-sm-9">
-      <h4><small>결과 게시판</small></h4>
-     
-      <div class="container">
-        <table class="table table-striped">
-
-<thead>
-  <tr>
-    <th>번호</th>
-    <th>물품상태</th>
-    <th>카테고리</th>
-    <th>지역</th>
-    <th>거래방법</th>
-    <th>제목</th>
-    <th>작성자</th>
-    <th>작성일</th>
-  </tr>
-</thead>
-<tbody>
-  <c:url var="detail" value="/board/detail" />
-  <c:forEach var="item" items="${requestScope.boardlist }">
-    <tr>
-      <td>${item.getBid() }</td>
-      <td>${item.getStatus() }</td>
-      <td>${item.getCategory() }</td>
-      <td>${item.getLocation() }</td>
-      <c:choose>
-        <c:when test="${item.getDeal() == '1'}">
-          <td>직거래</td>
-        </c:when>
-        <c:when test="${item.getDeal() == '2'}">
-          <td>택배</td>
-        </c:when>
-      </c:choose>
-      <td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() } (${item.getRecnt() })</a></td>
-      <td>${item.getAname() }</td>
-      <fmt:formatDate var="cdate" value="${item.getCdate() }"
-        pattern="yyyy/MM/dd" />
-      <td>${cdate }</td>
-    </tr>
-  </c:forEach>
-</tbody>
-</table>
-
-</hr>
-<c:url var="add" value="board/add" />
-<button type="button" onclick="location.href='${add }'">글쓰기</button>
-
-<div class="text-center">
- 
-    </ul>
-</div>
-</div>
-</div>
-     
-</div>
-
-<footer class="container-fluid">
-  <p>Footer Text</p>
-</footer>
-
+        </section>
+			<br>
+			<section>
+				<div class="list">
+					<div class="write">
+						<span class="top"onclick="location.href='${add }'">글쓰기</span><br><br>
+						<table class="table">
+							<thead>
+								<tr>
+												<tr>
+												<th>번호</th>
+												<th>물품상태</th>
+												<th>카테고리</th>
+												<th>지역</th>
+												<th>거래방법</th>
+												<th>제목</th>
+												<th>작성자</th>
+												<th>작성일</th>
+											</tr>
+										</thead>
+								</tr>
+							</thead>
+							<tbody>
+								<c:url var="detail" value="/board/detail" />
+								<c:forEach var="item" items="${requestScope.boardlist }">
+									<tr>
+										<td>${item.getBid() }</td>
+										<td>${item.getStatus() }</td>
+										<td>${item.getCategory() }</td>
+										<td>${item.getLocation() }</td>
+										<c:choose>
+											<c:when test="${item.getDeal() == '1'}">
+												<td>직거래</td>
+											</c:when>
+											<c:when test="${item.getDeal() == '2'}">
+												<td>택배</td>
+											</c:when>
+										</c:choose>
+										<td><a href="${detail}?bid=${item.getBid() }">${item.getTitle() } (${item.getRecnt() })</a></td>
+										<td>${item.getAname() }</td>
+										<fmt:formatDate var="cdate" value="${item.getCdate() }"
+											pattern="yyyy/MM/dd" />
+										<td>${cdate }</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
 </body>
 </html>

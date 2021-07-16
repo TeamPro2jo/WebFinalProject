@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 /* 모든 HTML 요소 초기화 */
 * {margin: 0px; padding: 0px; box-sizing: border-box;}
 html {
@@ -21,23 +20,115 @@ img.logo { width: 60px;}
     vertical-align: middle;
 }
 
-    .row.content {height: 840px}
-    
-    .sidenav {
-      background-color: #f1f1f1;
-      height: 100%;
-    }
-    
-    footer {
-      background-color: #555;
-      color: white;
-      padding: 15px;
-    }
-    
-    @media screen and (max-width: 767px) {
-      .sidenav {
-        height: auto;
-        padding: 15px;
-      }
-      .row.content {height: auto;} 
-    }
+header {
+    background-color: lightblue;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 120px;
+}
+
+a{
+	color: black;
+}
+
+.headersection1 {
+    display: table;
+    background-color: lightblue;
+    text-align: left;
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+.headersection2 {
+    display: table;
+    background-color:lightblue;
+    text-align: center;
+    padding-right: 30px;
+    width: 25%;
+    height: 100%;
+}
+
+
+#line:hover, #line:focus {
+
+  border-bottom: 10px solid #68daee;
+  transition:all .3s ease;
+}
+
+
+
+
+section.main { /* 가운데 부분 높이 설정 */
+    background-color: white;
+    /* padding: 10px; */
+    padding-top: 20px;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 900px;
+   
+}
+section.main2 {
+    width: 50%;
+    margin: 0 auto;
+}
+
+a{
+	text-decoration : none;
+}
+
+.list{
+	padding-left: 100px;
+}
+
+.top{
+	border : 3px dashed #9ee8fa;
+	background-color: #9ee8fa;
+	font-size: 20px;
+	border-radius: 5px;
+}
+
+.write { /*내가쓴글 목록*/
+	background-color: white;
+	padding-bottom: 10px;
+}
+
+
+table{
+	border-collapse : collapse;
+}
+
+
+
+
+
+tr:nth-child(even){
+	background-color: #ddf4ff;
+}
+
+
+.table th{
+	 text-align: center;
+     padding:8px;
+	 background-color: #c8e4ee;
+     font-size: 1.1em;
+     color: black;
+     border-width:2px ;
+     width: 400px;
+}
+
+.table tr{
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1.1em;
+}
+
+.table tr:hover td{
+	background-color: lightgray;
+    cursor : pointer;
+}
+
+.adver{ /*footer*/
+	background-color: #A7EEFF;
+	height: 60px;
+}
