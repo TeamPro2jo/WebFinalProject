@@ -27,16 +27,7 @@ function popup(){
 </head>
 <body>
 	<div class="width">
-		<header>
-			<section class="headersection1">
-				<span class="middle"><a href="../board"><img class="logo" src="<%=request.getContextPath() + "/resources/image/khlogo.png" %>" alt="로고"></a></span>
-			</section>
-		
-			<section class="headersection2">
-	             <span id="line" class="middle"><a href="./mypage">마이페이지</a></span>
-	             <span id="line" class="middle"><a href="./login">로그아웃</a></span>
-	        </section>
-	    </header>
+		<%@ include file="/WEB-INF/views/main/header.jsp" %>
 		<br>
 		<section class="main">
 			<div>

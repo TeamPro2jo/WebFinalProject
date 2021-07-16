@@ -12,6 +12,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+<link href="bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
 <c:url var="delete" value="/ajax/board/delete" />
 <c:set var="account" value='<%=session.getAttribute("account")%>' />
@@ -127,12 +128,14 @@ function zzim(boardid) {
 </script>
 </head>
 <body>
-<div class="head">
-	<button class="chat" id="id_chat" type="button" onclick="javascript:popup();" style="float: right; margin-top: 15px; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px; border: none; color: black; font-weight: bold;"]>구매 채팅 보내기</button>
+	<div class="width">
+	<%@ include file="/WEB-INF/views/main/header.jsp" %>
+	<br>
+		
+	<div class="head">
 	<div>
 		<h3>${item.getTitle() }</h3>
 	</div>
-	
 	<div>
 		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
 		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
@@ -151,7 +154,6 @@ function zzim(boardid) {
 		</c:choose>
 	</div>
 	</div>
-	
 	<div class="mid">
 		<p>${fn:replace(item.getContents(), newline, "<br>") }</p>
 		
@@ -180,6 +182,6 @@ function zzim(boardid) {
 	
 	<!-- 댓글 목록 출력할 위치 -->
     <div id="listReply"></div>
-	
+	</div>
 </body>
 </html>

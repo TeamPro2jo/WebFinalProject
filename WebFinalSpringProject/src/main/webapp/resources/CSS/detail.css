@@ -8,9 +8,52 @@ html {
     padding: 100px;
    
 }
+
+
+div.width { /* 전체 폭 설정 */
+    width: 80%;
+    margin: 20px auto;
+}
+
+img.logo { width: 60px;}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header {
+    background-color: lightblue;
+    padding-left: 25px;
+    padding-right: 25px;
+    height: 120px;
+}
+
+a{
+	color: black;
+}
+
+
+.headersection1 {
+    display: table;
+    background-color: lightblue;
+    text-align: left;
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+.headersection2 {
+    display: table;
+    background-color:lightblue;
+    text-align: center;
+    padding-right: 30px;
+    width: 25%;
+    height: 100%;
+}
 .head{
 	border:3px solid lightblue;
-	padding:0px  20px;
+	padding:0px 20px;
 	margin:2% 20%;
 }
 .mid{
