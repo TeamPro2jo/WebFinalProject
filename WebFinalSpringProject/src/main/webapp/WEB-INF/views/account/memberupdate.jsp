@@ -60,9 +60,9 @@
 			</section>
 
 			<section class="headersection2">
-				<span class="middle"><a
+				<span id="line" class="middle"><a
 					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
-				<span class="middle"><a href="/account/logout">로그아웃</a></span>
+				<span id="line" class="middle"><a href="./login">로그아웃</a></span>
 			</section>
 		</header>
 		<br>
@@ -70,34 +70,38 @@
 			<c:url var="memberupdate" value="/account/memberupdate" />
 			<c:url var="memberdelete" value="/account/memberdelete" />
 			<form name="update_account" action="${memberupdate }" method="post">
-				<section class="main">
-					<h2>${data.getNickname() }님정보수정</h2>
+				<section >
+					<h2>${data.getNickname() }님 정보수정</h2><hr><br>
 					<input type="hidden" id="id" name="id" value="${data.getId() }">
 					<div>
-						<a href="${memberdelete }">회원 탈퇴</a>
-					</div>
-					<section>
-						<div>
-							<label for="id_name">* 이름</label> <label>${data.getName() }</label>
-						</div>
-						<div>
-							<label for="id_nickname">* 닉네임 : </label> <input id="id_nickname"
-								type="text" name="nickname" value="${data.getNickname() }"
-								required>
-							<button type="button"
-								onclick="nicknameCheck('${nickname_check }', document.getElementById('id_nickname').value);">중복확인</button>
-							<label id="nickname_check_res"></label>
-						</div>
-						<div>
-							<label for="id_email">* 이메일</label> <label id="email_check_res">${data.getEmail() }</label>
-						</div>
-						<div>
-							<label for="id_password">* 패스워드</label> <input id="id_password"
-								type="password" name="pwd" required>
-						</div>
-						<div>
-							<button type="button" onclick="updateInfo();">수정</button>
-							<button type="button" onclick="history.back();">취소</button>
+						<h3>
+							<a id="line" href="${memberdelete }" >회원 탈퇴</a>
+						</h3>
+					</div><br>
+					<section class="info">
+						<div class="info2"><br>
+							<div>
+								<label for="id_name">이  름 </label> <label> ${data.getName() }</label>
+							</div><br>
+							<div>
+								<label for="id_nickname">닉네임  </label> <input id="id_nickname"
+									type="text" name="nickname" value="${data.getNickname() }"
+									required>
+								<button type="button" class="dub"
+									onclick="nicknameCheck('${nickname_check }', document.getElementById('id_nickname').value);">중복확인</button>
+								<label id="nickname_check_res"></label>
+							</div><br>
+							<div>
+								<label for="id_email"> 이메일 </label> <label id="email_check_res">${data.getEmail() }</label>
+							</div><br>
+							<div>
+								<label for="id_password"> 패스워드 </label> <input id="id_password"
+									type="password" name="pwd" required>
+							</div><br>
+						</div><br>
+						<div class="button">
+							<button class="commit" type="button" onclick="updateInfo();">수정</button>
+							<button class="back" type="button" onclick="history.back();">취소</button>
 						</div>
 					</section>
 			</form>

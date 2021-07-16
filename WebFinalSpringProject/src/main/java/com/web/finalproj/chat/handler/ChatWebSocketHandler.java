@@ -58,8 +58,6 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 		ChatRoomVO roomVO = new ChatRoomVO();
 		roomVO.setMyid(messageVO.getSender());
 		roomVO.setPartid(messageVO.getReceiver());
-		
-		System.out.println(roomVO.getMyid()+"/"+roomVO.getPartid());
 
 		ChatRoomVO croom = null;
 		if (messageVO.getSender() != messageVO.getReceiver()) {
@@ -76,24 +74,22 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
 			}
 		}
 
-		System.out.println("rid : " + croom.getRoomid());
-
 		messageVO.setRoomid(croom.getRoomid());
-		if (croom.getMyid() == messageVO.getSender()) {
-			messageVO.setReceiver(roomVO.getPartid());
-		} else {
-			messageVO.setReceiver(roomVO.getMyid());
-		}
+		messageVO.setReceiver(roomVO.getPartid());
+		
 
+		dao.insertMessage(messageVO);
+		MessageVO msg = dao.getRecentMessage(messageVO.getRoomid());
+		
 		// 모든 세션에 채팅 전달
 		for (int i = 0; i < sessionList.size(); i++) {
 			Gson gson = new Gson();
-			String msgJson = gson.toJson(messageVO);
+			String msgJson = gson.toJson(msg);
 			WebSocketSession s = sessionList.get(i);
 			s.sendMessage(new TextMessage(msgJson));
+			System.out.println(msgJson);
 		}
 		
-		dao.insertMessage(messageVO);
 	}
 
 	@Override

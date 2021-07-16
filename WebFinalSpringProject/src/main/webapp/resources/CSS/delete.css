@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 /* 모든 HTML 요소 초기화 */
 * {margin: 0px; padding: 0px; box-sizing: border-box;}
 html {
@@ -26,10 +27,20 @@ header {
     padding-right: 25px;
     height: 120px;
 }
-
 a{
 	color: black;
 }
+
+a{
+	text-decoration : none;
+}
+
+#line:hover, #line:focus {
+
+  border-bottom: 10px solid #68daee;
+  transition:all .3s ease;
+}
+
 
 .headersection1 {
     display: table;
@@ -49,90 +60,54 @@ a{
     height: 100%;
 }
 
-
-#line:hover, #line:focus {
-
-  border-bottom: 10px solid #68daee;
-  transition:all .3s ease;
-}
-
-
-
-
-section.main { /* 가운데 부분 높이 설정 */
+.main { /* 가운데 부분 높이 설정 */
     background-color: white;
-    /* padding: 10px; */
     padding-top: 20px;
     padding-left: 25px;
     padding-right: 25px;
     height: 900px;
 }
 
-
-a{
-	text-decoration : none;
-}
-
-.myinfo{
-	padding-left: 25px;
-}
-
-.list{
-	padding-left: 100px;
-}
-
-.top{
-	border : 3px dashed #9ee8fa;
-	background-color: #9ee8fa;
+.info{
+	padding-left: 350px;
 	font-size: 20px;
-	border-radius: 5px;
+	
 }
 
-.write { /*내가쓴글 목록*/
-	background-color: white;
-	padding-bottom: 10px;
+.info2{
+	width: 360px;
+	background-color: #c5e9f1;
+	padding-left: 20px;
 }
 
-
-table{
-	border-collapse : collapse;
-}
-
-
-
-
-
-tr:nth-child(even){
-	background-color: #ddf4ff;
+#id_password{
+	width: 200x;
+	height: 30px;
 }
 
 
-.table th{
-	 text-align: center;
-     padding:8px;
-	 background-color: #c8e4ee;
-     font-size: 1.1em;
-     color: black;
-     border-width:2px ;
-     width: 400px;
+.commit{
+    width:15%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px white;
+    background-color: skyblue;
+    color: white;
+    font-size: 14pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
+   
 }
 
-.table tr{
-	border-radius: 5px;
-	text-align: center;
-	font-size: 1.1em;
+.back{
+    width:15%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px white;
+    background-color: #d4d4d4;
+    color: white;
+    font-size: 14pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
 }
-
-.table tr:hover td{
-	background-color: lightgray;
-    cursor : pointer;
-}
-
-.zzim { /*찜 목록*/
-	background-color: white;
-	padding-top: 20px;
-}
-.adver{ /*footer*/
-	background-color: #A7EEFF;
-	height: 60px;
+.button{
+	padding-left: 40px;
 }

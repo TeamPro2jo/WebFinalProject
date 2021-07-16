@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>유저페이지</title>
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/mypage.css">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/CSS/userpage.css">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -33,28 +33,28 @@ function popup(){
 			</section>
 		
 			<section class="headersection2">
-	             <span class="middle"><a href="./mypage">마이페이지</a></span>
-	             <span class="middle"><a href="/account/logout">로그아웃</a></span>
+	             <span id="line" class="middle"><a href="./mypage">마이페이지</a></span>
+	             <span id="line" class="middle"><a href="./login">로그아웃</a></span>
 	        </section>
 	    </header>
 		<br>
 		<section class="main">
 			<div>
-				<h2>USER PAGE</h2><br>
+				<h2>USER PAGE</h2><hr><br>
 
 				<button class="chat" id="chatroom" type="button" onclick="javascript:popup();">채팅창</button>
 			</div>
-			<section>
-				<div>
-					<p>${data.getNickname() }님</p> <p>(${data.getEmail() })</p> <p>총 게시글 수 ${fn:length(uwritelist)}개</p>
+			<section >
+				<div class="myinfo">
+					<h3>${data.getNickname() }님</h3> <p>(${data.getEmail() })</p> <p>총 게시글 수 <strong>${fn:length(uwritelist)}</strong>개</p>
 					
 				</div>
 			</section><br>
 			<section>
-				<div>
+				<div class="list">
 					<div class="write">
-						<span >${data.getNickname() }님이 쓴 글</span><br>
-							<table>
+						<span class="top">${data.getNickname() }님이 쓴 글</span><br><br>
+							<table class="table">
 								<thead>
 									<tr>
 										<th>제목</th>

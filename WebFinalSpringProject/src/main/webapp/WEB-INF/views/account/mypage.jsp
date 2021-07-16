@@ -20,36 +20,37 @@
 			</section>
 
 			<section class="headersection2">
-				<span class="middle"><a
+				<span id="line" class="middle"><a
 					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
-				<span class="middle"><a href="/account/logout">로그아웃</a></span>
+				<span id="line" class="middle"><a href="./login">로그아웃</a></span>
 			</section>
 		</header>
 		<br>
 
 		<section class="main">
 			<div>
-				<h2>MY PAGE</h2>
+				<h2>MY PAGE</h2><hr>
 				<br>
-			
+				<c:url var="chatlist" value="/chatting/chatroom" />
+				<!--  <button class="chat" type="button" onclick="location.href='${chatlist }'">채팅창</button>-->
 			</div>
 			<section>
-				<div>
+				<div class="myinfo">
 					<c:url var="memberupdate" value="/account/memberupdate" />
-					<p>
-						<a href="${memberupdate }">${data.getNickname() }님</a>
-					</p>
+					<h2>
+						<a id="line" href="${memberupdate }">${data.getNickname() }님</a>
+					</h2>
 					<p>(${data.getEmail() })</p>
-					<p>총 게시글 수 ${fn:length(writelist)}개</p>
+					<p>총 게시글 수 <strong> ${fn:length(writelist)}</strong>개</p>
 					
 				</div>
 			</section>
 			<br>
 			<section>
-				<div>
+				<div class="list">
 					<div class="write">
-						<span>내가 쓴 글</span><br>
-						<table>
+						<span class="top">내가 쓴 글</span><br><br>
+						<table class="table">
 							<thead>
 								<tr>
 									<th>제목</th>
@@ -70,8 +71,8 @@
 					<br>
 					<br>
 					<div class="zzim">
-						<span>찜 목록</span>
-						<table>
+						<span class="top">찜 목록</span><br><br>
+						<table class="table">
 							<thead>
 								<tr>
 									<th>제목</th>

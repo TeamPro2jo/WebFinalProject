@@ -9,7 +9,7 @@
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 <link type="text/css" rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/CSS/memberupdate.css">
+	href="${pageContext.request.contextPath}/resources/CSS/delete.css">
 <script type="text/javascript">
 function userdelete() {
 	var password = document.getElementById("id_password")
@@ -37,38 +37,40 @@ function userdelete() {
 			</section>
 
 			<section class="headersection2">
-				<span class="middle"><a
+				<span id="line" class="middle"><a
 					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
-				<span class="middle"><a href="/account/logout">로그아웃</a></span>
+				<span id="line"  class="middle"><a href="./login">로그아웃</a></span>
 			</section>
 		</header>
 		<br>
 		<section class="main">
 			<c:url var="memberdelete" value="/account/memberdelete" />
 			<form name="delete_account" action="${memberdelete }" method="post">
-				<section class="main">
-					<h2>${data.getNickname() }님 회원 탈퇴</h2>
-					<input type="hidden" id="id" name="id" value="${data.getId() }">
-					<section>
-						<div>
-							<label for="id_name">* 이름 : ${data.getName() }</label>
-						</div>
-						<div>
-							<label for="id_nickname">* 닉네임 : ${data.getNickname() }</label>
-						</div>
-						<div>
-							<label for="id_email">* 이메일 : ${data.getEmail() }</label>
-						</div>
-						<div>
-							<label for="id_password">* 패스워드 : </label> <input id="id_password"
-								type="password" name="pwd" required>
-						</div>
-						<div>
-							<label style="color: red;">${error }</label>
-						</div>
-						<div>
-							<button type="button" onclick="userdelete();">탈퇴</button>
-							<button type="button" onclick="history.back();">취소</button>
+				<section>
+					<h2>${data.getNickname() }님 회원 탈퇴</h2><hr><br>
+					<input type="hidden" id="id" name="id" value="${data.getId() }"><br>
+					<section class="info">
+						<div class="info2">
+							<div><br>
+								<label for="id_name"> 이  름  ${data.getName() }</label>
+							</div><br>
+							<div>
+								<label for="id_nickname"> 닉네임  ${data.getNickname() }</label>
+							</div><br>
+							<div>
+								<label for="id_email"> 이메일  ${data.getEmail() }</label>
+							</div><br>
+							<div>
+								<label for="id_password"> 패스워드  </label> <input id="id_password"
+									type="password" name="pwd" required>
+							</div><br>
+							<div>
+								<label style="color: red;">${error }</label>
+							</div><br>
+						</div><br>
+						<div class="button">
+							<button class="commit" type="button" onclick="userdelete();">탈퇴</button>
+							<button class="back" type="button" onclick="history.back();">취소</button>
 						</div>
 					</section>
 			</form>

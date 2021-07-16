@@ -72,7 +72,7 @@ public class MessageVO {
 	@Override
 	public String toString() {
 		return "MessageVO [mid=" + mid + ", sender=" + sender + ", receiver=" + receiver + ", mcontents=" + mcontents
-				+ ", sendtime=" + sendtime + ", readtime=" + readtime + ", roomid=" + roomid + "]";
+				+ ", sendtime=" + sendtime + ", roomid=" + roomid + "]";
 	}
 
 	public static MessageVO convertMessage(String source) {

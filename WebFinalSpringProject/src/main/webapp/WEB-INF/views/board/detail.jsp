@@ -63,11 +63,13 @@ function zzim(boardid) {
 		var author = "${item.getAid() }";
 		var myid = "${aid }";
 		
-		if(author == myid){
+		if(author != myid){
 			document.getElementById('id_update').style.visibility = 'hidden';
 			document.getElementById('id_delete').style.visibility = 'hidden';
-			document.getElementById('id_chat').style.visibility = 'hidden';
 			$("#userlink").attr("href", "${userpage}?aid=${item.getAid() }");
+		}
+		else {
+			document.getElementById('id_chat').style.visibility = 'hidden';
 		}
 		
         listReply(); 

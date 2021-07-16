@@ -100,5 +100,6 @@ public class ChatDAOImpl implements ChatDAO {
 
 		return session.selectOne(namespace + ".getUnReadCount", map);
 	}
+	
 
 }

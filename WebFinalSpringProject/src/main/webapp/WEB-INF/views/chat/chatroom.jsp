@@ -75,9 +75,7 @@ function popclose(){
 			<textarea class="form-control" style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message"></textarea>
 			<span
 				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
-				<a
-				style="margin-top: 30px; text-align: center; color: white; font-weight: bold;"
-				id="sendBtn"><br>전송</a>
+				<a style="margin-top: 30px; text-align: center; color: white; font-weight: bold;" id="sendBtn"><br>전송</a>
 			</span>
 		</div>
 	</div>
@@ -100,7 +98,7 @@ function popclose(){
 				console.log(data)
 				var obj = JSON.parse(data)
 				console.log(obj)
-				appendMessage(obj.mcontents, obj.sender);
+				appendMessage(obj.mcontents, obj.sender, obj.sendtime);
 			};
 			sock.onclose = function() {
 				appendMessage("연결을 끊었습니다.");
@@ -144,13 +142,11 @@ function popclose(){
 			return zero + n;
 		}
 		
-		function appendMessage(msg, sender) {
+		function appendMessage(msg, sender, sendtime) {
 
 			if (msg == '') {
 				return false;
 			} else {
-
-				var t = getTimeStamp();
 				if (sender == '${myaccount.getId() }') {
 					$("#chatMessageArea")
 							.append(
@@ -160,7 +156,7 @@ function popclose(){
 											+ "<span style = 'font-size : 12px;'>"
 											+ msg
 											+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:right;'><span style ='float:right; font-size:9px; text-align:right;' >"
-											+ t
+											+ sendtime
 											+ "</span></div></div></div></br>")
 				} else {
 					
@@ -172,7 +168,7 @@ function popclose(){
 									+ "<span style = 'font-size : 12px;'>"
 									+ msg
 									+ "</span></div><div col-12 style = 'font-size:9px; text-align:right; float:left;'><span style ='float:right; font-size:9px; text-align:right;' >"
-									+ t
+									+ sendtime
 									+ "</span></div></div>"
 									+ "</div></br>")
 				}
@@ -198,14 +194,16 @@ function popclose(){
 			
 			var msglist = new Array();
 			var sendlist = new Array();
+			var timelist = new Array();
 			
 			<c:forEach var="list" items="${requestScope.msglist }">
 				msglist.push("${list.getMcontents() }");
 				sendlist.push("${list.getSender() }");
+				timelist.push("${list.getSendtime() }");
 			</c:forEach>
 			
 			for(var i=0; i<msglist.length; i++) {
-				appendMessage(msglist[i], sendlist[i]);
+				appendMessage(msglist[i], sendlist[i], timelist[i]);
 			}
 			
 		});

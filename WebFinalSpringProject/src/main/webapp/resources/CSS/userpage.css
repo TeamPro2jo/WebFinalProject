@@ -28,7 +28,14 @@ header {
 }
 
 a{
+	text-decoration : none;
 	color: black;
+}
+
+#line:hover, #line:focus {
+
+  border-bottom: 10px solid #68daee;
+  transition:all .3s ease;
 }
 
 .headersection1 {
@@ -49,16 +56,6 @@ a{
     height: 100%;
 }
 
-
-#line:hover, #line:focus {
-
-  border-bottom: 10px solid #68daee;
-  transition:all .3s ease;
-}
-
-
-
-
 section.main { /* 가운데 부분 높이 설정 */
     background-color: white;
     /* padding: 10px; */
@@ -68,17 +65,24 @@ section.main { /* 가운데 부분 높이 설정 */
     height: 900px;
 }
 
-
-a{
-	text-decoration : none;
+.chat{
+	float: right;
+	width:15%;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px white;
+    background-color: skyblue;
+    color: white;
+    font-size: 14pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
 }
 
 .myinfo{
-	padding-left: 25px;
+	padding-left: 20px;
 }
 
 .list{
-	padding-left: 100px;
+	padding-left: 120px;
 }
 
 .top{
@@ -128,10 +132,7 @@ tr:nth-child(even){
     cursor : pointer;
 }
 
-.zzim { /*찜 목록*/
-	background-color: white;
-	padding-top: 20px;
-}
+
 .adver{ /*footer*/
 	background-color: #A7EEFF;
 	height: 60px;

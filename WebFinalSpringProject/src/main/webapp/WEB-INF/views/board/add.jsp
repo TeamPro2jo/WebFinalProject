@@ -98,12 +98,7 @@
 					<input type="radio" name="status" value="하">하
 				</div></div>
 				<div>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-5"></div>
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<label for="id_contents">내용</label>
+					
 					<br>
 					<div class="container">
 					
@@ -139,7 +134,6 @@
 				</div>
 				<div class="container row" style="float: none; margin:100 auto;">
 					<div class="col-md-3" style="float: none; margin:0 auto;">
-				<%=request.getRealPath("/") %>
 				
 						<button type="submit" id=:list_btn class="btn btn-success">저장</button>
 						<div class="col-md-5">	<button type="button" class="btn btn-outline-danger" onclick="history.back();">취소</button>
