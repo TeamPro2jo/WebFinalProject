@@ -191,31 +191,31 @@ public class BoardController {
 			forward = "board/update";
 		}
 
-		if (vo.getImg() == null) {
-			// file upload
-			String imgUploadPath = uploadPath + File.separator + "resources/imgUpload";
-			String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
-			String fileName = null;
+		String imgUploadPath = null;
+		String ymdPath = null;
+		String fileName = null;
 
-			if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
-				fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(),
-						ymdPath);
-			} else {
-				fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
-			}
+		// file upload
+		imgUploadPath = uploadPath + File.separator + "resources/imgUpload";
+		ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 
-			FileUploadVO upload = new FileUploadVO();
-
-			upload.setBid(dto.getBid());
-			upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
-			upload.setThumb(
-					File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
-
-			board.fileAdd(upload);
-
-			System.out.println(upload.getImg());
-			System.out.println(upload.getThumb());
+		if (file.getOriginalFilename() != null && file.getOriginalFilename() != "") {
+			fileName = UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath);
+		} else {
+			fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
 		}
+
+		FileUploadVO upload = new FileUploadVO();
+
+		upload.setBid(dto.getBid());
+		upload.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		upload.setThumb(
+				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
+
+		board.fileAdd(upload);
+
+		System.out.println(upload.getImg());
+		System.out.println(upload.getThumb());
 
 		return forward;
 	}

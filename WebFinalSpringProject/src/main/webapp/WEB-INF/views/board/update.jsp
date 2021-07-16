@@ -96,12 +96,7 @@ $(document).ready(function(){
 								<br>
 								<textarea class="context" id="id_contents" name="contents" cols="80" rows="20" required>${item.getContents() }</textarea>
 							</div>
-							
-							 <div class="inputArea">
-								 <label for="gdsImg">이미지</label>
-								 <input class="file" type="file" id="gdsImg" name="file" />
-								 <div class="select_img"><img src="" /></div>	
-				
+				<br>
 				<div class="inputArea">
 				 <label for="gdsImg">이미지</label>
 				 <input type="file" id="img" name="file" />
