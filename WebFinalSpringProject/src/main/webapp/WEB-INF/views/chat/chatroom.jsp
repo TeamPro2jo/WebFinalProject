@@ -54,8 +54,8 @@ function popclose(){
 	</div>
 	<div class="col-12" style="margin-top: 40px; clear: both;">
 		<div class="col-10"
-			style="margin: 20px auto; text-align: center; color: white; background-color: #01D1FE; border: 1px solid #01D1FE; padding: 10px 10px; border-radius: 8px;">
-			거래는 신중히. 계좌 비밀번호 등의 요구에는 응하지 말아주세요. <br>
+			style="margin: 20px auto; text-align: center; color: white; background-color: skyblue; border: 1px solid skyblue; padding: 10px 10px; border-radius: 8px;">
+			<strong>거래는 신중히. 계좌 비밀번호 등의 요구에는 응하지 말아주세요.</strong><br>
 		</div>
 
 	</div>
@@ -72,9 +72,9 @@ function popclose(){
 	<!-- 채팅 입력창 -->
 	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px; width:550px; margin-left:40px;">
 		<div class="col-12" style="float: left">
-			<textarea class="form-control" style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message"></textarea>
+			<textarea class="form-control" style="border: 1px solid skyblue; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message"></textarea>
 			<span
-				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
+				style="float: right; width: 18%; height: 65px; text-align: center; background-color: skyblue; border-radius: 5px;">
 				<a style="margin-top: 30px; text-align: center; color: white; font-weight: bold;" id="sendBtn"><br>전송</a>
 			</span>
 		</div>
