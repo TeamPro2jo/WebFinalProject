@@ -82,10 +82,35 @@
 		$("#search_form").submit();
 	}
 </script>
-  
+  <style>
+    
+    .row.content {height: 840px}
+    
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+    
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+    
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;} 
+    }
+  </style>
 </head>
 <body>
-
+	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+		<div class="container-fluid">
+		  <a class="navbar-brand" href="#"></a>
+		  
 	<div class="width">
 		<header>
 			<section class="headersection1">
@@ -93,15 +118,22 @@
 						src="<%=request.getContextPath() + "/resources/image/khlogo.png"%>"
 						alt="로고"></a></span>
 			</section>
-
-			<section class="headersection2">
-				<span class="middle"><a
-					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
-				<span class="middle"><a href="/account/logout">로그아웃</a></span>
+			<div class="collapse navbar-collapse" id="navbarColor01">
+				<ul class="nav navbar-nav navbar-right">
+				  <li class="nav-item">
+					<span class="glyphicon glyphicon-user"><a href="${pageContext.request.contextPath}/account/mypage">마이 페이지</a></li></span>
+			<span class="glyphicon glyphicon-log-in"><a class="nav-link active" a href="account/login"> Login</a></li></span>
 			</section>
 		</header>
 		<br>
 		
+		<span class="navbar-toggler-icon"></span>
+		  
+			
+	</div>
+  </div>
+</nav>
+
 <div class="container-fluid">
   <div class="row content">
     <div class="col-sm-3 sidenav">
@@ -109,7 +141,7 @@
       <ul class="nav nav-pills nav-stacked">
         <li class="active"><a href="#section1">선택하세요</a></li>
 		<div><br>
-			<ul>
+			<ul  style="margin-left:15px;"">
 				<c:url var="all" value="/board" />
 				<li><a href="${all }">전체</a></li>
 			</ul>
@@ -118,7 +150,7 @@
 				<form id="search_form" action="${search }" method="post">
 					<div>
                        
-						<ul style="display: inline-block;">
+						<ul style="display: inline-block; padding: 0 15px;">
 							<li>물품 종류 </li>
 							<li><input type="checkbox" id="a1" name="type"
 								onclick="go();" value="디지털기기"><label for="a1">디지털기기</label></li>
@@ -149,7 +181,7 @@
 							<li><input type="checkbox" id="a14" name="type"
 								onclick="go();" value="기타"><label for="a14">기타</label></li>
 						</ul>
-						<ul style="display: inline-block;">
+						<ul style="display: inline-block; padding: 0 15px;">
 							<li>지역 :</li>
 							<li><input type="checkbox" id="b1" name="area"
 								onclick="go();" value="서울"><label for="b1">서울</label></li>
@@ -172,7 +204,7 @@
 							<li><input type="checkbox" id="b10" name="area"
 								onclick="go();" value="제주도"><label for="b10">제주도</label></li>
 						</ul>
-						<ul style="display: inline-block;">
+						<ul style="display: inline-block; padding: 0 15px;">
 							<li>물품상태 :</li>
 							<li><input type="checkbox" id="c1" name="stat"
 								onclick="go();" value="최상"><label for="c1">최상</label></li>
@@ -184,7 +216,7 @@
 								onclick="go();" value="하"><label for="c4">하</label></li>
 						</ul>
                         <br>
-						<ul style="display: inline-block;">
+						<ul style="display: inline-block; padding: 0 15px;">
 							<li>거래방법 :</li>
 							<li><input type="checkbox" id="d1" name="deal"
 								onclick="go();" value="1"><label for="d1">직거래</label></li>
@@ -221,7 +253,6 @@
     <th>물품상태</th>
     <th>카테고리</th>
     <th>지역</th>
-    <th>거래방법</th>
     <th>거래방법</th>
     <th>제목</th>
     <th>작성자</th>

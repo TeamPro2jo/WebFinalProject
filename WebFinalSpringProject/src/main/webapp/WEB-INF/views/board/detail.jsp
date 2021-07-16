@@ -63,9 +63,10 @@ function zzim(boardid) {
 		var author = "${item.getAid() }";
 		var myid = "${aid }";
 		
-		if(author != myid){
+		if(author == myid){
 			document.getElementById('id_update').style.visibility = 'hidden';
 			document.getElementById('id_delete').style.visibility = 'hidden';
+			document.getElementById('id_chat').style.visibility = 'hidden';
 			$("#userlink").attr("href", "${userpage}?aid=${item.getAid() }");
 		}
 		
@@ -111,14 +112,25 @@ function zzim(boardid) {
         }
         
 	});
+	
+	
+	function popup(){
+		var url= "/chatting/chatroom?partid=${item.getAid()}";    //팝업창 페이지 URL
+		var winWidth = 630;
+	    var winHeight = 700;
+	    var popupOption= "width="+winWidth+", height="+winHeight;    //팝업창 옵션(optoin)
+		window.open(url,"",popupOption);
+	}
 
 </script>
 </head>
 <body>
 <div class="head">
+	<button class="chat" id="id_chat" type="button" onclick="javascript:popup();" style="float: right; margin-top: 15px; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px; border: none; color: black; font-weight: bold;"]>구매 채팅 보내기</button>
 	<div>
 		<h3>${item.getTitle() }</h3>
 	</div>
+	
 	<div>
 		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
 		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
@@ -144,7 +156,7 @@ function zzim(boardid) {
 		<c:if test="${file.getThumb() != null}">
 			<div class="inputArea">
 			 <label for="img">이미지</label><br>
-	 			<img src="${file.getThumb()}" class="thumbImg"/>
+	 			<img src="<%=request.getContextPath() %>${file.getImg()}" class="img"/>
 			</div>
 		</c:if>
 	</div>

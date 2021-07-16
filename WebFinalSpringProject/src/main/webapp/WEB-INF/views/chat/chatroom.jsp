@@ -42,7 +42,7 @@ function popclose(){
 <div style="height: 50px"></div>
 	<div class="col-12">
 		<div class="col-2" style="float: left">
-			<a href="${chatlist}"><span style="margin-left:30px"> 목록 </span></a>
+			<span style="margin-left:30px"> &nbsp;&nbsp; </span>
 		</div>
 		<div class="col-8" style="float: left; text-align: center;">
 			${partaccount.getNickname() } 님과 대화
@@ -72,8 +72,7 @@ function popclose(){
 	<!-- 채팅 입력창 -->
 	<div class="col-12" style="margin-top: 20px; margin-bottom: 15px; width:550px; margin-left:40px;">
 		<div class="col-12" style="float: left">
-			<textarea class="form-control" style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message">
-			</textarea>
+			<textarea class="form-control" style="border: 1px solid #01D1FE; height: 65px; float: left; width: 80%" placeholder="Enter ..." id="message"></textarea>
 			<span
 				style="float: right; width: 18%; height: 65px; text-align: center; background-color: #01D1FE; border-radius: 5px;">
 				<a

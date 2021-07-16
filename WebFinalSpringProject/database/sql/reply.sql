@@ -8,7 +8,6 @@ CREATE TABLE reply (
 	aid NUMBER,
 	aname VARCHAR2(64),
 	recontents NCLOB,
-	rereplyid NUMBER,
 	cdate DATE DEFAULT SYSDATE,
 	udate DATE DEFAULT SYSDATE
 );
