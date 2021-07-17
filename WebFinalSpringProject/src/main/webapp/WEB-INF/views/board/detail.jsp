@@ -19,19 +19,16 @@
 
 </head>
 <body>
+<%@ include file="/WEB-INF/views/main/header.jsp" %>
+<div class="head">
 	<div class="width">
-	<%@ include file="/WEB-INF/views/main/header.jsp" %>
 	<br>
-
-	<div class="head">
 	<button class="chat" id="id_chat" type="button" onclick="javascript:popup();" style="float: right; margin-top: 15px; width: 18%; height: 65px; text-align: center; background-color: skyblue; border-radius: 5px; border: none; color: black; font-weight: bold;"]>구매 채팅</button>
-	<div>
 		<h3>${item.getTitle() }</h3>
-	</div>
 	<div>
 		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
 		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
-			${item.getUdate() }</small><br> <small>조회수 : ${item.getVcnt() }</small><br>
+			${item.getUdate() }</small><br> <small style="padding-right:15px;">조회수 : ${item.getVcnt() }</small>
 		<c:choose>
 			<c:when test="${zzimcheck }">
 				<a style="cursor: pointer; color: red;"
@@ -44,37 +41,92 @@
 				<br>
 			</c:otherwise>
 		</c:choose>
+	
+	<div class="info">
+		<div class="thumbnail">
+				<div class="inputArea">
+				<c:choose>
+					<c:when test="${file.getThumb() != null }">
+						<img src="<%=request.getContextPath() %>${file.getThumb()}" class="thumbimg" width="350" height="350"/>
+					</c:when>
+					<c:otherwise>
+						<img class="noimage" src="<%=request.getContextPath() + "/resources/image/noimage.png"%>" width="350" height="350" />
+					</c:otherwise>
+				</c:choose>				
+				</div>
+		</div>
+		<div class="product">
+			<div class="price"><strong class="priceNum">가격 ${item.getPrice() }원</strong></div>
+			<div class="infodetail">
+				<dl class="detail_dl">
+					<dt class="list_label">카테고리</dt>
+					<dd class="list_value">${item.getCategory() }</dd>
+				</dl>
+				<dl class="detail_dl">
+					<dt class="list_label">거래지역</dt>
+					<dd class="list_value">${item.getLocation() }</dd>
+				</dl>
+				<dl class="detail_dl">
+					<dt class="list_label">거래방법</dt>
+					<dd class="list_value">
+					<c:choose>
+						<c:when test="${item.getDeal() == 1 }">직거래</c:when>
+						<c:otherwise>택배거래</c:otherwise>
+					</c:choose>
+					</dd>
+				</dl>
+				<dl class="detail_dl">
+					<dt class="list_label">물품상태</dt>
+					<dd class="list_value">${item.getStatus() }</dd>
+				</dl>
+			</div>
+		</div>
+	
 	</div>
-	</div>
-	<div class="mid">
+	
+	<div class="content" style="border:none; width:75%;">
+		<div class="empty" style="height:70px"></div>
 		<p>${fn:replace(item.getContents(), newline, "<br>") }</p>
-		
+		<br><br>
 		<c:if test="${file.getThumb() != null}">
 			<div class="inputArea">
-			 <label for="img">이미지</label><br>
 	 			<img src="<%=request.getContextPath() %>${file.getImg()}" class="img"/>
 			</div>
 		</c:if>
+			<div class="empty" style="height:50px"></div>
 	</div>
-	<div class="list">
-		<c:url var="update" value="/board/update?bid=${item.getBid() }" />
-		<c:url var="board" value="/board" />
-		<button type="button" onclick="location.href='${board }'">목록</button>
-		<button type="button" id="id_update" onclick="location.href='${update }'">수정</button>
-		<button type="button" id="id_delete" onclick="boardDelete(${item.getBid() });">삭제</button>
-	</div>
-	
-	<br>
-	 <div style="width:650px; text-align: center;">
-        <br> 
-        <textarea rows="5" cols="80" id="recontents" placeholder="댓글을 작성해주세요"></textarea>
-        <br>
-        <button type="button" id="btnReply">댓글 작성</button>
-    </div>
 	
 	<!-- 댓글 목록 출력할 위치 -->
-    <div id="listReply"></div>
+    <div class="listReply">
+    	<div id="replylist"></div>
+		 <div class="commentWrite">
+		 	<em class="commentWriter">${item.getAname()}</em>
+		 	<textarea placeholder="댓글을 입력해주세요." rows="3" id="recontents" class="comment_inbox" style="overflow: hidden; height: 34px;"></textarea>
+	        <div class="comment_submit">
+	      		<div class="inbox_left"></div>
+	        	<div class="inbox_right">
+	        		<a href="#" role="button" id="btnReply" class="button">등록</a>
+	        	</div>
+	        	
+	        </div>
+	    </div>
+    </div>
+	
 	</div>
+	</div>
+	
+	
+</div>	
+
+	<div style="float:right; padding-right:265px;">
+		<c:url var="update" value="/board/update?bid=${item.getBid() }" />
+		<c:url var="board" value="/board" />
+		<button type="button" class="btn" id="id_update" onclick="location.href='${update }'">수정</button>
+		<button type="button" class="btn" id="id_delete" onclick="boardDelete(${item.getBid() });">삭제</button>
+		<button type="button" class="btn" onclick="location.href='${board }'">목록</button>
+	</div>
+	
+	
 </body>
 
 <script>
@@ -157,7 +209,7 @@ function zzim(boardid) {
                 url: "${path}/reply/list?bid=${item.getBid()}",
                 success: function(result){
                 // responseText가 result에 저장됨.
-                    $("#listReply").html(result);
+                    $("#replylist").html(result);
                 }
             });
         }

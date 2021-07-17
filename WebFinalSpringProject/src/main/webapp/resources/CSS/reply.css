@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+.input-group {
+    width: 50%;
+    margin: 0 auto;
+    background-color: #ddf2fa
+}
+.table th{
+   
+    text-align: center;
+    padding:8px;
+    background-color: #fdfdfd;
+    font-size: 1.1em;
+    color: black;
+    border-width:2px ;
+    width: 400px;
+}
+
+.table tr{
+   border-radius: 5px;
+   text-align: center;
+   font-size: 1.1em;
+}
+
+.table tr:hover td{
+   background-color: white;
+   cursor : pointer;
+}

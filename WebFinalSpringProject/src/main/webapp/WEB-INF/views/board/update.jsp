@@ -63,6 +63,7 @@ $(document).ready(function(){
 							</div>
 							<div>
 								<select id="id_location" name="location">
+									<option value="없음">없음</option>
 									<option value="서울">서울</option>
 									<option value="경기">경기</option>
 									<option value="충북">충북</option>
@@ -117,7 +118,6 @@ $(document).ready(function(){
 				   }
 				  });
 				 </script>
-				 <%=request.getRealPath("/") %>
 				</div>
 				
 				<div>

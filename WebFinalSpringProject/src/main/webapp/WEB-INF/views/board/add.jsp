@@ -28,6 +28,7 @@
 					</div><br>
 					<div>
 						<select id="id_category" name="category">
+							<option value="없음">없음</option>
 							<option value="디지털기기">디지털기기</option>
 							<option value="생활가전">생활가전</option>
 							<option value="가구/인테리어">가구/인테리어</option>
@@ -98,7 +99,6 @@
 						 </script>
 						</div>
 						
-						<%=request.getRealPath("/") %>
 					
 					<div>
 						<button class="commit" type="submit">저장</button>
