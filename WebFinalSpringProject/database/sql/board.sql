@@ -1,7 +1,7 @@
 DROP TABLE board;
 DROP SEQUENCE board_seq;
 
-CREATE SEQUENCE board_seq NOCACHE;
+CREATE SEQUENCE board_seq start with 1 NOCACHE;
 CREATE TABLE board(
 	bid NUMBER,
 	aid NUMBER,

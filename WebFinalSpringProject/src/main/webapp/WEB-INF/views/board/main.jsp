@@ -219,7 +219,6 @@
 							<thead>
 								<tr>
 												<tr>
-												<th>번호</th>
 												<th>물품상태</th>
 												<th>카테고리</th>
 												<th>지역</th>
@@ -235,7 +234,6 @@
 								<c:url var="detail" value="/board/detail" />
 								<c:forEach var="item" items="${requestScope.boardlist }">
 									<tr>
-										<td>${item.getBid() }</td>
 										<td>${item.getStatus() }</td>
 										<td>${item.getCategory() }</td>
 										<td>${item.getLocation() }</td>

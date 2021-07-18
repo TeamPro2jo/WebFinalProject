@@ -1,7 +1,7 @@
 DROP TABLE account;
 DROP SEQUENCE account_seq;
 
-CREATE SEQUENCE account_seq NOCACHE;
+CREATE SEQUENCE account_seq start with 1 NOCACHE;
 
 CREATE TABLE account(
 	id NUMBER,

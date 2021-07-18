@@ -201,6 +201,7 @@ function zzim(bid) {
                 data: param,
                 success: function(){
                     alert("댓글이 등록되었습니다.");
+                    $("#recontents").val("");
                     listReply();
                 }
             });

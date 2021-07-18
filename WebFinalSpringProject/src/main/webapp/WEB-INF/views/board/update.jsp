@@ -101,8 +101,8 @@ $(document).ready(function(){
 				<div class="inputArea" style="margin-left: -21em; margin-bottom:1em;">
 				 <label for="gdsImg">이미지</label>
 				 <input type="file" id="img" name="file" />
-				 <div class="select_img">
-				  <img src="${file.getThumb()}" />
+				 <div class="select_img" style="margin-left: 5em;">
+				  <img class="select" src="${file.getThumb()}" />
 				  <input type="hidden" name="Img" value="${file.getImg()}" />
 				  <input type="hidden" name="Thumb" value="${file.getThumb()}" /> 
 				 </div>

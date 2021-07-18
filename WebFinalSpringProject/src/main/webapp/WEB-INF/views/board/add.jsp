@@ -84,7 +84,7 @@
 					 <div class="inputArea" style="margin:1em 0 1em -18em;">
 						 <label for="gdsImg">이미지</label>
 						 <input class="file" type="file" id="gdsImg" name="file" />
-						 <div class="select_img"><img src="" /></div>
+						 <div class="select_img"><img class="select" src="" /></div>
 						 
 						 <script>
 						  $("#gdsImg").change(function(){

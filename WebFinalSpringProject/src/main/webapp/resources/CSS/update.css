@@ -125,6 +125,11 @@ div.write {
 	font-size: 16px;
 }
 
+.select {
+	margin-left: 5em;
+	margin-top: 0.5em;
+}
+
 .commit{
     width:20%;
     height: 40px;
