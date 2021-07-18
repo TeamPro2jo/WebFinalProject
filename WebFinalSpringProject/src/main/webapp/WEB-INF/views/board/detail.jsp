@@ -20,9 +20,10 @@
 
 </head>
 <body>
+
+<div class="width">
 <%@ include file="/WEB-INF/views/main/header.jsp" %>
 <div class="head">
-	<div class="width">
 	<br>
 	<button class="chat" id="id_chat" type="button" onclick="javascript:popup();" style="float: right; margin-top: 15px; width: 18%; height: 65px; text-align: center; background-color: skyblue; border-radius: 5px; border: none; color: black; font-weight: bold;"]>구매 채팅</button>
 		<c:choose>
@@ -39,7 +40,7 @@
 		</c:choose>
 		<h3 style="margin-top: 0px">${item.getTitle() }</h3>
 	<div>
-		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
+		<small><a id="userlink" href ="../account/mypage">작성자 : ${item.getAname() }</a></small><br>
 		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
 			${item.getUdate() }</small><br> <small style="padding-right:15px;">조회수 : ${item.getVcnt() }</small>
 	
@@ -101,7 +102,7 @@
     <div class="listReply">
     	<div id="replylist"></div>
 		 <div class="commentWrite">
-		 	<em class="commentWriter">${item.getAname()}</em>
+		 	<em class="commentWriter">${account.getNickname()}</em>
 		 	<textarea placeholder="댓글을 입력해주세요." rows="3" id="recontents" class="comment_inbox" style="overflow: hidden; height: 34px;"></textarea>
 	        <div class="comment_submit">
 	      		<div class="inbox_left"></div>
