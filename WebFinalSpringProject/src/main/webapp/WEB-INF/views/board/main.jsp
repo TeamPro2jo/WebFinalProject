@@ -81,8 +81,22 @@
 
 <body>
 	<div class="width">
-		<%@ include file="/WEB-INF/views/main/header.jsp" %>
+		<header>
+			<section class="headersection1">
+				<span class="middle"><a href="./board"><img class="logo"
+						src="<%=request.getContextPath() + "/resources/image/khlogo.png"%>"
+						alt="로고"></a></span>
+			</section>
+
+			<section class="headersection2">
+				<span id="line" class="middle"><a
+					href="${pageContext.request.contextPath}/account/mypage">마이페이지</a></span>
+				<span id="line" class="middle"><a href="account/login">로그아웃</a></span>
+			</section>
+		</header>
 		
+
+      
 		<section class="main">
 			<div>
 				<h2>Main</h2><hr>
@@ -105,87 +119,107 @@
                         <div>
                             <ul>
                                 <c:url var="all" value="/board" />
-                                <li><a href="${all }">전체</a></li>
+                                <a href="${all }" style="font-weight:bold;text-decoration: underline;">전체</a>
                             </ul>
                         </div>
+                        <div class="category">
 						<ul style="display: inline-block;">
-							<li>물품종류 :</li>
-							<li><input type="checkbox" id="a1" name="type"
-								onclick="go();" value="디지털기기"><label for="a1">디지털기기</label></li>
-							<li><input type="checkbox" id="a2" name="type"
-								onclick="go();" value="생활가전"><label for="a2">생활가전</label></li>
-							<li><input type="checkbox" id="a3" name="type"
-								onclick="go();" value="가구/인테리어"><label for="a3">가구/인테리어</label></li>
-							<li><input type="checkbox" id="a4" name="type"
-								onclick="go();" value="유아용품"><label for="a4">유아용품</label></li>
-							<li><input type="checkbox" id="a5" name="type"
-								onclick="go();" value="생활/가공식품"><label for="a5">생활/가공식품</label></li>
-							<li><input type="checkbox" id="a6" name="type"
-								onclick="go();" value="스포츠/레저"><label for="a6">스포츠/레저</label></li>
-							<li><input type="checkbox" id="a7" name="type"
-								onclick="go();" value="여성패션/잡화"><label for="a7">여성패션/잡화</label></li>
-							<li><input type="checkbox" id="a8" name="type"
-								onclick="go();" value="남성패션/잡화"><label for="a8">남성패션/잡화</label></li>
-							<li><input type="checkbox" id="a9" name="type"
-								onclick="go();" value="게임/취미"><label for="a9">게임/취미</label></li>
-							<li><input type="checkbox" id="a10" name="type"
-								onclick="go();" value="뷰티/미용"><label for="a10">뷰티/미용</label></li>
-							<li><input type="checkbox" id="a11" name="type"
-								onclick="go();" value="반려동물용품"><label for="a11">반려동물용품</label></li>
-							<li><input type="checkbox" id="a12" name="type"
-								onclick="go();" value="도서/티켓/음반"><label for="a12">도서/티켓/음반</label></li>
-							<li><input type="checkbox" id="a13" name="type"
-								onclick="go();" value="식물"><label for="a13">식물</label></li>
-							<li><input type="checkbox" id="a14" name="type"
-								onclick="go();" value="기타"><label for="a14">기타</label></li>
-						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
-						<ul style="display: inline-block;">
-							<li>지역 :</li>
-							<li><input type="checkbox" id="b1" name="area"
-								onclick="go();" value="서울"><label for="b1">서울</label></li>
-							<li><input type="checkbox" id="b2" name="area"
-								onclick="go();" value="경기"><label for="b2">경기</label></li>
-							<li><input type="checkbox" id="b3" name="area"
-								onclick="go();" value="충북"><label for="b3">충북</label></li>
-							<li><input type="checkbox" id="b4" name="area"
-								onclick="go();" value="충남"><label for="b4">충남</label></li>
-							<li><input type="checkbox" id="b5" name="area"
-								onclick="go();" value="전북"><label for="b5">전북</label></li>
-							<li><input type="checkbox" id="b6" name="area"
-								onclick="go();" value="전남"><label for="b6">전남</label></li>
-							<li><input type="checkbox" id="b7" name="area"
-								onclick="go();" value="경북"><label for="b7">경북</label></li>
-							<li><input type="checkbox" id="b8" name="area"
-								onclick="go();" value="경남"><label for="b8">경남</label></li>
-							<li><input type="checkbox" id="b9" name="area"
-								onclick="go();" value="부산"><label for="b9">부산</label></li>
-							<li><input type="checkbox" id="b10" name="area"
-								onclick="go();" value="제주도"><label for="b10">제주도</label></li>
-						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
-						<ul style="display: inline-block;">
-							<li>물품상태 :</li>
-							<li><input type="checkbox" id="c1" name="stat"
-								onclick="go();" value="최상"><label for="c1">최상</label></li>
-							<li><input type="checkbox" id="c2" name="stat"
-								onclick="go();" value="상"><label for="c2">상</label></li>
-							<li><input type="checkbox" id="c3" name="stat"
-								onclick="go();" value="중"><label for="c3">중</label></li>
-							<li><input type="checkbox" id="c4" name="stat"
-								onclick="go();" value="하"><label for="c4">하</label></li>
-						</ul> &nbsp &nbsp&nbsp&nbsp &nbsp&nbsp
-						<ul style="display: inline-block;">
-							<li>거래방법 :</li>
-							<li><input type="checkbox" id="d1" name="deal"
-								onclick="go();" value="1"><label for="d1">직거래</label></li>
-							<li><input type="checkbox" id="d2" name="deal"
-								onclick="go();" value="2"><label for="d2">택배</label></li>
+						<fieldset style="width:850px; height:90px; border:3px solid lightblue; padding-left:5px; ">
+							<legend align="center" style="font-weight:bold;">카테고리 </legend>
+							<div style="padding-left:7px;">
+							<input type="checkbox" id="a1" name="type"
+								onclick="go();" value="디지털기기"><label for="a1">디지털기기</label>
+							<input type="checkbox" id="a2" name="type"
+								onclick="go();" value="생활가전"><label for="a2">생활가전</label>
+							<input type="checkbox" id="a3" name="type"
+								onclick="go();" value="가구/인테리어"><label for="a3">가구/인테리어</label>
+							<input type="checkbox" id="a4" name="type"
+								onclick="go();" value="유아용품"><label for="a4">유아용품</label>
+							<input type="checkbox" id="a5" name="type"
+								onclick="go();" value="생활/가공식품"><label for="a5">생활/가공식품</label>
+							<input type="checkbox" id="a6" name="type"
+								onclick="go();" value="스포츠/레저"><label for="a6">스포츠/레저</label>
+							<input type="checkbox" id="a7" name="type"
+								onclick="go();" value="여성패션/잡화"><label for="a7">여성패션/잡화</label><br>
+							<input type="checkbox" id="a8" name="type"
+								onclick="go();" value="남성패션/잡화"><label for="a8">남성패션/잡화</label>
+							<input type="checkbox" id="a9" name="type"
+								onclick="go();" value="게임/취미"><label for="a9">게임/취미</label>
+							<input type="checkbox" id="a10" name="type"
+								onclick="go();" value="뷰티/미용"><label for="a10">뷰티/미용</label>
+							<input type="checkbox" id="a11" name="type"
+								onclick="go();" value="반려동물용품"><label for="a11">반려동물용품</label>
+							<input type="checkbox" id="a12" name="type"
+								onclick="go();" value="도서/티켓/음반"><label for="a12">도서/티켓/음반</label>
+							<input type="checkbox" id="a13" name="type"
+								onclick="go();" value="식물"><label for="a13">식물</label>
+							<input type="checkbox" id="a14" name="type"
+								onclick="go();" value="기타"><label for="a14">기타</label>
+						</div>
 						</ul>
-					</div> <br>
+						</fieldset>
+						<ul style="display: inline-block;">
+						<fieldset style="width:850px; height:60px; border:3px solid lightblue;">
+						
+							<legend align="center" style="font-weight:bold;">지역 </legend>
+							<div style="padding-left:130px;">
+							<input type="checkbox" id="b1" name="area"
+								onclick="go();" value="서울"><label for="b1">서울</label>
+							<input type="checkbox" id="b2" name="area"
+								onclick="go();" value="경기"><label for="b2">경기</label>
+							<input type="checkbox" id="b3" name="area"
+								onclick="go();" value="충북"><label for="b3">충북</label>
+							<input type="checkbox" id="b4" name="area"
+								onclick="go();" value="충남"><label for="b4">충남</label>
+							<input type="checkbox" id="b5" name="area"
+								onclick="go();" value="전북"><label for="b5">전북</label>
+							<input type="checkbox" id="b6" name="area"
+								onclick="go();" value="전남"><label for="b6">전남</label>
+							<input type="checkbox" id="b7" name="area"
+								onclick="go();" value="경북"><label for="b7">경북</label>
+							<input type="checkbox" id="b8" name="area"
+								onclick="go();" value="경남"><label for="b8">경남</label>
+							<input type="checkbox" id="b9" name="area"
+								onclick="go();" value="부산"><label for="b9">부산</label>
+							<input type="checkbox" id="b10" name="area"
+								onclick="go();" value="제주도"><label for="b10">제주도</label>
+						</div>
+						</ul><br>
+						</fieldset>
+						
+						<ul style="display: inline-block;">
+						<fieldset style="width:850px; height:60px; border:3px solid lightblue;">
+							<legend align="center" style="font-weight:bold;">물품상태 </legend>
+							<div style="padding-left:350px;">
+							<input type="checkbox" id="c1" name="stat"
+								onclick="go();" value="최상"><label for="c1">최상</label>
+							<input type="checkbox" id="c2" name="stat"
+								onclick="go();" value="상"><label for="c2">상</label>
+							<input type="checkbox" id="c3" name="stat"
+								onclick="go();" value="중"><label for="c3">중</label>
+							<input type="checkbox" id="c4" name="stat"
+								onclick="go();" value="하"><label for="c4">하</label>
+							</div>
+						</ul><br>
+						</fieldset>
+						<ul style="display: inline-block;">
+						<fieldset style="width:850px; height:60px; border:3px solid lightblue;">
+							<legend align="center" style="font-weight:bold;">거래방법 </legend>
+							<div style="padding-left:350px;">
+							<input type="checkbox" id="d1" name="deal"
+								onclick="go();" value="1"><label for="d1">직거래</label>
+							<input type="checkbox" id="d2" name="deal"
+								onclick="go();" value="2"><label for="d2">택배</label>
+							</div>
+						</ul>
+						</fieldset>
+					</div> 
+					</div>
 					<select name="searchType">
 						<option>선택</option>
 						<option value="title">제목</option>
 					</select> <input type="text" class="searchbox" name="searchWord">
-					<button type="submit" id="test">검색</button>
+					<span><button class="search" type="submit" id="test">검색</button></span>
 				</form>
 			</div>
 

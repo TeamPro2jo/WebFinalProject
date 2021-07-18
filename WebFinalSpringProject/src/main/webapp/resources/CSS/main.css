@@ -78,7 +78,7 @@ a{
 }
 
 .list{
-	padding-left: 100px;
+	margin-left: 30px;
 }
 
 .top{
@@ -86,6 +86,10 @@ a{
 	background-color: #9ee8fa;
 	font-size: 20px;
 	border-radius: 5px;
+}
+
+.category{
+	margin-left: -100px;
 }
 
 .write { /*내가쓴글 목록*/
@@ -131,4 +135,17 @@ tr:nth-child(even){
 .adver{ /*footer*/
 	background-color: #A7EEFF;
 	height: 60px;
+}
+
+.search {
+    width: 10%;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px white;
+    cursor: pointer;
+    margin-top: 5px;
+    background-color: #9ee8fa;
+    font-size: 10pt;
+    font-family: "맑은 고딕", 'Courier New', Courier, monospace;
+    display: inline-block;
 }

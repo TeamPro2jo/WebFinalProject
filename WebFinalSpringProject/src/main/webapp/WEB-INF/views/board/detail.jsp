@@ -13,6 +13,7 @@
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 
+<c:url var="zzim" value="/ajax/board/zzim" />
 <c:url var="delete" value="/ajax/board/delete" />
 <c:set var="account" value='<%=session.getAttribute("account")%>' />
 <c:url var="userpage" value="/account/userpage" />
@@ -24,23 +25,23 @@
 	<div class="width">
 	<br>
 	<button class="chat" id="id_chat" type="button" onclick="javascript:popup();" style="float: right; margin-top: 15px; width: 18%; height: 65px; text-align: center; background-color: skyblue; border-radius: 5px; border: none; color: black; font-weight: bold;"]>구매 채팅</button>
-		<h3>${item.getTitle() }</h3>
-	<div>
-		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
-		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
-			${item.getUdate() }</small><br> <small style="padding-right:15px;">조회수 : ${item.getVcnt() }</small>
 		<c:choose>
 			<c:when test="${zzimcheck }">
 				<a style="cursor: pointer; color: red;"
-					onclick="zzim(${item.getBid() });"><span id="zzim">♥</span></a>
+					onclick="zzim(${item.getBid() });"><span id="zzim" style="float: right; font-size: 50px; margin: 3px 20px 0px 0px; font-family: '맑은 고딕'">♥</span></a>
 				<br>
 			</c:when>
 			<c:otherwise>
 				<a style="cursor: pointer; color: red;"
-					onclick="zzim(${item.getBid() });"><span id="zzim">♡</span></a>
+					onclick="zzim(${item.getBid() });"><span id="zzim" style="float: right; font-size: 50px; margin: 3px 20px 0px 0px; font-family: '맑은 고딕'">♡</span></a>
 				<br>
 			</c:otherwise>
 		</c:choose>
+		<h3 style="margin-top: 0px">${item.getTitle() }</h3>
+	<div>
+		<small><a id="userlink" href ="">작성자 : ${item.getAname() }</a></small><br>
+		<small>작성일 : ${item.getCdate() }</small><br> <small>수정일 :
+			${item.getUdate() }</small><br> <small style="padding-right:15px;">조회수 : ${item.getVcnt() }</small>
 	
 	<div class="info">
 		<div class="thumbnail">
@@ -132,13 +133,13 @@
 <script>
 
 
-function zzim(boardid) {
+function zzim(bid) {
 	$.ajax({
-		url: "/finalproj/ajax/board/zzim",
+		url: "${zzim }",
 		type: "get",
 		datatype: "json",
 		data: {
-			boardid: boardid
+			bid: bid
 		},
 		success: function(data) {
 			if(data.result == "delete") {
@@ -184,6 +185,7 @@ function zzim(boardid) {
 		}
 		else {
 			document.getElementById('id_chat').style.visibility = 'hidden';
+			document.getElementById('zzim').style.display = 'none';
 		}
 		
         listReply(); 
