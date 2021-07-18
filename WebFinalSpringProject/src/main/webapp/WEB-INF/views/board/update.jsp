@@ -98,7 +98,7 @@ $(document).ready(function(){
 								<textarea class="context" id="id_contents" name="contents" cols="80" rows="20" required>${item.getContents() }</textarea>
 							</div>
 				<br>
-				<div class="inputArea">
+				<div class="inputArea" style="margin-left: -21em; margin-bottom:1em;">
 				 <label for="gdsImg">이미지</label>
 				 <input type="file" id="img" name="file" />
 				 <div class="select_img">
